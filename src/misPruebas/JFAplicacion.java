@@ -10,17 +10,21 @@ import java.awt.CardLayout;
 import java.awt.Font;
 import java.io.File;
 import misClases.JPCreditos;
+import misClases.JPDerrota;
 import misClases.JPInicio;
 import misClases.JPInstrucciones;
 import misClases.JPJuego;
+import misClases.JPVictoria;
 
 public class JFAplicacion extends javax.swing.JFrame {
     // Variables
     private final CardLayout cardLayout;
     private final JPInicio card1;
     private final JPJuego card2;
+    private final JPVictoria card4;
+    private final JPDerrota card5;
     private final JPInstrucciones card3;
-    private JPCreditos card6;
+    private final JPCreditos card6;
     
     // Fuentes Personalizadas
     private Font SVBold;
@@ -28,26 +32,33 @@ public class JFAplicacion extends javax.swing.JFrame {
     
     // Creates new form FrameAplicacion
     public JFAplicacion() {
-        loadFonts();
         initComponents();
+        loadFonts();
         
-        // Esto es para agregar los diferentes paneles en el JFrame principal
+        // Esto es para agregar los diferentes paneles en el JFrame principal, card Layout hace que cada panel sean como capas diferentes
         cardLayout = (CardLayout)pantallaPrincipal.getLayout();
         
+        // Aqui liga las capas al JFrame principal
         pantallaPrincipal.setLayout(cardLayout);
         
+        // Se crea la instancia de cada uno de los JPanel a usar, se envia las fuentes para poder ser usadas en cada instancia sin problemas
         card1 = new JPInicio(SVBold,SVThin);
         card2 = new JPJuego(SVBold,SVThin);
         card3 = new JPInstrucciones(SVBold,SVThin);
+        card4 = new JPVictoria(SVBold,SVThin);
+        card5 = new JPDerrota(SVBold,SVThin);
         card6 = new JPCreditos(SVBold,SVThin);
         
+        // Se añaden a la carpeta los JPanel a usar básicamente
         pantallaPrincipal.add(card1, "MainScreen");
         pantallaPrincipal.add(card2,"GameScreen");
         pantallaPrincipal.add(card3,"InstructScreen");
+        pantallaPrincipal.add(card4,"VictoryScreen");
+        pantallaPrincipal.add(card5,"DefeatScreen");
         pantallaPrincipal.add(card6,"CreditsScreen");
     }
     
-    // Se encarga de cargar las fuentes de los recursos al JPanel tal cual
+    // Se encarga de cargar las fuentes de los recursos al JFrame tal cual
     private void loadFonts(){
         try{
             File fileSVBold = new File("src/Resources/Fuentes/svbold.otf");
