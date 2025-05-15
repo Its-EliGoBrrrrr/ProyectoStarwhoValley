@@ -19,24 +19,12 @@ public class JPJuego extends javax.swing.JPanel {
     private Font SVThin;
     
     // Creates new form JPJuego
-    public JPJuego() {
-        loadFonts();
+    public JPJuego(Font SVBold, Font SVThin) {
+        this.SVBold = SVBold;
+        this.SVThin = SVThin;
+        this.setFont(SVThin);
+        
         initComponents();
-    }
-    
-    // Se encarga de cargar las fuentes de los recursos al JPanel tal cual
-    // Estot buscando una forma en la que no ocupe repetir el codigo en cada panel
-    private void loadFonts(){
-        try{
-            File fileSVBold = new File("src/Resources/Fuentes/svbold.otf");
-            File fileSVThin = new File("src/Resources/Fuentes/svthin.otf");
-            SVBold = Font.createFont(Font.TRUETYPE_FONT, fileSVBold).deriveFont(16f);
-            SVThin = Font.createFont(Font.TRUETYPE_FONT, fileSVThin).deriveFont(16f);
-            this.setFont(SVThin); // Esta linea establece la fuente estandar del archivo, para que aplique se usa la propiedad 'font' del Form
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -50,6 +38,7 @@ public class JPJuego extends javax.swing.JPanel {
 
         ButtonReturn = new javax.swing.JButton();
 
+        setFont(getFont());
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));

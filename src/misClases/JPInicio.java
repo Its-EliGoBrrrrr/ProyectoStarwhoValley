@@ -19,25 +19,13 @@ public class JPInicio extends javax.swing.JPanel {
     private Font SVThin;
     
     // Creates new form JPInicio
-    public JPInicio() {
-        loadFonts();
+    public JPInicio(Font SVBold, Font SVThin) {
+        this.SVBold = SVBold;
+        this.SVThin = SVThin;
+        this.setFont(SVThin);
+        
         initComponents();
         
-    }
-    
-    // Se encarga de cargar las fuentes de los recursos al JPanel tal cual
-    // Estot buscando una forma en la que no ocupe repetir el codigo en cada panel
-    private void loadFonts(){
-        try{
-            File fileSVBold = new File("src/Resources/Fuentes/svbold.otf");
-            File fileSVThin = new File("src/Resources/Fuentes/svthin.otf");
-            SVBold = Font.createFont(Font.TRUETYPE_FONT, fileSVBold).deriveFont(16f);
-            SVThin = Font.createFont(Font.TRUETYPE_FONT, fileSVThin).deriveFont(16f);
-            this.setFont(SVThin);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -51,6 +39,7 @@ public class JPInicio extends javax.swing.JPanel {
 
         ButtonStart = new javax.swing.JButton();
 
+        setFont(getFont());
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));

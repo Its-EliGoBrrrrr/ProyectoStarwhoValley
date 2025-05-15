@@ -5,19 +5,18 @@
 package misClases;
 
 import java.awt.Font;
-import java.io.File;
 
 /**
  *
- * @author LENOVO
+ * @author Elijah
  */
-public class JPCreditos extends javax.swing.JPanel {
+public class JPInstrucciones extends javax.swing.JPanel {
     // Variables
     private Font SVBold;
     private Font SVThin;
     
-    // Creates new form JPCreditos
-    public JPCreditos(Font SVBold, Font SVThin) {
+    // Creates new form JPInstrucciones
+    public JPInstrucciones(Font SVBold, Font SVThin) {
         this.SVBold = SVBold;
         this.SVThin = SVThin;
         this.setFont(SVThin);
@@ -48,6 +47,8 @@ public class JPCreditos extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 720, Short.MAX_VALUE)
         );
+
+        getAccessibleContext().setAccessibleName("JPInstrucciones");
     }// </editor-fold>//GEN-END:initComponents
 
 

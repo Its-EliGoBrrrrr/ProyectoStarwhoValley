@@ -5,19 +5,18 @@
 package misClases;
 
 import java.awt.Font;
-import java.io.File;
 
 /**
  *
- * @author LENOVO
+ * @author Elijah
  */
-public class JPCreditos extends javax.swing.JPanel {
+public class JPDerrota extends javax.swing.JPanel {
     // Variables
     private Font SVBold;
     private Font SVThin;
     
-    // Creates new form JPCreditos
-    public JPCreditos(Font SVBold, Font SVThin) {
+    // Creates new form JPDerrota
+    public JPDerrota(Font SVBold, Font SVThin) {
         this.SVBold = SVBold;
         this.SVThin = SVThin;
         this.setFont(SVThin);

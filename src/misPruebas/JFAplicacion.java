@@ -7,17 +7,28 @@ package misPruebas;
 // @author LENOVO
 
 import java.awt.CardLayout;
+import java.awt.Font;
+import java.io.File;
+import misClases.JPCreditos;
 import misClases.JPInicio;
+import misClases.JPInstrucciones;
 import misClases.JPJuego;
 
 public class JFAplicacion extends javax.swing.JFrame {
     // Variables
-    private CardLayout cardLayout;
-    private JPInicio card1;
-    private JPJuego card2;
+    private final CardLayout cardLayout;
+    private final JPInicio card1;
+    private final JPJuego card2;
+    private final JPInstrucciones card3;
+    private JPCreditos card6;
+    
+    // Fuentes Personalizadas
+    private Font SVBold;
+    private Font SVThin;
     
     // Creates new form FrameAplicacion
     public JFAplicacion() {
+        loadFonts();
         initComponents();
         
         // Esto es para agregar los diferentes paneles en el JFrame principal
@@ -25,11 +36,29 @@ public class JFAplicacion extends javax.swing.JFrame {
         
         pantallaPrincipal.setLayout(cardLayout);
         
-        card1 = new JPInicio();
-        card2 = new JPJuego();
+        card1 = new JPInicio(SVBold,SVThin);
+        card2 = new JPJuego(SVBold,SVThin);
+        card3 = new JPInstrucciones(SVBold,SVThin);
+        card6 = new JPCreditos(SVBold,SVThin);
         
         pantallaPrincipal.add(card1, "MainScreen");
         pantallaPrincipal.add(card2,"GameScreen");
+        pantallaPrincipal.add(card3,"InstructScreen");
+        pantallaPrincipal.add(card6,"CreditsScreen");
+    }
+    
+    // Se encarga de cargar las fuentes de los recursos al JPanel tal cual
+    private void loadFonts(){
+        try{
+            File fileSVBold = new File("src/Resources/Fuentes/svbold.otf");
+            File fileSVThin = new File("src/Resources/Fuentes/svthin.otf");
+            SVBold = Font.createFont(Font.TRUETYPE_FONT, fileSVBold).deriveFont(16f);
+            SVThin = Font.createFont(Font.TRUETYPE_FONT, fileSVThin).deriveFont(16f);
+            this.setFont(SVBold);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**
