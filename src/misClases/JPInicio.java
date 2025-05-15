@@ -5,6 +5,8 @@
 package misClases;
 
 import java.awt.CardLayout;
+import java.awt.Font;
+import java.io.File;
 import javax.swing.JPanel;
 
 /**
@@ -12,10 +14,30 @@ import javax.swing.JPanel;
  * @author LENOVO
  */
 public class JPInicio extends javax.swing.JPanel {
+    // Variables
+    private Font SVBold;
+    private Font SVThin;
     
     // Creates new form JPInicio
     public JPInicio() {
+        loadFonts();
         initComponents();
+        
+    }
+    
+    // Se encarga de cargar las fuentes de los recursos al JPanel tal cual
+    // Estot buscando una forma en la que no ocupe repetir el codigo en cada panel
+    private void loadFonts(){
+        try{
+            File fileSVBold = new File("src/Resources/Fuentes/svbold.otf");
+            File fileSVThin = new File("src/Resources/Fuentes/svthin.otf");
+            SVBold = Font.createFont(Font.TRUETYPE_FONT, fileSVBold).deriveFont(16f);
+            SVThin = Font.createFont(Font.TRUETYPE_FONT, fileSVThin).deriveFont(16f);
+            this.setFont(SVThin);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -33,6 +55,7 @@ public class JPInicio extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
 
+        ButtonStart.setFont(SVBold);
         ButtonStart.setText("Cambiar CardLayout");
         ButtonStart.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         ButtonStart.addActionListener(new java.awt.event.ActionListener() {

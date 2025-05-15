@@ -12,16 +12,16 @@ import misClases.JPJuego;
 
 public class JFAplicacion extends javax.swing.JFrame {
     // Variables
-    private final CardLayout cardLayout;
-    private final JPInicio card1;
-    private final JPJuego card2;
+    private CardLayout cardLayout;
+    private JPInicio card1;
+    private JPJuego card2;
     
     // Creates new form FrameAplicacion
     public JFAplicacion() {
         initComponents();
         
         // Esto es para agregar los diferentes paneles en el JFrame principal
-        cardLayout = (CardLayout) pantallaPrincipal.getLayout();
+        cardLayout = (CardLayout)pantallaPrincipal.getLayout();
         
         pantallaPrincipal.setLayout(cardLayout);
         
@@ -30,8 +30,6 @@ public class JFAplicacion extends javax.swing.JFrame {
         
         pantallaPrincipal.add(card1, "MainScreen");
         pantallaPrincipal.add(card2,"GameScreen");
-        
-        cardLayout.show(card1, "MainScreen"); // Muestra de cajon la pantalla principal
     }
 
     /**

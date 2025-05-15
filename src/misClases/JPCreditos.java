@@ -4,17 +4,37 @@
  */
 package misClases;
 
+import java.awt.Font;
+import java.io.File;
+
 /**
  *
  * @author LENOVO
  */
 public class JPCreditos extends javax.swing.JPanel {
-
-    /**
-     * Creates new form JPCreditos
-     */
+    // Variables
+    private Font SVBold;
+    private Font SVThin;
+    
+    // Creates new form JPCreditos
     public JPCreditos() {
+        loadFonts();
         initComponents();
+    }
+    
+        // Se encarga de cargar las fuentes de los recursos al JPanel tal cual
+    // Estot buscando una forma en la que no ocupe repetir el codigo en cada panel
+    private void loadFonts(){
+        try{
+            File fileSVBold = new File("src/Resources/Fuentes/svbold.otf");
+            File fileSVThin = new File("src/Resources/Fuentes/svthin.otf");
+            SVBold = Font.createFont(Font.TRUETYPE_FONT, fileSVBold).deriveFont(16f);
+            SVThin = Font.createFont(Font.TRUETYPE_FONT, fileSVThin).deriveFont(16f);
+            this.setFont(SVBold);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -26,15 +46,18 @@ public class JPCreditos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        setMaximumSize(new java.awt.Dimension(1280, 720));
+        setMinimumSize(new java.awt.Dimension(1280, 720));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 1280, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 720, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

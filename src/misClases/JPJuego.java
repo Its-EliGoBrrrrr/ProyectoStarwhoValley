@@ -5,6 +5,8 @@
 package misClases;
 
 import java.awt.CardLayout;
+import java.awt.Font;
+import java.io.File;
 import javax.swing.JPanel;
 
 /**
@@ -12,12 +14,29 @@ import javax.swing.JPanel;
  * @author LENOVO
  */
 public class JPJuego extends javax.swing.JPanel {
+    // Variables
+    private Font SVBold;
+    private Font SVThin;
     
-    /**
-     * Creates new form JPJuego
-     */
+    // Creates new form JPJuego
     public JPJuego() {
+        loadFonts();
         initComponents();
+    }
+    
+    // Se encarga de cargar las fuentes de los recursos al JPanel tal cual
+    // Estot buscando una forma en la que no ocupe repetir el codigo en cada panel
+    private void loadFonts(){
+        try{
+            File fileSVBold = new File("src/Resources/Fuentes/svbold.otf");
+            File fileSVThin = new File("src/Resources/Fuentes/svthin.otf");
+            SVBold = Font.createFont(Font.TRUETYPE_FONT, fileSVBold).deriveFont(16f);
+            SVThin = Font.createFont(Font.TRUETYPE_FONT, fileSVThin).deriveFont(16f);
+            this.setFont(SVThin); // Esta linea establece la fuente estandar del archivo, para que aplique se usa la propiedad 'font' del Form
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -35,8 +54,10 @@ public class JPJuego extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
 
+        ButtonReturn.setFont(getFont());
         ButtonReturn.setText("Cambiar CardLayout");
         ButtonReturn.setToolTipText("");
+        ButtonReturn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         ButtonReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonReturnActionPerformed(evt);
@@ -48,16 +69,16 @@ public class JPJuego extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(644, Short.MAX_VALUE)
-                .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(409, 409, 409))
+                .addContainerGap(506, Short.MAX_VALUE)
+                .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(495, 495, 495))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(420, Short.MAX_VALUE)
-                .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(221, 221, 221))
+                .addContainerGap(496, Short.MAX_VALUE)
+                .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(135, 135, 135))
         );
     }// </editor-fold>//GEN-END:initComponents
 
