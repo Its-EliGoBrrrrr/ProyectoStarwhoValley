@@ -6,7 +6,6 @@ package misClases;
 
 import java.awt.CardLayout;
 import java.awt.Font;
-import java.io.File;
 import javax.swing.JPanel;
 
 /**
@@ -37,6 +36,7 @@ public class JPJuego extends javax.swing.JPanel {
     private void initComponents() {
 
         ButtonReturn = new javax.swing.JButton();
+        ButtonOption = new javax.swing.JButton();
 
         setFont(getFont());
         setMaximumSize(new java.awt.Dimension(1280, 720));
@@ -53,21 +53,36 @@ public class JPJuego extends javax.swing.JPanel {
             }
         });
 
+        ButtonOption.setFont(getFont());
+        ButtonOption.setText("Opciones");
+        ButtonOption.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonOptionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(506, Short.MAX_VALUE)
-                .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(495, 495, 495))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(495, 495, 495))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(ButtonOption)
+                        .addGap(19, 19, 19))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(496, Short.MAX_VALUE)
                 .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(135, 135, 135))
+                .addGap(38, 38, 38)
+                .addComponent(ButtonOption, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -77,8 +92,15 @@ public class JPJuego extends javax.swing.JPanel {
         cardLayout.show(parent, "MainScreen");
     }//GEN-LAST:event_ButtonReturnActionPerformed
 
+    private void ButtonOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonOptionActionPerformed
+        JPanel parent = (JPanel)getParent();
+        CardLayout cardLayout = (CardLayout)parent.getLayout();
+        cardLayout.show(parent, "OptionScreen");
+    }//GEN-LAST:event_ButtonOptionActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonOption;
     private javax.swing.JButton ButtonReturn;
     // End of variables declaration//GEN-END:variables
 }

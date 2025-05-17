@@ -7,17 +7,17 @@ package misPruebas;
 // @author LENOVO
 
 import java.awt.CardLayout;
+import java.awt.DisplayMode;
 import java.awt.Font;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.event.KeyEvent;
 import java.io.File;
-import misClases.JPCreditos;
-import misClases.JPDerrota;
-import misClases.JPInicio;
-import misClases.JPInstrucciones;
-import misClases.JPJuego;
-import misClases.JPVictoria;
+import misClases.*;
 
-public class JFAplicacion extends javax.swing.JFrame {
-    // Variables
+public class JFAplicacion extends javax.swing.JFrame{
+    // ** Variables **
+    // CardLayout
     private final CardLayout cardLayout;
     private final JPInicio card1;
     private final JPJuego card2;
@@ -25,6 +25,12 @@ public class JFAplicacion extends javax.swing.JFrame {
     private final JPDerrota card5;
     private final JPInstrucciones card3;
     private final JPCreditos card6;
+    private final JPOpciones card7;
+    
+    // Pantalla Completa
+    private GraphicsEnvironment gEnvironment;
+    private GraphicsDevice gDevice;
+    private boolean fullScreened;
     
     // Fuentes Personalizadas
     private Font SVBold;
@@ -35,6 +41,10 @@ public class JFAplicacion extends javax.swing.JFrame {
         initComponents();
         loadFonts();
         
+        // Esto es para poder modificar la pantalla como sea necesario
+        gEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        gDevice = gEnvironment.getDefaultScreenDevice();
+        
         // Esto es para agregar los diferentes paneles en el JFrame principal, card Layout hace que cada panel sean como capas diferentes
         cardLayout = (CardLayout)pantallaPrincipal.getLayout();
         
@@ -42,20 +52,23 @@ public class JFAplicacion extends javax.swing.JFrame {
         pantallaPrincipal.setLayout(cardLayout);
         
         // Se crea la instancia de cada uno de los JPanel a usar, se envia las fuentes para poder ser usadas en cada instancia sin problemas
-        card1 = new JPInicio(SVBold,SVThin);
+        card7 = new JPOpciones(SVBold,SVThin);
+        card1 = new JPInicio(SVBold,SVThin,card7);
         card2 = new JPJuego(SVBold,SVThin);
         card3 = new JPInstrucciones(SVBold,SVThin);
         card4 = new JPVictoria(SVBold,SVThin);
         card5 = new JPDerrota(SVBold,SVThin);
         card6 = new JPCreditos(SVBold,SVThin);
         
+        
         // Se añaden a la carpeta los JPanel a usar básicamente
-        pantallaPrincipal.add(card1, "MainScreen");
+        pantallaPrincipal.add(card1,"MainScreen");
         pantallaPrincipal.add(card2,"GameScreen");
         pantallaPrincipal.add(card3,"InstructScreen");
         pantallaPrincipal.add(card4,"VictoryScreen");
         pantallaPrincipal.add(card5,"DefeatScreen");
         pantallaPrincipal.add(card6,"CreditsScreen");
+        pantallaPrincipal.add(card7,"OptionScreen");
     }
     
     // Se encarga de cargar las fuentes de los recursos al JFrame tal cual
@@ -68,6 +81,7 @@ public class JFAplicacion extends javax.swing.JFrame {
             this.setFont(SVBold);
         }
         catch(Exception e){
+            System.out.println("*** Error cargando fuentes ***");
             e.printStackTrace();
         }
     }
@@ -86,33 +100,46 @@ public class JFAplicacion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AdivinaQuien");
+        setFont(getFont());
+        setMaximumSize(new java.awt.Dimension(1920, 1080));
+        setMinimumSize(new java.awt.Dimension(1280, 720));
         setName("AdivinaQuien"); // NOI18N
         setPreferredSize(new java.awt.Dimension(1280, 720));
-        setResizable(false);
 
-        pantallaPrincipal.setMaximumSize(new java.awt.Dimension(1280, 720));
+        pantallaPrincipal.setFont(getFont());
+        pantallaPrincipal.setMaximumSize(new java.awt.Dimension(1920, 1080));
         pantallaPrincipal.setMinimumSize(new java.awt.Dimension(1280, 720));
         pantallaPrincipal.setPreferredSize(new java.awt.Dimension(1280, 720));
+        pantallaPrincipal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pantallaPrincipalKeyPressed(evt);
+            }
+        });
         pantallaPrincipal.setLayout(new java.awt.CardLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pantallaPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 430, Short.MAX_VALUE))
+            .addComponent(pantallaPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pantallaPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+            .addComponent(pantallaPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void pantallaPrincipalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pantallaPrincipalKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_F4){
+            setFullScreen();
+        }
+    }//GEN-LAST:event_pantallaPrincipalKeyPressed
+
+    public void setFullScreen(){
+        gDevice.setFullScreenWindow(this);
+    }
     /**
      * @param args the command line arguments
      */
@@ -152,4 +179,5 @@ public class JFAplicacion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel pantallaPrincipal;
     // End of variables declaration//GEN-END:variables
+
 }
