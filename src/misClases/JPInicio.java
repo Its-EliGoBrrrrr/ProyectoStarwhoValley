@@ -37,15 +37,17 @@ public class JPInicio extends javax.swing.JPanel {
 
         ButtonStart = new javax.swing.JButton();
         ButtonOption = new javax.swing.JButton();
+        ButtonCredits = new javax.swing.JButton();
 
         setFont(getFont());
-        setMaximumSize(new java.awt.Dimension(1280, 720));
+        setMaximumSize(new java.awt.Dimension(1920, 1080));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
 
         ButtonStart.setFont(SVBold);
-        ButtonStart.setText("Cambiar CardLayout");
-        ButtonStart.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        ButtonStart.setBorder(null);
+        ButtonStart.setBorderPainted(false);
+        ButtonStart.setLabel("Jugar");
         ButtonStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonStartActionPerformed(evt);
@@ -54,10 +56,23 @@ public class JPInicio extends javax.swing.JPanel {
 
         ButtonOption.setFont(getFont());
         ButtonOption.setText("Opciones");
-        ButtonOption.setActionCommand("Opciones");
+        ButtonOption.setBorder(null);
+        ButtonOption.setBorderPainted(false);
+        ButtonOption.setIconTextGap(0);
+        ButtonOption.setInheritsPopupMenu(true);
         ButtonOption.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonOptionActionPerformed(evt);
+            }
+        });
+
+        ButtonCredits.setFont(getFont());
+        ButtonCredits.setText("Creditos");
+        ButtonCredits.setBorder(null);
+        ButtonCredits.setBorderPainted(false);
+        ButtonCredits.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonCreditsActionPerformed(evt);
             }
         });
 
@@ -66,23 +81,23 @@ public class JPInicio extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(520, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(ButtonStart, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(453, 453, 453))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(ButtonOption)
-                        .addGap(18, 18, 18))))
+                .addContainerGap(481, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(ButtonStart, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonOption, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonCredits, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(499, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(485, Short.MAX_VALUE)
-                .addComponent(ButtonStart, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
+                .addContainerGap(356, Short.MAX_VALUE)
+                .addComponent(ButtonStart, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(ButtonOption, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addGap(18, 18, 18)
+                .addComponent(ButtonCredits, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(103, 103, 103))
         );
 
         getAccessibleContext().setAccessibleName("MainScreen");
@@ -101,8 +116,15 @@ public class JPInicio extends javax.swing.JPanel {
         cardLayout.show(parent, "OptionScreen");
     }//GEN-LAST:event_ButtonOptionActionPerformed
 
+    private void ButtonCreditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCreditsActionPerformed
+        JPanel parent = (JPanel)getParent();
+        CardLayout cardLayout = (CardLayout)parent.getLayout();
+        cardLayout.show(parent, "CreditsScreen");
+    }//GEN-LAST:event_ButtonCreditsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonCredits;
     private javax.swing.JButton ButtonOption;
     private javax.swing.JButton ButtonStart;
     // End of variables declaration//GEN-END:variables

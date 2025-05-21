@@ -6,13 +6,10 @@ package misPruebas;
 
 // @author LENOVO
 
-import java.awt.CardLayout;
-import java.awt.DisplayMode;
-import java.awt.Font;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-import java.awt.event.KeyEvent;
-import java.io.File;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import javax.swing.*;
 import misClases.*;
 
 public class JFAplicacion extends javax.swing.JFrame{
@@ -36,10 +33,15 @@ public class JFAplicacion extends javax.swing.JFrame{
     private Font SVBold;
     private Font SVThin;
     
+    // Icono
+    private ImageIcon BlueChickIcon;
+    private Image BlueChicken;
+    
     // Creates new form FrameAplicacion
     public JFAplicacion() {
         initComponents();
         loadFonts();
+        loadIcon();
         
         // Esto es para poder modificar la pantalla como sea necesario
         gEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -85,6 +87,17 @@ public class JFAplicacion extends javax.swing.JFrame{
             e.printStackTrace();
         }
     }
+    
+    private void loadIcon(){
+        try{
+            BlueChickIcon = new ImageIcon(getClass().getResource("/Resources/Assets/IconBlueChicken.png"));
+            BlueChicken = BlueChickIcon.getImage();
+            this.setIconImage(BlueChicken);
+        }catch(Exception e){
+            System.out.println("*** Error cargando icono de form ***");
+            e.printStackTrace();
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -99,12 +112,12 @@ public class JFAplicacion extends javax.swing.JFrame{
         pantallaPrincipal = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("AdivinaQuien");
+        setTitle("Starwho Valley");
         setFont(getFont());
+        setIconImages(null);
         setMaximumSize(new java.awt.Dimension(1920, 1080));
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setName("AdivinaQuien"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1280, 720));
+        setName("Starwho Valley"); // NOI18N
 
         pantallaPrincipal.setFont(getFont());
         pantallaPrincipal.setMaximumSize(new java.awt.Dimension(1920, 1080));
