@@ -4,22 +4,19 @@
  */
 package misClases;
 
-import java.awt.Font;
+import java.awt.*;
+import javax.swing.*;
 
 /**
  *
  * @author Elijah
  */
-public class JPInstrucciones extends javax.swing.JPanel {
+public class JPInstrucciones extends JPanel {
     // Variables
-    private Font SVBold;
-    private Font SVThin;
     
     // Creates new form JPInstrucciones
-    public JPInstrucciones(Font SVBold, Font SVThin) {
-        this.SVBold = SVBold;
-        this.SVThin = SVThin;
-        this.setFont(SVThin);
+    public JPInstrucciones() {
+        this.setFont(StardewFonts.SVThin);
         
         initComponents();
     }
@@ -33,25 +30,58 @@ public class JPInstrucciones extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        ButtonReturn = new javax.swing.JButton();
+
         setFont(getFont());
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
+
+        jLabel1.setFont(StardewFonts.SVTitleCaps);
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("InstruCcIoneS");
+
+        ButtonReturn.setFont(getFont());
+        ButtonReturn.setText("Regresar");
+        ButtonReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonReturnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1280, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(1185, Short.MAX_VALUE)
+                .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 455, Short.MAX_VALUE)
+                .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         getAccessibleContext().setAccessibleName("JPInstrucciones");
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ButtonReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonReturnActionPerformed
+        JPanel parent = (JPanel)getParent();
+        CardLayout cardLayout = (CardLayout)parent.getLayout();
+
+        cardLayout.show(parent, "MainScreen");
+    }//GEN-LAST:event_ButtonReturnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonReturn;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

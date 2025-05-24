@@ -4,7 +4,7 @@
  */
 package misClases;
 
-import java.awt.Font;
+import java.awt.*;
 
 /**
  *
@@ -12,16 +12,12 @@ import java.awt.Font;
  */
 public class JPVictoria extends javax.swing.JPanel {
     // Variables
-    private Font SVBold;
-    private Font SVThin;
     
     /**
      * Creates new form JPVictoria
      */
-    public JPVictoria(Font SVBold, Font SVThin) {
-        this.SVBold = SVBold;
-        this.SVThin = SVThin;
-        this.setFont(SVThin);
+    public JPVictoria() {
+        this.setFont(StardewFonts.SVThin);
         
         initComponents();
     }

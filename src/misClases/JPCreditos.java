@@ -13,14 +13,10 @@ import javax.swing.JPanel;
  */
 public class JPCreditos extends javax.swing.JPanel {
     // Variables
-    private Font SVBold;
-    private Font SVThin;
     
     // Creates new form JPCreditos
-    public JPCreditos(Font SVBold, Font SVThin) {
-        this.SVBold = SVBold;
-        this.SVThin = SVThin;
-        this.setFont(SVThin);
+    public JPCreditos() {
+        this.setFont(StardewFonts.SVThin);
         
         initComponents();
     }
@@ -41,7 +37,7 @@ public class JPCreditos extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(1920, 1080));
         setMinimumSize(new java.awt.Dimension(1280, 720));
 
-        ButtonReturn.setFont(SVBold);
+        ButtonReturn.setFont(StardewFonts.SVBold);
         ButtonReturn.setText("Regresar");
         ButtonReturn.setBorder(null);
         ButtonReturn.addActionListener(new java.awt.event.ActionListener() {

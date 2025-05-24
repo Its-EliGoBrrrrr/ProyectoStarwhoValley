@@ -4,25 +4,20 @@
  */
 package misClases;
 
-import java.awt.CardLayout;
-import java.awt.Font;
-import javax.swing.JPanel;
+import java.awt.*;
+import javax.swing.*;
 
 /**
  *
  * @author Elijah
  */
-public class JPOpciones extends javax.swing.JPanel {
+public class JPOpciones extends JPanel {
     // Variables
-    private Font SVBold;
-    private Font SVThin;
-    private String cardAnterior;
+    public static String cardAnterior; // Este es static para que pueda modificar los otros JPanel para que guarde el nombre del panel anterior en el
     
     // Creates new form JPOpciones
-    public JPOpciones(Font SVBold, Font SVThin) {
-        this.SVBold = SVBold;
-        this.SVThin = SVThin;
-        this.setFont(SVThin);
+    public JPOpciones() {
+        this.setFont(StardewFonts.SVThin);
         
         initComponents();
     }
@@ -55,16 +50,16 @@ public class JPOpciones extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(1158, Short.MAX_VALUE)
-                .addComponent(ButtonReturn)
-                .addGap(47, 47, 47))
+                .addContainerGap(1185, Short.MAX_VALUE)
+                .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(601, Short.MAX_VALUE)
+                .addContainerGap(625, Short.MAX_VALUE)
                 .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
 

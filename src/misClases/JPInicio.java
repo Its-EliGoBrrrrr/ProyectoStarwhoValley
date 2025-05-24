@@ -4,24 +4,16 @@
  */
 package misClases;
 
-import java.awt.CardLayout;
-import java.awt.Font;
-import javax.swing.JPanel;
+import java.awt.*;
+import javax.swing.*;
 
 // @author LENOVO
 
 public class JPInicio extends javax.swing.JPanel {
-    // Variables
-    private Font SVBold;
-    private Font SVThin;
-    private JPOpciones opciones; // Esto es insanamente inefectivo y estoy buscando una mejor forma de implementarlo si es que queremos tener las opciones en caso todos los paneles
     
     // Creates new form JPInicio
-    public JPInicio(Font SVBold, Font SVThin, JPOpciones opc) {
-        this.SVBold = SVBold;
-        this.SVThin = SVThin;
-        this.opciones = opc;
-        this.setFont(SVThin);
+    public JPInicio() {
+        this.setFont(StardewFonts.SVThin);
         
         initComponents();
     }
@@ -36,15 +28,16 @@ public class JPInicio extends javax.swing.JPanel {
     private void initComponents() {
 
         ButtonStart = new javax.swing.JButton();
-        ButtonOption = new javax.swing.JButton();
+        ButtonInstrucc = new javax.swing.JButton();
         ButtonCredits = new javax.swing.JButton();
+        ButtonOptions = new javax.swing.JButton();
 
         setFont(getFont());
         setMaximumSize(new java.awt.Dimension(1920, 1080));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
 
-        ButtonStart.setFont(SVBold);
+        ButtonStart.setFont(StardewFonts.SVBold);
         ButtonStart.setBorder(null);
         ButtonStart.setBorderPainted(false);
         ButtonStart.setLabel("Jugar");
@@ -54,15 +47,15 @@ public class JPInicio extends javax.swing.JPanel {
             }
         });
 
-        ButtonOption.setFont(getFont());
-        ButtonOption.setText("Opciones");
-        ButtonOption.setBorder(null);
-        ButtonOption.setBorderPainted(false);
-        ButtonOption.setIconTextGap(0);
-        ButtonOption.setInheritsPopupMenu(true);
-        ButtonOption.addActionListener(new java.awt.event.ActionListener() {
+        ButtonInstrucc.setFont(getFont());
+        ButtonInstrucc.setText("Instrucciones");
+        ButtonInstrucc.setBorder(null);
+        ButtonInstrucc.setBorderPainted(false);
+        ButtonInstrucc.setIconTextGap(0);
+        ButtonInstrucc.setInheritsPopupMenu(true);
+        ButtonInstrucc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonOptionActionPerformed(evt);
+                ButtonInstruccActionPerformed(evt);
             }
         });
 
@@ -76,29 +69,47 @@ public class JPInicio extends javax.swing.JPanel {
             }
         });
 
+        ButtonOptions.setFont(getFont());
+        ButtonOptions.setText("Opciones");
+        ButtonOptions.setBorder(null);
+        ButtonOptions.setBorderPainted(false);
+        ButtonOptions.setIconTextGap(0);
+        ButtonOptions.setInheritsPopupMenu(true);
+        ButtonOptions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonOptionsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(481, Short.MAX_VALUE)
+                .addContainerGap(490, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(ButtonStart, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ButtonOption, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ButtonCredits, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(499, Short.MAX_VALUE))
+                    .addComponent(ButtonInstrucc, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonCredits, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(490, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(356, Short.MAX_VALUE)
-                .addComponent(ButtonStart, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(386, Short.MAX_VALUE)
+                .addComponent(ButtonStart, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(ButtonOption, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ButtonInstrucc, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(ButtonCredits, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(103, 103, 103))
+                .addComponent(ButtonOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ButtonCredits, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
+
+        ButtonInstrucc.getAccessibleContext().setAccessibleName("InstruccionesButton");
+        ButtonOptions.getAccessibleContext().setAccessibleName("OpcionesButton");
 
         getAccessibleContext().setAccessibleName("MainScreen");
     }// </editor-fold>//GEN-END:initComponents
@@ -109,12 +120,11 @@ public class JPInicio extends javax.swing.JPanel {
         cardLayout.show(parent, "GameScreen");
     }//GEN-LAST:event_ButtonStartActionPerformed
 
-    private void ButtonOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonOptionActionPerformed
-        opciones.setCardAnterior("MainScreen");
+    private void ButtonInstruccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonInstruccActionPerformed
         JPanel parent = (JPanel)getParent();
         CardLayout cardLayout = (CardLayout)parent.getLayout();
-        cardLayout.show(parent, "OptionScreen");
-    }//GEN-LAST:event_ButtonOptionActionPerformed
+        cardLayout.show(parent, "InstructScreen");
+    }//GEN-LAST:event_ButtonInstruccActionPerformed
 
     private void ButtonCreditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCreditsActionPerformed
         JPanel parent = (JPanel)getParent();
@@ -122,10 +132,18 @@ public class JPInicio extends javax.swing.JPanel {
         cardLayout.show(parent, "CreditsScreen");
     }//GEN-LAST:event_ButtonCreditsActionPerformed
 
+    private void ButtonOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonOptionsActionPerformed
+        JPOpciones.cardAnterior="MainScreen";
+        JPanel parent = (JPanel)getParent();
+        CardLayout cardLayout = (CardLayout)parent.getLayout();
+        cardLayout.show(parent, "OptionScreen");
+    }//GEN-LAST:event_ButtonOptionsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonCredits;
-    private javax.swing.JButton ButtonOption;
+    private javax.swing.JButton ButtonInstrucc;
+    private javax.swing.JButton ButtonOptions;
     private javax.swing.JButton ButtonStart;
     // End of variables declaration//GEN-END:variables
 }
