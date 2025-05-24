@@ -16,7 +16,7 @@ public class JPOpciones extends javax.swing.JPanel {
     // Variables
     private Font SVBold;
     private Font SVThin;
-    private String cardAnterior;
+    public static String cardAnterior; // Este es static para que pueda modificar los otros JPanel para que guarde el nombre del panel anterior en el
     
     // Creates new form JPOpciones
     public JPOpciones(Font SVBold, Font SVThin) {

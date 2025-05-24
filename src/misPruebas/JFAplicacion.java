@@ -54,13 +54,13 @@ public class JFAplicacion extends javax.swing.JFrame{
         pantallaPrincipal.setLayout(cardLayout);
         
         // Se crea la instancia de cada uno de los JPanel a usar, se envia las fuentes para poder ser usadas en cada instancia sin problemas
-        card7 = new JPOpciones(SVBold,SVThin);
-        card1 = new JPInicio(SVBold,SVThin,card7);
+        card1 = new JPInicio(SVBold,SVThin);
         card2 = new JPJuego(SVBold,SVThin);
         card3 = new JPInstrucciones(SVBold,SVThin);
         card4 = new JPVictoria(SVBold,SVThin);
         card5 = new JPDerrota(SVBold,SVThin);
         card6 = new JPCreditos(SVBold,SVThin);
+        card7 = new JPOpciones(SVBold,SVThin);
         
         
         // Se añaden a la carpeta los JPanel a usar básicamente

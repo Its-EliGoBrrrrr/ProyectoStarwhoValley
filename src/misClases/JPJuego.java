@@ -93,6 +93,7 @@ public class JPJuego extends javax.swing.JPanel {
     }//GEN-LAST:event_ButtonReturnActionPerformed
 
     private void ButtonOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonOptionActionPerformed
+        JPOpciones.cardAnterior="GameScreen";
         JPanel parent = (JPanel)getParent();
         CardLayout cardLayout = (CardLayout)parent.getLayout();
         cardLayout.show(parent, "OptionScreen");

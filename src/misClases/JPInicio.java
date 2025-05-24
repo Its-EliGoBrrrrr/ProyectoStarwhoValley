@@ -4,9 +4,8 @@
  */
 package misClases;
 
-import java.awt.CardLayout;
-import java.awt.Font;
-import javax.swing.JPanel;
+import java.awt.*;
+import javax.swing.*;
 
 // @author LENOVO
 
@@ -14,13 +13,11 @@ public class JPInicio extends javax.swing.JPanel {
     // Variables
     private Font SVBold;
     private Font SVThin;
-    private JPOpciones opciones; // Esto es insanamente inefectivo y estoy buscando una mejor forma de implementarlo si es que queremos tener las opciones en caso todos los paneles
     
     // Creates new form JPInicio
-    public JPInicio(Font SVBold, Font SVThin, JPOpciones opc) {
+    public JPInicio(Font SVBold, Font SVThin) {
         this.SVBold = SVBold;
         this.SVThin = SVThin;
-        this.opciones = opc;
         this.setFont(SVThin);
         
         initComponents();
@@ -110,7 +107,7 @@ public class JPInicio extends javax.swing.JPanel {
     }//GEN-LAST:event_ButtonStartActionPerformed
 
     private void ButtonOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonOptionActionPerformed
-        opciones.setCardAnterior("MainScreen");
+        JPOpciones.cardAnterior="MainScreen";
         JPanel parent = (JPanel)getParent();
         CardLayout cardLayout = (CardLayout)parent.getLayout();
         cardLayout.show(parent, "OptionScreen");
