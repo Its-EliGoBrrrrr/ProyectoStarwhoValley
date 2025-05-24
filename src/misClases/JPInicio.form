@@ -34,26 +34,29 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace pref="481" max="32767" attributes="0"/>
+              <EmptySpace pref="490" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
                   <Component id="ButtonStart" alignment="2" min="-2" pref="300" max="-2" attributes="0"/>
-                  <Component id="ButtonOption" alignment="2" min="-2" pref="300" max="-2" attributes="0"/>
+                  <Component id="ButtonInstrucc" alignment="2" min="-2" pref="300" max="-2" attributes="0"/>
                   <Component id="ButtonCredits" alignment="2" min="-2" pref="200" max="-2" attributes="0"/>
+                  <Component id="ButtonOptions" alignment="2" min="-2" pref="300" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="499" max="32767" attributes="0"/>
+              <EmptySpace pref="490" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="356" max="32767" attributes="0"/>
-              <Component id="ButtonStart" min="-2" pref="75" max="-2" attributes="0"/>
+              <EmptySpace pref="386" max="32767" attributes="0"/>
+              <Component id="ButtonStart" min="-2" pref="60" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="ButtonOption" min="-2" pref="75" max="-2" attributes="0"/>
+              <Component id="ButtonInstrucc" min="-2" pref="60" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="ButtonCredits" min="-2" pref="75" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
+              <Component id="ButtonOptions" min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="ButtonCredits" min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -62,7 +65,7 @@
     <Component class="javax.swing.JButton" name="ButtonStart">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="SVBold" type="code"/>
+          <Connection code="StardewFonts.SVBold" type="code"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
@@ -74,12 +77,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonStartActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="ButtonOption">
+    <Component class="javax.swing.JButton" name="ButtonInstrucc">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection component="Form" name="font" type="property"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Opciones"/>
+        <Property name="text" type="java.lang.String" value="Instrucciones"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
         </Property>
@@ -87,8 +90,11 @@
         <Property name="iconTextGap" type="int" value="0"/>
         <Property name="inheritsPopupMenu" type="boolean" value="true"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="InstruccionesButton"/>
+      </AccessibilityProperties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonOptionActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonInstruccActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="ButtonCredits">
@@ -104,6 +110,26 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonCreditsActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="ButtonOptions">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection component="Form" name="font" type="property"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Opciones"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="null"/>
+        </Property>
+        <Property name="borderPainted" type="boolean" value="false"/>
+        <Property name="iconTextGap" type="int" value="0"/>
+        <Property name="inheritsPopupMenu" type="boolean" value="true"/>
+      </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="OpcionesButton"/>
+      </AccessibilityProperties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonOptionsActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

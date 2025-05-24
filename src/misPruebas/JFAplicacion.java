@@ -29,10 +29,6 @@ public class JFAplicacion extends javax.swing.JFrame{
     private GraphicsDevice gDevice;
     private boolean fullScreened;
     
-    // Fuentes Personalizadas
-    private Font SVBold;
-    private Font SVThin;
-    
     // Icono
     private ImageIcon BlueChickIcon;
     private Image BlueChicken;
@@ -40,7 +36,7 @@ public class JFAplicacion extends javax.swing.JFrame{
     // Creates new form FrameAplicacion
     public JFAplicacion() {
         initComponents();
-        loadFonts();
+        new StardewFonts();
         loadIcon();
         
         // Esto es para poder modificar la pantalla como sea necesario
@@ -54,14 +50,13 @@ public class JFAplicacion extends javax.swing.JFrame{
         pantallaPrincipal.setLayout(cardLayout);
         
         // Se crea la instancia de cada uno de los JPanel a usar, se envia las fuentes para poder ser usadas en cada instancia sin problemas
-        card1 = new JPInicio(SVBold,SVThin);
-        card2 = new JPJuego(SVBold,SVThin);
-        card3 = new JPInstrucciones(SVBold,SVThin);
-        card4 = new JPVictoria(SVBold,SVThin);
-        card5 = new JPDerrota(SVBold,SVThin);
-        card6 = new JPCreditos(SVBold,SVThin);
-        card7 = new JPOpciones(SVBold,SVThin);
-        
+        card1 = new JPInicio();
+        card2 = new JPJuego();
+        card3 = new JPInstrucciones();
+        card4 = new JPVictoria();
+        card5 = new JPDerrota();
+        card6 = new JPCreditos();
+        card7 = new JPOpciones();
         
         // Se añaden a la carpeta los JPanel a usar básicamente
         pantallaPrincipal.add(card1,"MainScreen");
@@ -73,21 +68,7 @@ public class JFAplicacion extends javax.swing.JFrame{
         pantallaPrincipal.add(card7,"OptionScreen");
     }
     
-    // Se encarga de cargar las fuentes de los recursos al JFrame tal cual
-    private void loadFonts(){
-        try{
-            File fileSVBold = new File("src/Resources/Fuentes/svbold.otf");
-            File fileSVThin = new File("src/Resources/Fuentes/svthin.otf");
-            SVBold = Font.createFont(Font.TRUETYPE_FONT, fileSVBold).deriveFont(16f);
-            SVThin = Font.createFont(Font.TRUETYPE_FONT, fileSVThin).deriveFont(16f);
-            this.setFont(SVBold);
-        }
-        catch(Exception e){
-            System.out.println("*** Error cargando fuentes ***");
-            e.printStackTrace();
-        }
-    }
-    
+    // Se encarga de obtener
     private void loadIcon(){
         try{
             BlueChickIcon = new ImageIcon(getClass().getResource("/Resources/Assets/IconBlueChicken.png"));

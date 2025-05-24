@@ -4,24 +4,19 @@
  */
 package misClases;
 
-import java.awt.CardLayout;
-import java.awt.Font;
-import javax.swing.JPanel;
+import java.awt.*;
+import javax.swing.*;
 
 /**
  *
  * @author LENOVO
  */
-public class JPJuego extends javax.swing.JPanel {
+public class JPJuego extends JPanel {
     // Variables
-    private Font SVBold;
-    private Font SVThin;
     
     // Creates new form JPJuego
-    public JPJuego(Font SVBold, Font SVThin) {
-        this.SVBold = SVBold;
-        this.SVThin = SVThin;
-        this.setFont(SVThin);
+    public JPJuego() {
+        this.setFont(StardewFonts.SVThin);
         
         initComponents();
     }
@@ -72,17 +67,17 @@ public class JPJuego extends javax.swing.JPanel {
                         .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(495, 495, 495))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(ButtonOption)
-                        .addGap(19, 19, 19))))
+                        .addComponent(ButtonOption, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(496, Short.MAX_VALUE)
+                .addContainerGap(498, Short.MAX_VALUE)
                 .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(ButtonOption, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
 
