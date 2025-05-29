@@ -17,6 +17,7 @@
       <Dimension value="[1280, 720]"/>
     </Property>
     <Property name="name" type="java.lang.String" value="Starwho Valley" noResource="true"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>

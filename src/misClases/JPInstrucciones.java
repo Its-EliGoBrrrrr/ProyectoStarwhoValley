@@ -16,7 +16,7 @@ public class JPInstrucciones extends JPanel {
     
     // Creates new form JPInstrucciones
     public JPInstrucciones() {
-        this.setFont(StardewFonts.SVThin);
+        this.setFont(StardewFonts.getSVThin());
         
         initComponents();
     }
@@ -37,7 +37,7 @@ public class JPInstrucciones extends JPanel {
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
 
-        jLabel1.setFont(StardewFonts.SVTitleCaps);
+        jLabel1.setFont(StardewFonts.getSVTitleCaps());
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("InstruCcIoneS");
 

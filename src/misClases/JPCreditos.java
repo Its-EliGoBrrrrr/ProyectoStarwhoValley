@@ -16,7 +16,7 @@ public class JPCreditos extends javax.swing.JPanel {
     
     // Creates new form JPCreditos
     public JPCreditos() {
-        this.setFont(StardewFonts.SVThin);
+        this.setFont(StardewFonts.getSVThin());
         
         initComponents();
     }
@@ -37,7 +37,7 @@ public class JPCreditos extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(1920, 1080));
         setMinimumSize(new java.awt.Dimension(1280, 720));
 
-        ButtonReturn.setFont(StardewFonts.SVBold);
+        ButtonReturn.setFont(StardewFonts.getSVBold());
         ButtonReturn.setText("Regresar");
         ButtonReturn.setBorder(null);
         ButtonReturn.addActionListener(new java.awt.event.ActionListener() {

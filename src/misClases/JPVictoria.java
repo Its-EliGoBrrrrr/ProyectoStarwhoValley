@@ -17,7 +17,7 @@ public class JPVictoria extends javax.swing.JPanel {
      * Creates new form JPVictoria
      */
     public JPVictoria() {
-        this.setFont(StardewFonts.SVThin);
+        this.setFont(StardewFonts.getSVThin());
         
         initComponents();
     }

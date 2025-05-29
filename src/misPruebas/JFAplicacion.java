@@ -99,6 +99,7 @@ public class JFAplicacion extends javax.swing.JFrame{
         setMaximumSize(new java.awt.Dimension(1920, 1080));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setName("Starwho Valley"); // NOI18N
+        setResizable(false);
 
         pantallaPrincipal.setFont(getFont());
         pantallaPrincipal.setMaximumSize(new java.awt.Dimension(1920, 1080));

@@ -17,7 +17,7 @@ public class JPOpciones extends JPanel {
     
     // Creates new form JPOpciones
     public JPOpciones() {
-        this.setFont(StardewFonts.SVThin);
+        this.setFont(StardewFonts.getSVThin());
         
         initComponents();
     }

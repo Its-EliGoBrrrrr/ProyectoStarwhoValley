@@ -12,10 +12,10 @@ import java.io.File;
  * @author Elijah
  */
 public class StardewFonts {
-    public static Font SVBold;
-    public static Font SVThin;
-    public static Font SVTitleCaps;
-    public static Font SVTitleRegular;
+    private static Font SVBold;
+    private static Font SVThin;
+    private static Font SVTitleCaps;
+    private static Font SVTitleRegular;
     
     public StardewFonts(){
         loadFonts();
@@ -37,5 +37,22 @@ public class StardewFonts {
             System.out.println("*** Error cargando fuentes ***");
             e.printStackTrace();
         }
+    }
+
+    // Solo incluye Getters porque no quiero que sea capaz de modificar los contenidos de las fuentes
+    public static Font getSVBold() {
+        return SVBold;
+    }
+
+    public static Font getSVThin() {
+        return SVThin;
+    }
+
+    public static Font getSVTitleCaps() {
+        return SVTitleCaps;
+    }
+
+    public static Font getSVTitleRegular() {
+        return SVTitleRegular;
     }
 }

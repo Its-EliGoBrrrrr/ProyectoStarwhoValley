@@ -15,7 +15,7 @@ public class JPDerrota extends javax.swing.JPanel {
     
     // Creates new form JPDerrota
     public JPDerrota() {
-        this.setFont(StardewFonts.SVThin);
+        this.setFont(StardewFonts.getSVThin());
         
         initComponents();
     }

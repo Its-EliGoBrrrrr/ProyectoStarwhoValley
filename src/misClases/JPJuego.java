@@ -16,7 +16,7 @@ public class JPJuego extends JPanel {
     
     // Creates new form JPJuego
     public JPJuego() {
-        this.setFont(StardewFonts.SVThin);
+        this.setFont(StardewFonts.getSVThin());
         
         initComponents();
     }
