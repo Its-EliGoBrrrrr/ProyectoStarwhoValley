@@ -2,21 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package misPanels;
+package misClases;
 
 import java.awt.*;
-import javax.swing.*;
+import javax.swing.JPanel;
 
 /**
  *
- * @author Elijah
+ * @author LENOVO
  */
-public class JPOpciones extends JPanel {
+public class JPCreditos extends javax.swing.JPanel {
     // Variables
-    public static String cardAnterior; // Este es static para que pueda modificar los otros JPanel para que guarde el nombre del panel anterior en el
     
-    // Creates new form JPOpciones
-    public JPOpciones() {
+    // Creates new form JPCreditos
+    public JPCreditos() {
         this.setFont(StardewFonts.getSVThin());
         
         initComponents();
@@ -33,12 +32,14 @@ public class JPOpciones extends JPanel {
 
         ButtonReturn = new javax.swing.JButton();
 
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFont(getFont());
         setMaximumSize(new java.awt.Dimension(1920, 1080));
         setMinimumSize(new java.awt.Dimension(1280, 720));
 
-        ButtonReturn.setFont(getFont());
+        ButtonReturn.setFont(StardewFonts.getSVBold());
         ButtonReturn.setText("Regresar");
+        ButtonReturn.setBorder(null);
         ButtonReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonReturnActionPerformed(evt);
@@ -49,30 +50,26 @@ public class JPOpciones extends JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(1185, Short.MAX_VALUE)
-                .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(355, 355, 355)
+                .addComponent(ButtonReturn, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+                .addGap(355, 355, 355))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(625, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(605, Short.MAX_VALUE)
                 .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonReturnActionPerformed
         JPanel parent = (JPanel)getParent();
         CardLayout cardLayout = (CardLayout)parent.getLayout();
-        
-        cardLayout.show(parent, cardAnterior);
+        cardLayout.show(parent, "MainScreen");
     }//GEN-LAST:event_ButtonReturnActionPerformed
 
-    public void setCardAnterior(String cardAnterior){
-        this.cardAnterior = cardAnterior;
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonReturn;

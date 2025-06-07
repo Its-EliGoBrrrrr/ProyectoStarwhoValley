@@ -6,14 +6,14 @@ package misPruebas;
 
 // @author LENOVO
 
-import misPanels.JPOpciones;
-import misPanels.JPVictoria;
-import misPanels.JPCreditos;
-import misPanels.StardewFonts;
-import misPanels.JPInicio;
-import misPanels.JPInstrucciones;
-import misPanels.JPDerrota;
-import misPanels.JPJuego;
+import misClases.JPOpciones;
+import misClases.JPVictoria;
+import misClases.JPCreditos;
+import misClases.StardewFonts;
+import misClases.JPInicio;
+import misClases.JPInstrucciones;
+import misClases.JPDerrota;
+import misClases.JPJuego;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
