@@ -14,13 +14,13 @@ import java.net.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Client{
+public class Client implements Runnable{
     private final int puerto = 1234;
     public static boolean flag = true;
-    // private static String pregunta;
     private Socket conexion;
     private DataOutputStream salidaServer;
     private BufferedReader entradaServer;
+    private String mensaje;
     
     public Client() throws IOException{
         this.conexion=new Socket("localhost",puerto);
@@ -37,11 +37,13 @@ public class Client{
         mensaje = entradaServer.readLine();
         System.out.println("Mensaje Server: "+mensaje);
     }
-    /*
-    public static void setPregunta(String preg){
-        pregunta = preg;
+    
+    public void endClient() throws IOException{
+        salidaServer.close();
+        entradaServer.close();
+        conexion.close();
     }
-    */
+
     public void enviarPregunta (String pregunta) {
         try {
             salidaServer.writeUTF(pregunta);
@@ -51,24 +53,36 @@ public class Client{
         }
     }
     
-    public String recibirPregunta(){
-        String pregunta = "Indeterminado";
+    public void enviarRespuesta(boolean resp){
+        String respuesta;
+        
+        if(resp)
+            respuesta = "Si";
+        else
+            respuesta = "no";
         
         try {
-            pregunta = entradaServer.readLine();
+            salidaServer.writeUTF(respuesta);
+            System.out.println("Respuesta enviada: "+respuesta);
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        return pregunta;
-    }
-    /*
-    public void enviarRespuesta(){
-        
     }
     
-    public String recibirRespuesta(){
-        return "";
+    public String getMensaje(){
+        return this.mensaje;
     }
-    */
+
+    @Override
+    public void run() {
+        while(flag){
+            try {
+                if(entradaServer.readLine() != null){
+                    mensaje = entradaServer.readLine();
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 }
