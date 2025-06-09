@@ -5,6 +5,7 @@
 package misClases;
 
 import java.awt.*;
+import java.io.*;
 import javax.swing.*;
 
 /**
@@ -13,10 +14,16 @@ import javax.swing.*;
  */
 public class JPJuego extends JPanel {
     // Variables
+    Client jugador;
     
     // Creates new form JPJuego
     public JPJuego() {
         this.setFont(StardewFonts.getSVThin());
+        try {
+            this.jugador = new Client();
+        } catch (IOException ex) {
+            System.out.println("*** Error al ejecutar al cliente, revise si el servidor esta activo ***");
+        }
         
         initComponents();
     }
@@ -93,10 +100,6 @@ public class JPJuego extends JPanel {
         CardLayout cardLayout = (CardLayout)parent.getLayout();
         cardLayout.show(parent, "OptionScreen");
     }//GEN-LAST:event_ButtonOptionActionPerformed
-
-    private void enviarPregunta(){
-        
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonOption;

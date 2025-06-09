@@ -10,36 +10,65 @@ package misClases;
  */
 
 import java.io.*;
-import java.net.Socket;
+import java.net.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Client{
-    public static Pregunta pregunta;
+    private final int puerto = 1234;
+    public static boolean flag = true;
+    // private static String pregunta;
+    private Socket conexion;
+    private DataOutputStream salidaServer;
+    private BufferedReader entradaServer;
     
-    public static void enviarPregunta () {
-        try (Socket socket = new Socket("localhost", 8643)) {
-            // Crear flujo de salida para enviar el objeto
-            ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-
-            // Serializar el objeto y enviarlo
-            out.writeObject(pregunta);
-            System.out.println("Objeto enviado: " + pregunta);
-
-            // Cerrar el flujo y el socket
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+    public Client() throws IOException{
+        this.conexion=new Socket("localhost",puerto);
+    }
+    
+    public void startClient() throws IOException{
+        String mensaje;
+        
+        salidaServer = new DataOutputStream(conexion.getOutputStream());
+        entradaServer = new BufferedReader(new InputStreamReader(conexion.getInputStream()));
+        
+        salidaServer.writeUTF("Iniciando transmision\n");
+        
+        mensaje = entradaServer.readLine();
+        System.out.println("Mensaje Server: "+mensaje);
+    }
+    /*
+    public static void setPregunta(String preg){
+        pregunta = preg;
+    }
+    */
+    public void enviarPregunta (String pregunta) {
+        try {
+            salidaServer.writeUTF(pregunta);
+            System.out.println("Pregunta enviada: "+pregunta);
+        } catch (IOException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public static String recibirPregunta(){
-        return "";
+    public String recibirPregunta(){
+        String pregunta = "Indeterminado";
+        
+        try {
+            pregunta = entradaServer.readLine();
+        } catch (IOException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return pregunta;
     }
-    
-    public static void enviarRespuesta(){
+    /*
+    public void enviarRespuesta(){
         
     }
     
-    public static String recibirRespuesta(){
+    public String recibirRespuesta(){
         return "";
     }
+    */
 }
