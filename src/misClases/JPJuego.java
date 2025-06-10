@@ -5,6 +5,10 @@
 package misClases;
 
 import java.awt.*;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 /**
@@ -13,12 +17,31 @@ import javax.swing.*;
  */
 public class JPJuego extends JPanel {
     // Variables
+    private Image imgFondo;
+    private ArrayList<String> personajes = new ArrayList<>();
+    private ArrayList<ImageIcon> iconos = new ArrayList<>();
     
     // Creates new form JPJuego
     public JPJuego() {
         this.setFont(StardewFonts.getSVThin());
+        try{
+            imgFondo = ImageIO.read(new File("src/Resources/Fondos/TablonEspecial1.png"));
+        }catch(Exception e){
+            System.out.println("*** Error cargando fondo de panel ***");
+            e.printStackTrace();
+        }
         
         initComponents();
+        this.labelsImg = new ArrayList<>(Arrays.asList(jLabelPersonaje1, jLabelPersonaje2, jLabelPersonaje3, jLabelPersonaje4,
+            jLabelPersonaje5, jLabelPersonaje6, jLabelPersonaje7, jLabelPersonaje8,
+            jLabelPersonaje9, jLabelPersonaje10, jLabelPersonaje11, jLabelPersonaje12,
+            jLabelPersonaje13, jLabelPersonaje14, jLabelPersonaje15, jLabelPersonaje16,
+            jLabelPersonaje17, jLabelPersonaje18, jLabelPersonaje19, jLabelPersonaje20,
+            jLabelPersonaje21, jLabelPersonaje22, jLabelPersonaje23, jLabelPersonaje24, jLabelPersonaje25
+        ));
+        obtenerPersonajes();
+        iniciarPersonajes();
+        this.jLabelFondoReloj.setIcon(new ImageIcon("src/Resources/Assets/RelojB.png"));
     }
 
     /**
@@ -32,6 +55,74 @@ public class JPJuego extends JPanel {
 
         ButtonReturn = new javax.swing.JButton();
         ButtonOption = new javax.swing.JButton();
+        jLabelPersonaje1 = new javax.swing.JLabel();
+        jLabelPersonaje2 = new javax.swing.JLabel();
+        jLabelPersonaje3 = new javax.swing.JLabel();
+        jLabelPersonaje4 = new javax.swing.JLabel();
+        jLabelPersonaje5 = new javax.swing.JLabel();
+        jLabelPersonaje6 = new javax.swing.JLabel();
+        jLabelPersonaje7 = new javax.swing.JLabel();
+        jLabelPersonaje8 = new javax.swing.JLabel();
+        jLabelPersonaje9 = new javax.swing.JLabel();
+        jLabelPersonaje10 = new javax.swing.JLabel();
+        jLabelPersonaje11 = new javax.swing.JLabel();
+        jLabelPersonaje12 = new javax.swing.JLabel();
+        jLabelPersonaje13 = new javax.swing.JLabel();
+        jLabelPersonaje14 = new javax.swing.JLabel();
+        jLabelPersonaje15 = new javax.swing.JLabel();
+        jLabelPersonaje16 = new javax.swing.JLabel();
+        jLabelPersonaje17 = new javax.swing.JLabel();
+        jLabelPersonaje18 = new javax.swing.JLabel();
+        jLabelPersonaje19 = new javax.swing.JLabel();
+        jLabelPersonaje20 = new javax.swing.JLabel();
+        jLabelPersonaje21 = new javax.swing.JLabel();
+        jLabelPersonaje22 = new javax.swing.JLabel();
+        jLabelPersonaje23 = new javax.swing.JLabel();
+        jLabelPersonaje24 = new javax.swing.JLabel();
+        jLabelPersonaje25 = new javax.swing.JLabel();
+        jLabelNombre1 = new javax.swing.JLabel();
+        jLabelNombre2 = new javax.swing.JLabel();
+        jLabelNombre3 = new javax.swing.JLabel();
+        jLabelNombre4 = new javax.swing.JLabel();
+        jLabelNombre5 = new javax.swing.JLabel();
+        jLabelNombre6 = new javax.swing.JLabel();
+        jLabelNombre7 = new javax.swing.JLabel();
+        jLabelNombre8 = new javax.swing.JLabel();
+        jLabelNombre9 = new javax.swing.JLabel();
+        jLabelNombre10 = new javax.swing.JLabel();
+        jLabelNombre11 = new javax.swing.JLabel();
+        jLabelNombre12 = new javax.swing.JLabel();
+        jLabelNombre13 = new javax.swing.JLabel();
+        jLabelNombre14 = new javax.swing.JLabel();
+        jLabelNombre15 = new javax.swing.JLabel();
+        jLabelNombre16 = new javax.swing.JLabel();
+        jLabelNombre17 = new javax.swing.JLabel();
+        jLabelNombre18 = new javax.swing.JLabel();
+        jLabelNombre19 = new javax.swing.JLabel();
+        jLabelNombre20 = new javax.swing.JLabel();
+        jLabelNombre21 = new javax.swing.JLabel();
+        jLabelNombre22 = new javax.swing.JLabel();
+        jLabelNombre23 = new javax.swing.JLabel();
+        jLabelNombre24 = new javax.swing.JLabel();
+        jLabelNombre25 = new javax.swing.JLabel();
+        jLabelPersonajeJugable = new javax.swing.JLabel();
+        jLabelNombreJugable = new javax.swing.JLabel();
+        jLabelTitulo = new javax.swing.JLabel();
+        jLabelFecha = new javax.swing.JLabel();
+        jLabelJugador = new javax.swing.JLabel();
+        jButtonMusica = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabelPregunta1 = new javax.swing.JLabel();
+        jComboBoxPregunta1 = new javax.swing.JComboBox<>();
+        jComboBoxPregunta2 = new javax.swing.JComboBox<>();
+        jComboBoxPregunta3 = new javax.swing.JComboBox<>();
+        jLabelPregunta2 = new javax.swing.JLabel();
+        jButtonDefQue = new javax.swing.JButton();
+        jTextFieldQuestion = new javax.swing.JTextField();
+        jButtonPersQue = new javax.swing.JButton();
+        jPanelReloj = new javax.swing.JPanel();
+        jLabelTiempo = new javax.swing.JLabel();
+        jLabelFondoReloj = new javax.swing.JLabel();
 
         setFont(getFont());
         setMaximumSize(new java.awt.Dimension(1280, 720));
@@ -56,28 +147,664 @@ public class JPJuego extends JPanel {
             }
         });
 
+        jLabelPersonaje1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelPersonaje2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelPersonaje3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelPersonaje4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelPersonaje5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelPersonaje6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelPersonaje7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelPersonaje8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelPersonaje9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelPersonaje10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelPersonaje11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelPersonaje12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelPersonaje13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelPersonaje14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelPersonaje15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelPersonaje16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelPersonaje17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelPersonaje18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelPersonaje19.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelPersonaje20.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelPersonaje21.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelPersonaje22.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelPersonaje23.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelPersonaje24.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelPersonaje25.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPersonajeMouseClicked(evt);
+            }
+        });
+
+        jLabelNombre1.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre1.setFont(StardewFonts.getSVBold());
+        jLabelNombre1.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre1.setText("jLabel1");
+        jLabelNombre1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre1.setOpaque(true);
+
+        jLabelNombre2.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre2.setFont(StardewFonts.getSVBold());
+        jLabelNombre2.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre2.setText("jLabel1");
+        jLabelNombre2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre2.setOpaque(true);
+
+        jLabelNombre3.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre3.setFont(StardewFonts.getSVBold());
+        jLabelNombre3.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre3.setText("jLabel1");
+        jLabelNombre3.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre3.setOpaque(true);
+
+        jLabelNombre4.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre4.setFont(StardewFonts.getSVBold());
+        jLabelNombre4.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre4.setText("jLabel1");
+        jLabelNombre4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre4.setOpaque(true);
+
+        jLabelNombre5.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre5.setFont(StardewFonts.getSVBold());
+        jLabelNombre5.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre5.setText("jLabel1");
+        jLabelNombre5.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre5.setOpaque(true);
+
+        jLabelNombre6.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre6.setFont(StardewFonts.getSVBold());
+        jLabelNombre6.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre6.setText("jLabel1");
+        jLabelNombre6.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre6.setOpaque(true);
+
+        jLabelNombre7.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre7.setFont(StardewFonts.getSVBold());
+        jLabelNombre7.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre7.setText("jLabel1");
+        jLabelNombre7.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre7.setOpaque(true);
+
+        jLabelNombre8.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre8.setFont(StardewFonts.getSVBold());
+        jLabelNombre8.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre8.setText("jLabel1");
+        jLabelNombre8.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre8.setOpaque(true);
+
+        jLabelNombre9.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre9.setFont(StardewFonts.getSVBold());
+        jLabelNombre9.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre9.setText("jLabel1");
+        jLabelNombre9.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre9.setOpaque(true);
+
+        jLabelNombre10.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre10.setFont(StardewFonts.getSVBold());
+        jLabelNombre10.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre10.setText("jLabel1");
+        jLabelNombre10.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre10.setOpaque(true);
+
+        jLabelNombre11.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre11.setFont(StardewFonts.getSVBold());
+        jLabelNombre11.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre11.setText("jLabel1");
+        jLabelNombre11.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre11.setOpaque(true);
+
+        jLabelNombre12.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre12.setFont(StardewFonts.getSVBold());
+        jLabelNombre12.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre12.setText("jLabel1");
+        jLabelNombre12.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre12.setOpaque(true);
+
+        jLabelNombre13.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre13.setFont(StardewFonts.getSVBold());
+        jLabelNombre13.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre13.setText("jLabel1");
+        jLabelNombre13.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre13.setOpaque(true);
+
+        jLabelNombre14.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre14.setFont(StardewFonts.getSVBold());
+        jLabelNombre14.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre14.setText("jLabel1");
+        jLabelNombre14.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre14.setOpaque(true);
+
+        jLabelNombre15.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre15.setFont(StardewFonts.getSVBold());
+        jLabelNombre15.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre15.setText("jLabel1");
+        jLabelNombre15.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre15.setOpaque(true);
+
+        jLabelNombre16.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre16.setFont(StardewFonts.getSVBold());
+        jLabelNombre16.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre16.setText("jLabel1");
+        jLabelNombre16.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre16.setOpaque(true);
+
+        jLabelNombre17.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre17.setFont(StardewFonts.getSVBold());
+        jLabelNombre17.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre17.setText("jLabel1");
+        jLabelNombre17.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre17.setOpaque(true);
+
+        jLabelNombre18.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre18.setFont(StardewFonts.getSVBold());
+        jLabelNombre18.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre18.setText("jLabel1");
+        jLabelNombre18.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre18.setOpaque(true);
+
+        jLabelNombre19.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre19.setFont(StardewFonts.getSVBold());
+        jLabelNombre19.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre19.setText("jLabel1");
+        jLabelNombre19.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre19.setOpaque(true);
+
+        jLabelNombre20.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre20.setFont(StardewFonts.getSVBold());
+        jLabelNombre20.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre20.setText("jLabel1");
+        jLabelNombre20.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre20.setOpaque(true);
+
+        jLabelNombre21.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre21.setFont(StardewFonts.getSVBold());
+        jLabelNombre21.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre21.setText("jLabel1");
+        jLabelNombre21.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre21.setOpaque(true);
+
+        jLabelNombre22.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre22.setFont(StardewFonts.getSVBold());
+        jLabelNombre22.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre22.setText("jLabel1");
+        jLabelNombre22.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre22.setOpaque(true);
+
+        jLabelNombre23.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre23.setFont(StardewFonts.getSVBold());
+        jLabelNombre23.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre23.setText("jLabel1");
+        jLabelNombre23.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre23.setOpaque(true);
+
+        jLabelNombre24.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre24.setFont(StardewFonts.getSVBold());
+        jLabelNombre24.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre24.setText("jLabel1");
+        jLabelNombre24.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre24.setOpaque(true);
+
+        jLabelNombre25.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombre25.setFont(StardewFonts.getSVBold());
+        jLabelNombre25.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombre25.setText("jLabel1");
+        jLabelNombre25.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombre25.setOpaque(true);
+
+        jLabelNombreJugable.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelNombreJugable.setFont(StardewFonts.getSVBold());
+        jLabelNombreJugable.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelNombreJugable.setText("jLabel1");
+        jLabelNombreJugable.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLabelNombreJugable.setOpaque(true);
+
+        jLabelTitulo.setBackground(new java.awt.Color(218, 173, 114));
+        jLabelTitulo.setFont(StardewFonts.getSVSmallTitle());
+        jLabelTitulo.setForeground(new java.awt.Color(85, 23, 12));
+        jLabelTitulo.setText("Starwho Valley");
+        jLabelTitulo.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(177, 78, 5)));
+        jLabelTitulo.setOpaque(true);
+
+        jLabelFecha.setText("Fecha");
+
+        jLabelJugador.setText("Nombre");
+
+        jButtonMusica.setText("Musica");
+
+        jPanel1.setBackground(new java.awt.Color(245, 210, 152));
+
+        jLabelPregunta1.setText("¿Tu Personaje");
+
+        jComboBoxPregunta1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ehe", "Ehehehe", "Ehehehehe" }));
+
+        jComboBoxPregunta2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Triki", "Traka", "Telas" }));
+
+        jComboBoxPregunta3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Planta", "Fuego", "Agua" }));
+
+        jLabelPregunta2.setText("?");
+
+        jButtonDefQue.setText("Enviar");
+
+        jButtonPersQue.setText("Enviar");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldQuestion)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabelPregunta1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxPregunta1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxPregunta2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxPregunta3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabelPregunta2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                        .addComponent(jButtonDefQue))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonPersQue)))
+                .addGap(23, 23, 23))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelPregunta1)
+                    .addComponent(jComboBoxPregunta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxPregunta2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxPregunta3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPregunta2)
+                    .addComponent(jButtonDefQue))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonPersQue))
+                .addContainerGap(240, Short.MAX_VALUE))
+        );
+
+        jPanelReloj.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelReloj.setOpaque(false);
+        jPanelReloj.setLayout(null);
+
+        jLabelTiempo.setBackground(new java.awt.Color(255, 255, 255));
+        jLabelTiempo.setText("Duracion");
+        jLabelTiempo.setVerifyInputWhenFocusTarget(false);
+        jPanelReloj.add(jLabelTiempo);
+        jLabelTiempo.setBounds(18, 140, 180, 16);
+        jPanelReloj.add(jLabelFondoReloj);
+        jLabelFondoReloj.setBounds(0, 0, 214, 175);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(506, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(495, 495, 495))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(ButtonOption, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(560, 560, 560)
+                        .addComponent(jLabelTitulo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabelNombre16, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabelNombre17, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabelNombre18, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabelNombre19, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabelNombre20, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelPersonaje21, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelPersonaje22, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelPersonaje23, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelPersonaje24, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelPersonaje25, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelNombre6, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelNombre7, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelNombre8, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelNombre9, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelNombre10, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelPersonaje6, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelPersonaje7, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelPersonaje8, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelPersonaje9, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelPersonaje10, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelPersonaje16, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelPersonaje17, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelPersonaje18, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelPersonaje19, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelPersonaje20, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelPersonaje11, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelPersonaje12, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelPersonaje13, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelPersonaje14, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelPersonaje15, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabelPersonaje1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabelNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabelPersonaje2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabelNombre2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabelPersonaje3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabelNombre3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabelPersonaje4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabelNombre4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabelPersonaje5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabelNombre5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabelNombre21, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabelNombre22, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabelNombre23, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabelNombre24, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabelNombre25, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelNombre11, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelNombre12, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelNombre13, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelNombre14, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelNombre15, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(313, 313, 313)
+                                .addComponent(ButtonOption)
+                                .addGap(26, 26, 26)
+                                .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(jButtonMusica, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(78, 78, 78)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabelPersonajeJugable, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabelNombreJugable, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(22, 22, 22)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabelJugador)
+                                            .addComponent(jLabelFecha))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jPanelReloj, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addGap(87, 87, 87))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(498, Short.MAX_VALUE)
-                .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(ButtonOption, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelPersonajeJugable, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelNombreJugable, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelJugador)
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabelFecha)
+                                .addGap(34, 34, 34)))
+                        .addGap(18, 18, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanelReloj, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ButtonReturn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonMusica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ButtonOption, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(74, 74, 74))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelPersonaje5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelPersonaje1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelPersonaje2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelPersonaje3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelPersonaje4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelNombre2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelNombre3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelNombre4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelNombre5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelPersonaje6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPersonaje7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPersonaje8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPersonaje9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPersonaje10, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelNombre6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNombre7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNombre8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNombre9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNombre10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelPersonaje11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPersonaje12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPersonaje13, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPersonaje14, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPersonaje15, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelNombre11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNombre12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNombre13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNombre14, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNombre15, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelPersonaje16, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPersonaje17, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPersonaje18, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPersonaje19, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPersonaje20, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelNombre16, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNombre17, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNombre18, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNombre19, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNombre20, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabelPersonaje21, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPersonaje22, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPersonaje23, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPersonaje24, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPersonaje25, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelNombre21, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNombre22, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNombre23, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNombre24, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNombre25, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -94,12 +821,121 @@ public class JPJuego extends JPanel {
         cardLayout.show(parent, "OptionScreen");
     }//GEN-LAST:event_ButtonOptionActionPerformed
 
+    private void jLabelPersonajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPersonajeMouseClicked
+        JLabel labelClick = (JLabel)evt.getSource();
+        int n = labelsImg.indexOf(labelClick);
+        if(labelClick.getIcon() == iconos.get(n)){
+            ImageIcon vacio = new ImageIcon("src/Resources/Assets/CardBackdrop.png");
+            labelClick.setIcon(new ImageIcon(vacio.getImage().getScaledInstance(102, 100, Image.SCALE_SMOOTH)));
+        }
+        else{
+            labelClick.setIcon(iconos.get(n));
+        }
+    }//GEN-LAST:event_jLabelPersonajeMouseClicked
+
     private void enviarPregunta(){
         
+    }
+    
+    @Override
+    protected void paintComponent(Graphics g){
+        super.paintComponent(g);
+        if(imgFondo != null){
+            g.drawImage(imgFondo, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
+    
+    //Por ahora, esto solo tiene personajes establecidos
+    private void obtenerPersonajes(){
+        ImageIcon portrait;
+        for (int i = 0; i < 25; i++) {
+            personajes.add("src/Resources/Assets/Alex.png");
+            portrait = new ImageIcon(personajes.get(i));
+            iconos.add(new ImageIcon(portrait.getImage().getScaledInstance(102, 100, Image.SCALE_SMOOTH)));
+        }
+    }
+    
+    private void iniciarPersonajes(){
+        for (int i = 0; i < labelsImg.size(); i++) {
+            labelsImg.get(i).setIcon(iconos.get(i));
+        }
+        
+        //Esto hay que cambiarlo
+        ImageIcon chara = new ImageIcon("src/Resources/Assets/Alex.png");
+        jLabelPersonajeJugable.setIcon(new ImageIcon(chara.getImage().getScaledInstance(102, 100, Image.SCALE_SMOOTH)));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonOption;
     private javax.swing.JButton ButtonReturn;
+    private javax.swing.JButton jButtonDefQue;
+    private javax.swing.JButton jButtonMusica;
+    private javax.swing.JButton jButtonPersQue;
+    private javax.swing.JComboBox<String> jComboBoxPregunta1;
+    private javax.swing.JComboBox<String> jComboBoxPregunta2;
+    private javax.swing.JComboBox<String> jComboBoxPregunta3;
+    private javax.swing.JLabel jLabelFecha;
+    private javax.swing.JLabel jLabelFondoReloj;
+    private javax.swing.JLabel jLabelJugador;
+    private javax.swing.JLabel jLabelNombre1;
+    private javax.swing.JLabel jLabelNombre10;
+    private javax.swing.JLabel jLabelNombre11;
+    private javax.swing.JLabel jLabelNombre12;
+    private javax.swing.JLabel jLabelNombre13;
+    private javax.swing.JLabel jLabelNombre14;
+    private javax.swing.JLabel jLabelNombre15;
+    private javax.swing.JLabel jLabelNombre16;
+    private javax.swing.JLabel jLabelNombre17;
+    private javax.swing.JLabel jLabelNombre18;
+    private javax.swing.JLabel jLabelNombre19;
+    private javax.swing.JLabel jLabelNombre2;
+    private javax.swing.JLabel jLabelNombre20;
+    private javax.swing.JLabel jLabelNombre21;
+    private javax.swing.JLabel jLabelNombre22;
+    private javax.swing.JLabel jLabelNombre23;
+    private javax.swing.JLabel jLabelNombre24;
+    private javax.swing.JLabel jLabelNombre25;
+    private javax.swing.JLabel jLabelNombre3;
+    private javax.swing.JLabel jLabelNombre4;
+    private javax.swing.JLabel jLabelNombre5;
+    private javax.swing.JLabel jLabelNombre6;
+    private javax.swing.JLabel jLabelNombre7;
+    private javax.swing.JLabel jLabelNombre8;
+    private javax.swing.JLabel jLabelNombre9;
+    private javax.swing.JLabel jLabelNombreJugable;
+    private javax.swing.JLabel jLabelPersonaje1;
+    private javax.swing.JLabel jLabelPersonaje10;
+    private javax.swing.JLabel jLabelPersonaje11;
+    private javax.swing.JLabel jLabelPersonaje12;
+    private javax.swing.JLabel jLabelPersonaje13;
+    private javax.swing.JLabel jLabelPersonaje14;
+    private javax.swing.JLabel jLabelPersonaje15;
+    private javax.swing.JLabel jLabelPersonaje16;
+    private javax.swing.JLabel jLabelPersonaje17;
+    private javax.swing.JLabel jLabelPersonaje18;
+    private javax.swing.JLabel jLabelPersonaje19;
+    private javax.swing.JLabel jLabelPersonaje2;
+    private javax.swing.JLabel jLabelPersonaje20;
+    private javax.swing.JLabel jLabelPersonaje21;
+    private javax.swing.JLabel jLabelPersonaje22;
+    private javax.swing.JLabel jLabelPersonaje23;
+    private javax.swing.JLabel jLabelPersonaje24;
+    private javax.swing.JLabel jLabelPersonaje25;
+    private javax.swing.JLabel jLabelPersonaje3;
+    private javax.swing.JLabel jLabelPersonaje4;
+    private javax.swing.JLabel jLabelPersonaje5;
+    private javax.swing.JLabel jLabelPersonaje6;
+    private javax.swing.JLabel jLabelPersonaje7;
+    private javax.swing.JLabel jLabelPersonaje8;
+    private javax.swing.JLabel jLabelPersonaje9;
+    private javax.swing.JLabel jLabelPersonajeJugable;
+    private javax.swing.JLabel jLabelPregunta1;
+    private javax.swing.JLabel jLabelPregunta2;
+    private javax.swing.JLabel jLabelTiempo;
+    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanelReloj;
+    private javax.swing.JTextField jTextFieldQuestion;
     // End of variables declaration//GEN-END:variables
+    private ArrayList<JLabel> labelsImg;
 }

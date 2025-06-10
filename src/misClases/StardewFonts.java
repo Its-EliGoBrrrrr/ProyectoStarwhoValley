@@ -16,6 +16,7 @@ public class StardewFonts {
     private static Font SVThin;
     private static Font SVTitleCaps;
     private static Font SVTitleRegular;
+    private static Font SVSmallTitle;
     
     public StardewFonts(){
         loadFonts();
@@ -32,6 +33,7 @@ public class StardewFonts {
             SVThin = Font.createFont(Font.TRUETYPE_FONT, fileSVThin).deriveFont(16f);
             SVTitleCaps = Font.createFont(Font.TRUETYPE_FONT, fileSVTitleCaps).deriveFont(80f);
             SVTitleRegular = Font.createFont(Font.TRUETYPE_FONT, fileSVTitleReg).deriveFont(80f);
+            SVSmallTitle = Font.createFont(Font.TRUETYPE_FONT, fileSVTitleCaps).deriveFont(28f);
         }
         catch(Exception e){
             System.out.println("*** Error cargando fuentes ***");
@@ -54,5 +56,9 @@ public class StardewFonts {
 
     public static Font getSVTitleRegular() {
         return SVTitleRegular;
+    }
+    
+    public static Font getSVSmallTitle(){
+        return SVSmallTitle;
     }
 }

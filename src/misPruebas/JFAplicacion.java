@@ -78,7 +78,7 @@ public class JFAplicacion extends javax.swing.JFrame{
     // Se encarga de obtener
     private void loadIcon(){
         try{
-            BlueChickIcon = new ImageIcon(getClass().getResource("/Resources/Assets/IconBlueChicken.png"));
+            BlueChickIcon = new ImageIcon("src/Resources/Assets/IconBlueChicken.png");
             BlueChicken = BlueChickIcon.getImage();
             this.setIconImage(BlueChicken);
         }catch(Exception e){
