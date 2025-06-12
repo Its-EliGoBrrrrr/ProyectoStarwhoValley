@@ -125,7 +125,7 @@ public class JPJuego extends JPanel {
         jLabelFondoReloj = new javax.swing.JLabel();
 
         setFont(getFont());
-        setMaximumSize(new java.awt.Dimension(1280, 720));
+        setMaximumSize(new java.awt.Dimension(1920, 1080));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
 
@@ -688,7 +688,7 @@ public class JPJuego extends JPanel {
                                 .addGap(32, 32, 32)
                                 .addComponent(jButtonMusica, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(78, 78, 78)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()

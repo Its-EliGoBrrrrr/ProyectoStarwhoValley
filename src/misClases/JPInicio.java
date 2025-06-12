@@ -117,7 +117,7 @@ public class JPInicio extends javax.swing.JPanel {
     private void ButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonStartActionPerformed
         JPanel parent = (JPanel)getParent();
         CardLayout cardLayout = (CardLayout)parent.getLayout();
-        cardLayout.show(parent, "GameScreen");
+        cardLayout.show(parent, "SetUpScreen");
     }//GEN-LAST:event_ButtonStartActionPerformed
 
     private void ButtonInstruccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonInstruccActionPerformed

@@ -18,6 +18,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import javax.swing.*;
+import misClases.JPSetUp;
 
 public class JFAplicacion extends javax.swing.JFrame{
     // ** Variables **
@@ -30,6 +31,7 @@ public class JFAplicacion extends javax.swing.JFrame{
     private final JPInstrucciones card3;
     private final JPCreditos card6;
     private final JPOpciones card7;
+    private final JPSetUp card8;
     
     // Pantalla Completa
     private GraphicsEnvironment gEnvironment;
@@ -64,6 +66,7 @@ public class JFAplicacion extends javax.swing.JFrame{
         card5 = new JPDerrota();
         card6 = new JPCreditos();
         card7 = new JPOpciones();
+        card8 = new JPSetUp();
         
         // Se añaden a la carpeta los JPanel a usar básicamente
         pantallaPrincipal.add(card1,"MainScreen");
@@ -73,6 +76,7 @@ public class JFAplicacion extends javax.swing.JFrame{
         pantallaPrincipal.add(card5,"DefeatScreen");
         pantallaPrincipal.add(card6,"CreditsScreen");
         pantallaPrincipal.add(card7,"OptionScreen");
+        pantallaPrincipal.add(card8,"SetUpScreen");
     }
     
     // Se encarga de obtener
