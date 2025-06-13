@@ -5,6 +5,8 @@
 package servidor;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,7 +18,8 @@ public class mainServidor {
             Server server = new Server();
             server.startServer();
         }catch (IOException e){
-            
+            System.out.println(e.getMessage());
+            Logger.getLogger(mainServidor.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 }

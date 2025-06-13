@@ -27,15 +27,17 @@ public class Client implements Runnable{
     }
     
     public void startClient() throws IOException{
-        String mensaje;
+        String inicio;
         
         salidaServer = new DataOutputStream(conexion.getOutputStream());
         entradaServer = new BufferedReader(new InputStreamReader(conexion.getInputStream()));
         
         salidaServer.writeUTF("Iniciando transmision\n");
         
-        mensaje = entradaServer.readLine();
-        System.out.println("Mensaje Server: "+mensaje);
+        inicio = entradaServer.readLine();
+        System.out.println("Mensaje Server: " + inicio);
+        
+        // this.run();
     }
     
     public void endClient() throws IOException{
@@ -59,7 +61,7 @@ public class Client implements Runnable{
         if(resp)
             respuesta = "Si";
         else
-            respuesta = "no";
+            respuesta = "No";
         
         try {
             salidaServer.writeUTF(respuesta);
@@ -79,6 +81,7 @@ public class Client implements Runnable{
             try {
                 if(entradaServer.readLine() != null){
                     mensaje = entradaServer.readLine();
+                    System.out.println(mensaje);
                 }
             } catch (IOException ex) {
                 Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
