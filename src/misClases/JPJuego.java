@@ -5,11 +5,16 @@
 package misClases;
 
 import java.awt.*;
-import java.io.File;
+import java.awt.event.*;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.Normalizer;
 
 /**
  *
@@ -17,18 +22,48 @@ import javax.swing.*;
  */
 public class JPJuego extends JPanel {
     // Variables
+    private static String nombre = "";
     private Image imgFondo;
     private ArrayList<String> personajes = new ArrayList<>();
     private ArrayList<ImageIcon> iconos = new ArrayList<>();
+    private JLabel seleccionado;
+    private int segundos;
+    private int minutos;
+    private int horas;
+    private Timer cronometro;
+    private Date fecha;
+    private SimpleDateFormat formato1, formato2;
+    Client jugador;
     
     // Creates new form JPJuego
     public JPJuego() {
+        addComponentListener(new ComponentAdapter(){
+            @Override
+            public void componentShown(ComponentEvent evt){
+                segundos = 0;
+                minutos = 0;
+                horas = 0;
+                cronometro.start();
+                jLabelJugador.setText(nombre);
+                fecha = new Date();
+                //Normalizer es para "normalizar" el string y poder usar replaceAll para quitar los acentos
+                // \\p{M} es el unicode de los acentos
+                //format es para obtener solo ciertas cosas de la fecha de cierta manera
+                jLabelFecha1.setText(Normalizer.normalize(formato1.format(fecha),Normalizer.Form.NFD).replaceAll("\\p{M}",""));
+                jLabelFecha2.setText(formato2.format(fecha));
+            }
+        });
         this.setFont(StardewFonts.getSVThin());
         try{
             imgFondo = ImageIO.read(new File("src/Resources/Fondos/TablonEspecial1.png"));
         }catch(Exception e){
             System.out.println("*** Error cargando fondo de panel ***");
             e.printStackTrace();
+        }
+        try {
+            this.jugador = new Client();
+        } catch (IOException ex) {
+            System.out.println("* Error al ejecutar al cliente, revise si el servidor esta activo *");
         }
         
         initComponents();
@@ -39,9 +74,37 @@ public class JPJuego extends JPanel {
             jLabelPersonaje17, jLabelPersonaje18, jLabelPersonaje19, jLabelPersonaje20,
             jLabelPersonaje21, jLabelPersonaje22, jLabelPersonaje23, jLabelPersonaje24, jLabelPersonaje25
         ));
+        this.labelsNoms = new ArrayList<>(Arrays.asList(jLabelNombre1, jLabelNombre2, jLabelNombre3, jLabelNombre4,
+                jLabelNombre5, jLabelNombre6, jLabelNombre7, jLabelNombre8,
+                jLabelNombre9, jLabelNombre10, jLabelNombre11, jLabelNombre12,
+                jLabelNombre13, jLabelNombre14, jLabelNombre15, jLabelNombre16,
+                jLabelNombre17, jLabelNombre18, jLabelNombre19, jLabelNombre20,
+                jLabelNombre21, jLabelNombre22, jLabelNombre23, jLabelNombre24, jLabelNombre25
+                
+        ));
         obtenerPersonajes();
         iniciarPersonajes();
         this.jLabelFondoReloj.setIcon(new ImageIcon("src/Resources/Assets/RelojB.png"));
+        formato1 = new SimpleDateFormat("EEE  d");
+        formato2 = new SimpleDateFormat("MMMM  yyyy");
+        
+        cronometro = new Timer(1000, new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent evt){
+                segundos++;
+                if(segundos == 60){
+                    segundos = 0;
+                    minutos++;
+                    if(minutos == 60){
+                        minutos = 0;
+                        horas++;
+                    }
+                }
+                String duracion = String.format("%02d : %02d : %02d",horas,minutos,segundos);
+                duracion = duracion.replaceAll("", " ");
+                jLabelTiempo.setText(duracion);
+            }
+        });
     }
 
     /**
@@ -108,7 +171,6 @@ public class JPJuego extends JPanel {
         jLabelPersonajeJugable = new javax.swing.JLabel();
         jLabelNombreJugable = new javax.swing.JLabel();
         jLabelTitulo = new javax.swing.JLabel();
-        jLabelFecha = new javax.swing.JLabel();
         jLabelJugador = new javax.swing.JLabel();
         jButtonMusica = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -120,8 +182,12 @@ public class JPJuego extends JPanel {
         jButtonDefQue = new javax.swing.JButton();
         jTextFieldQuestion = new javax.swing.JTextField();
         jButtonPersQue = new javax.swing.JButton();
+        jLabelAdivinar = new javax.swing.JLabel();
+        jButtonAdivinar = new javax.swing.JButton();
         jPanelReloj = new javax.swing.JPanel();
         jLabelTiempo = new javax.swing.JLabel();
+        jLabelFecha1 = new javax.swing.JLabel();
+        jLabelFecha2 = new javax.swing.JLabel();
         jLabelFondoReloj = new javax.swing.JLabel();
 
         setFont(getFont());
@@ -486,27 +552,45 @@ public class JPJuego extends JPanel {
         jLabelTitulo.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(177, 78, 5)));
         jLabelTitulo.setOpaque(true);
 
-        jLabelFecha.setText("Fecha");
-
+        jLabelJugador.setFont(StardewFonts.getSVBold());
+        jLabelJugador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelJugador.setText("Nombre");
 
         jButtonMusica.setText("Musica");
 
         jPanel1.setBackground(new java.awt.Color(245, 210, 152));
 
-        jLabelPregunta1.setText("¿Tu Personaje");
+        jLabelPregunta1.setFont(StardewFonts.getSVThin());
+        jLabelPregunta1.setText("Tu Personaje");
 
+        jComboBoxPregunta1.setFont(StardewFonts.getSVThin());
         jComboBoxPregunta1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ehe", "Ehehehe", "Ehehehehe" }));
 
+        jComboBoxPregunta2.setFont(StardewFonts.getSVThin());
         jComboBoxPregunta2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Triki", "Traka", "Telas" }));
 
+        jComboBoxPregunta3.setFont(StardewFonts.getSVThin());
         jComboBoxPregunta3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Planta", "Fuego", "Agua" }));
 
+        jLabelPregunta2.setFont(StardewFonts.getSVThin());
         jLabelPregunta2.setText("?");
 
+        jButtonDefQue.setFont(StardewFonts.getSVThin());
         jButtonDefQue.setText("Enviar");
 
+        jButtonPersQue.setFont(StardewFonts.getSVThin());
         jButtonPersQue.setText("Enviar");
+
+        jLabelAdivinar.setFont(StardewFonts.getSVBold());
+        jLabelAdivinar.setText("Crees que ya lo tienes?");
+
+        jButtonAdivinar.setFont(StardewFonts.getSVBold());
+        jButtonAdivinar.setText("ADIVINAR");
+        jButtonAdivinar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdivinarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -514,8 +598,13 @@ public class JPJuego extends JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextFieldQuestion)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addComponent(jLabelAdivinar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonAdivinar)
+                        .addGap(82, 82, 82))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabelPregunta1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -523,15 +612,14 @@ public class JPJuego extends JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBoxPregunta2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxPregunta3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jComboBoxPregunta3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelPregunta2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                         .addComponent(jButtonDefQue))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jTextFieldQuestion)
+                        .addGap(18, 18, 18)
                         .addComponent(jButtonPersQue)))
                 .addGap(23, 23, 23))
         );
@@ -550,7 +638,11 @@ public class JPJuego extends JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonPersQue))
-                .addContainerGap(240, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelAdivinar)
+                    .addComponent(jButtonAdivinar))
+                .addGap(31, 31, 31))
         );
 
         jPanelReloj.setBackground(new java.awt.Color(255, 255, 255));
@@ -558,10 +650,24 @@ public class JPJuego extends JPanel {
         jPanelReloj.setLayout(null);
 
         jLabelTiempo.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelTiempo.setText("Duracion");
+        jLabelTiempo.setFont(StardewFonts.getSVBold());
+        jLabelTiempo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelTiempo.setText("0 0 : 0 0 : 0 0");
         jLabelTiempo.setVerifyInputWhenFocusTarget(false);
         jPanelReloj.add(jLabelTiempo);
-        jLabelTiempo.setBounds(18, 140, 180, 16);
+        jLabelTiempo.setBounds(10, 146, 180, 20);
+
+        jLabelFecha1.setFont(StardewFonts.getSVBold());
+        jLabelFecha1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelFecha1.setText("Fecha");
+        jPanelReloj.add(jLabelFecha1);
+        jLabelFecha1.setBounds(81, 20, 110, 20);
+
+        jLabelFecha2.setFont(StardewFonts.getSVBold());
+        jLabelFecha2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelFecha2.setText("Fecha");
+        jPanelReloj.add(jLabelFecha2);
+        jLabelFecha2.setBounds(80, 80, 110, 20);
         jPanelReloj.add(jLabelFondoReloj);
         jLabelFondoReloj.setBounds(0, 0, 214, 175);
 
@@ -688,18 +794,16 @@ public class JPJuego extends JPanel {
                                 .addGap(32, 32, 32)
                                 .addComponent(jButtonMusica, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jLabelPersonajeJugable, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabelNombreJugable, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(22, 22, 22)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabelJugador)
-                                            .addComponent(jLabelFecha))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelJugador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jPanelReloj, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addGap(87, 87, 87))
         );
@@ -708,22 +812,21 @@ public class JPJuego extends JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelPersonajeJugable, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabelNombreJugable, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelJugador)
-                                .addGap(26, 26, 26)
-                                .addComponent(jLabelFecha)
-                                .addGap(34, 34, 34)))
-                        .addGap(18, 18, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanelReloj, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(100, 100, 100)
+                                .addComponent(jLabelPersonajeJugable, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabelJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25)))
+                        .addComponent(jLabelNombreJugable, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -824,14 +927,33 @@ public class JPJuego extends JPanel {
     private void jLabelPersonajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPersonajeMouseClicked
         JLabel labelClick = (JLabel)evt.getSource();
         int n = labelsImg.indexOf(labelClick);
-        if(labelClick.getIcon() == iconos.get(n)){
-            ImageIcon vacio = new ImageIcon("src/Resources/Assets/CardBackdrop.png");
-            labelClick.setIcon(new ImageIcon(vacio.getImage().getScaledInstance(102, 100, Image.SCALE_SMOOTH)));
+        if(evt.getButton() == MouseEvent.BUTTON1){
+            if(labelClick.getIcon() == iconos.get(n)){
+                ImageIcon vacio = new ImageIcon("src/Resources/Assets/CardBackdrop.png");
+                labelClick.setIcon(new ImageIcon(vacio.getImage().getScaledInstance(102, 100, Image.SCALE_SMOOTH)));
+            }
+            else{
+                labelClick.setIcon(iconos.get(n));
+            }
         }
-        else{
-            labelClick.setIcon(iconos.get(n));
+        else if(evt.getButton() == MouseEvent.BUTTON3){
+            if(seleccionado != null && seleccionado == labelClick && seleccionado.getBorder()!=null){
+                seleccionado.setBorder(null);
+            }
+            else{
+                if(seleccionado != null){
+                    seleccionado.setBorder(null);
+                }
+                seleccionado = labelClick;
+                Border borde = BorderFactory.createLineBorder(new Color(255,64,96), 5);
+                seleccionado.setBorder(borde);
+            }
         }
     }//GEN-LAST:event_jLabelPersonajeMouseClicked
+
+    private void jButtonAdivinarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdivinarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAdivinarActionPerformed
 
     private void enviarPregunta(){
         
@@ -858,6 +980,7 @@ public class JPJuego extends JPanel {
     private void iniciarPersonajes(){
         for (int i = 0; i < labelsImg.size(); i++) {
             labelsImg.get(i).setIcon(iconos.get(i));
+            labelsNoms.get(i).setText(" Nombre " + i);
         }
         
         //Esto hay que cambiarlo
@@ -865,16 +988,23 @@ public class JPJuego extends JPanel {
         jLabelPersonajeJugable.setIcon(new ImageIcon(chara.getImage().getScaledInstance(102, 100, Image.SCALE_SMOOTH)));
     }
 
+    public static void setNombre(String nombre) {
+        JPJuego.nombre = nombre;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonOption;
     private javax.swing.JButton ButtonReturn;
+    private javax.swing.JButton jButtonAdivinar;
     private javax.swing.JButton jButtonDefQue;
     private javax.swing.JButton jButtonMusica;
     private javax.swing.JButton jButtonPersQue;
     private javax.swing.JComboBox<String> jComboBoxPregunta1;
     private javax.swing.JComboBox<String> jComboBoxPregunta2;
     private javax.swing.JComboBox<String> jComboBoxPregunta3;
-    private javax.swing.JLabel jLabelFecha;
+    private javax.swing.JLabel jLabelAdivinar;
+    private javax.swing.JLabel jLabelFecha1;
+    private javax.swing.JLabel jLabelFecha2;
     private javax.swing.JLabel jLabelFondoReloj;
     private javax.swing.JLabel jLabelJugador;
     private javax.swing.JLabel jLabelNombre1;
@@ -938,4 +1068,5 @@ public class JPJuego extends JPanel {
     private javax.swing.JTextField jTextFieldQuestion;
     // End of variables declaration//GEN-END:variables
     private ArrayList<JLabel> labelsImg;
+    private ArrayList<JLabel> labelsNoms;
 }

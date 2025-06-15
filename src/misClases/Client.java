@@ -10,36 +10,82 @@ package misClases;
  */
 
 import java.io.*;
-import java.net.Socket;
+import java.net.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class Client{
-    public static Pregunta pregunta;
+public class Client implements Runnable{
+    private final int puerto = 1234;
+    public static boolean flag = true;
+    private Socket conexion;
+    private DataOutputStream salidaServer;
+    private BufferedReader entradaServer;
+    private String mensaje;
     
-    public static void enviarPregunta () {
-        try (Socket socket = new Socket("localhost", 8643)) {
-            // Crear flujo de salida para enviar el objeto
-            ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+    public Client() throws IOException{
+        this.conexion=new Socket("localhost",puerto);
+    }
+    
+    public void startClient() throws IOException{
+        String inicio;
+        
+        salidaServer = new DataOutputStream(conexion.getOutputStream());
+        entradaServer = new BufferedReader(new InputStreamReader(conexion.getInputStream()));
+        
+        salidaServer.writeUTF("Iniciando transmision\n");
+        
+        inicio = entradaServer.readLine();
+        System.out.println("Mensaje Server: " + inicio);
+        
+        // this.run();
+    }
+    
+    public void endClient() throws IOException{
+        salidaServer.close();
+        entradaServer.close();
+        conexion.close();
+    }
 
-            // Serializar el objeto y enviarlo
-            out.writeObject(pregunta);
-            System.out.println("Objeto enviado: " + pregunta);
-
-            // Cerrar el flujo y el socket
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void enviarPregunta (String pregunta) {
+        try {
+            salidaServer.writeUTF(pregunta);
+            System.out.println("Pregunta enviada: "+pregunta);
+        } catch (IOException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public static String recibirPregunta(){
-        return "";
-    }
-    
-    public static void enviarRespuesta(){
+    public void enviarRespuesta(boolean resp){
+        String respuesta;
         
+        if(resp)
+            respuesta = "Si";
+        else
+            respuesta = "No";
+        
+        try {
+            salidaServer.writeUTF(respuesta);
+            System.out.println("Respuesta enviada: "+respuesta);
+        } catch (IOException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
-    public static String recibirRespuesta(){
-        return "";
+    public String getMensaje(){
+        return this.mensaje;
+    }
+
+    @Override
+    public void run() {
+        while(flag){
+            try {
+                if(entradaServer.readLine() != null){
+                    mensaje = entradaServer.readLine();
+                    System.out.println(mensaje);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }
