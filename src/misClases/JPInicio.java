@@ -32,6 +32,8 @@ public class JPInicio extends javax.swing.JPanel {
         
         imgTitle = new ImageIcon("src/Resources/Assets/Logo.png");
         this.jLTitle.setIcon(new ImageIcon(imgTitle.getImage().getScaledInstance((int)(imgTitle.getIconWidth()*1.5), (int)(imgTitle.getIconHeight()*1.5), Image.SCALE_SMOOTH)));
+        
+        this.ButtonOptions.setIcon(ButtonIcons.getOptionNormal());
     }
 
     @Override
@@ -94,12 +96,23 @@ public class JPInicio extends javax.swing.JPanel {
             }
         });
 
+        ButtonOptions.setBackground(new Color(0,0,0,0));
         ButtonOptions.setFont(getFont());
-        ButtonOptions.setText("Opciones");
         ButtonOptions.setBorder(null);
         ButtonOptions.setBorderPainted(false);
         ButtonOptions.setIconTextGap(0);
         ButtonOptions.setInheritsPopupMenu(true);
+        ButtonOptions.setMaximumSize(new java.awt.Dimension(300, 60));
+        ButtonOptions.setMinimumSize(new java.awt.Dimension(40, 37));
+        ButtonOptions.setPreferredSize(new java.awt.Dimension(40, 37));
+        ButtonOptions.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ButtonOptionsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ButtonOptionsMouseExited(evt);
+            }
+        });
         ButtonOptions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonOptionsActionPerformed(evt);
@@ -117,13 +130,13 @@ public class JPInicio extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(340, Short.MAX_VALUE)
+                .addGap(340, 340, 340)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(ButtonStart, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ButtonInstrucc, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ButtonCredits, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ButtonOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(340, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -131,15 +144,15 @@ public class JPInicio extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addComponent(jLTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(ButtonStart, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(ButtonInstrucc, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(ButtonOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(18, 19, Short.MAX_VALUE)
                 .addComponent(ButtonCredits, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addGap(18, 18, 18)
+                .addComponent(ButtonOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         ButtonInstrucc.getAccessibleContext().setAccessibleName("InstruccionesButton");
@@ -172,6 +185,14 @@ public class JPInicio extends javax.swing.JPanel {
         CardLayout cardLayout = (CardLayout)parent.getLayout();
         cardLayout.show(parent, "OptionScreen");
     }//GEN-LAST:event_ButtonOptionsActionPerformed
+
+    private void ButtonOptionsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonOptionsMouseEntered
+        this.ButtonOptions.setIcon(ButtonIcons.getOptionHover());
+    }//GEN-LAST:event_ButtonOptionsMouseEntered
+
+    private void ButtonOptionsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonOptionsMouseExited
+        this.ButtonOptions.setIcon(ButtonIcons.getOptionNormal());
+    }//GEN-LAST:event_ButtonOptionsMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
