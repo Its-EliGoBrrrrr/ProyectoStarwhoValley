@@ -55,7 +55,7 @@ public class JPJuego extends JPanel {
         });
         this.setFont(StardewFonts.getSVThin());
         try{
-            imgFondo = ImageIO.read(new File("src/Resources/Fondos/TablonEspecial1.png"));
+            imgFondo = ImageIO.read(new File("src/Resources/Fondos/TablonEspecial2.png"));
         }catch(Exception e){
             System.out.println("*** Error cargando fondo de panel ***");
             e.printStackTrace();
