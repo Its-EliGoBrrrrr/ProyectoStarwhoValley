@@ -5,6 +5,8 @@
 package misClases;
 
 import java.awt.*;
+import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 /**
@@ -13,12 +15,31 @@ import javax.swing.*;
  */
 public class JPInstrucciones extends JPanel {
     // Variables
+    private Image imgFondo;
     
     // Creates new form JPInstrucciones
     public JPInstrucciones() {
         this.setFont(StardewFonts.getSVThin());
         
+        try{
+            imgFondo = ImageIO.read(new File("src/Resources/Fondos/CartaPapel.png"));
+        }catch(Exception e){
+            System.out.println("*** Error cargando fondo de panel ***");
+            e.printStackTrace();
+        }
+        
         initComponents();
+        
+        // Cambios despues de iniciar componentes
+        this.ButtonReturn.setIcon(ButtonIcons.getBackButtonNormal());
+    }
+    
+    @Override
+    protected void paintComponent(Graphics g){
+        super.paintComponent(g);
+        if(imgFondo != null){
+            g.drawImage(imgFondo, 0, 0, getWidth(), getHeight(), this);
+        }
     }
 
     /**
@@ -33,6 +54,8 @@ public class JPInstrucciones extends JPanel {
         jLabel1 = new javax.swing.JLabel();
         ButtonReturn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 0, 0));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFont(getFont());
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -41,8 +64,25 @@ public class JPInstrucciones extends JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("InstruCcIoneS");
 
+        ButtonReturn.setBackground(new Color(0,0,0,0));
         ButtonReturn.setFont(getFont());
-        ButtonReturn.setText("Regresar");
+        ButtonReturn.setBorder(null);
+        ButtonReturn.setBorderPainted(false);
+        ButtonReturn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ButtonReturn.setHideActionText(true);
+        ButtonReturn.setLabel("");
+        ButtonReturn.setMaximumSize(new java.awt.Dimension(132, 54));
+        ButtonReturn.setMinimumSize(new java.awt.Dimension(132, 54));
+        ButtonReturn.setName(""); // NOI18N
+        ButtonReturn.setPreferredSize(new java.awt.Dimension(132, 54));
+        ButtonReturn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ButtonReturnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ButtonReturnMouseExited(evt);
+            }
+        });
         ButtonReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonReturnActionPerformed(evt);
@@ -53,20 +93,20 @@ public class JPInstrucciones extends JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(1185, Short.MAX_VALUE)
-                .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 455, Short.MAX_VALUE)
-                .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 456, Short.MAX_VALUE)
+                .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
 
         getAccessibleContext().setAccessibleName("JPInstrucciones");
@@ -78,6 +118,14 @@ public class JPInstrucciones extends JPanel {
 
         cardLayout.show(parent, "MainScreen");
     }//GEN-LAST:event_ButtonReturnActionPerformed
+
+    private void ButtonReturnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonReturnMouseEntered
+        this.ButtonReturn.setIcon(ButtonIcons.getBackButtonHover());
+    }//GEN-LAST:event_ButtonReturnMouseEntered
+
+    private void ButtonReturnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonReturnMouseExited
+        this.ButtonReturn.setIcon(ButtonIcons.getBackButtonNormal());
+    }//GEN-LAST:event_ButtonReturnMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -6,19 +6,11 @@ package misPruebas;
 
 // @author LENOVO
 
-import misClases.JPOpciones;
-import misClases.JPVictoria;
-import misClases.JPCreditos;
-import misClases.StardewFonts;
-import misClases.JPInicio;
-import misClases.JPInstrucciones;
-import misClases.JPDerrota;
-import misClases.JPJuego;
+import misClases.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import javax.swing.*;
-import misClases.JPSetUp;
 
 public class JFAplicacion extends javax.swing.JFrame{
     // ** Variables **
@@ -46,6 +38,7 @@ public class JFAplicacion extends javax.swing.JFrame{
     public JFAplicacion() {
         initComponents();
         new StardewFonts();
+        new ButtonIcons();
         loadIcon();
         
         // Esto es para poder modificar la pantalla como sea necesario

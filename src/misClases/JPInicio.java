@@ -5,19 +5,43 @@
 package misClases;
 
 import java.awt.*;
+import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 // @author LENOVO
 
 public class JPInicio extends javax.swing.JPanel {
+    // Variables
+    private Image imgFondo;
+    private ImageIcon imgTitle;
+    public static boolean soundActive = true;
     
     // Creates new form JPInicio
     public JPInicio() {
         this.setFont(StardewFonts.getSVThin());
         
+        try{
+            imgFondo = ImageIO.read(new File("src/Resources/Fondos/Menu2.png"));
+        }catch(Exception e){
+            System.out.println("*** Error cargando fondo de panel ***");
+            e.printStackTrace();
+        }
+        
         initComponents();
+        
+        imgTitle = new ImageIcon("src/Resources/Assets/Logo.png");
+        this.jLTitle.setIcon(new ImageIcon(imgTitle.getImage().getScaledInstance((int)(imgTitle.getIconWidth()*1.5), (int)(imgTitle.getIconHeight()*1.5), Image.SCALE_SMOOTH)));
     }
 
+    @Override
+    protected void paintComponent(Graphics g){
+        super.paintComponent(g);
+        if(imgFondo != null){
+            g.drawImage(imgFondo, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,6 +55,7 @@ public class JPInicio extends javax.swing.JPanel {
         ButtonInstrucc = new javax.swing.JButton();
         ButtonCredits = new javax.swing.JButton();
         ButtonOptions = new javax.swing.JButton();
+        jLTitle = new javax.swing.JLabel();
 
         setFont(getFont());
         setMaximumSize(new java.awt.Dimension(1920, 1080));
@@ -81,23 +106,32 @@ public class JPInicio extends javax.swing.JPanel {
             }
         });
 
+        jLTitle.setBackground(new Color(0,0,0,0));
+        jLTitle.setFont(getFont());
+        jLTitle.setMaximumSize(new java.awt.Dimension(600, 280));
+        jLTitle.setMinimumSize(new java.awt.Dimension(600, 280));
+        jLTitle.setPreferredSize(new java.awt.Dimension(600, 280));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(490, Short.MAX_VALUE)
+                .addContainerGap(340, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(ButtonStart, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ButtonInstrucc, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ButtonCredits, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ButtonOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(490, Short.MAX_VALUE))
+                    .addComponent(ButtonOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(340, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(386, Short.MAX_VALUE)
+                .addGap(49, 49, 49)
+                .addComponent(jLTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(ButtonStart, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(ButtonInstrucc, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -145,5 +179,6 @@ public class JPInicio extends javax.swing.JPanel {
     private javax.swing.JButton ButtonInstrucc;
     private javax.swing.JButton ButtonOptions;
     private javax.swing.JButton ButtonStart;
+    private javax.swing.JLabel jLTitle;
     // End of variables declaration//GEN-END:variables
 }

@@ -84,6 +84,7 @@ public class JPJuego extends JPanel {
         ));
         obtenerPersonajes();
         iniciarPersonajes();
+        this.jButtonMusica.setIcon(ButtonIcons.getMusicButtonNormal());
         this.jLabelFondoReloj.setIcon(new ImageIcon("src/Resources/Assets/RelojB.png"));
         formato1 = new SimpleDateFormat("EEE  d");
         formato2 = new SimpleDateFormat("MMMM  yyyy");
@@ -556,7 +557,15 @@ public class JPJuego extends JPanel {
         jLabelJugador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelJugador.setText("Nombre");
 
-        jButtonMusica.setText("Musica");
+        jButtonMusica.setBackground(new Color(0,0,0,0));
+        jButtonMusica.setMaximumSize(new java.awt.Dimension(40, 40));
+        jButtonMusica.setMinimumSize(new java.awt.Dimension(40, 40));
+        jButtonMusica.setPreferredSize(new java.awt.Dimension(40, 40));
+        jButtonMusica.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonMusicaMouseClicked(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(245, 210, 152));
 
@@ -791,8 +800,9 @@ public class JPJuego extends JPanel {
                                 .addComponent(ButtonOption)
                                 .addGap(26, 26, 26)
                                 .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
-                                .addComponent(jButtonMusica, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(50, 50, 50)
+                                .addComponent(jButtonMusica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -813,8 +823,7 @@ public class JPJuego extends JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanelReloj, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                        .addComponent(jPanelReloj, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -826,13 +835,14 @@ public class JPJuego extends JPanel {
                                 .addComponent(jLabelJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(25, 25, 25)))
                         .addComponent(jLabelNombreJugable, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(ButtonReturn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonMusica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ButtonOption, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ButtonOption, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonMusica, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(74, 74, 74))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -954,6 +964,16 @@ public class JPJuego extends JPanel {
     private void jButtonAdivinarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdivinarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonAdivinarActionPerformed
+
+    private void jButtonMusicaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMusicaMouseClicked
+        if(JPInicio.soundActive == true){
+            this.jButtonMusica.setIcon(ButtonIcons.getMusicButtonMute());
+            JPInicio.soundActive = false;
+        } else if (JPInicio.soundActive == false){
+            this.jButtonMusica.setIcon(ButtonIcons.getMusicButtonNormal());
+            JPInicio.soundActive = true;
+        }
+    }//GEN-LAST:event_jButtonMusicaMouseClicked
 
     private void enviarPregunta(){
         
