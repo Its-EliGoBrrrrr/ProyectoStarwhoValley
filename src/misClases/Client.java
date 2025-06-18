@@ -37,21 +37,21 @@ public class Client{
                 System.out.println("Corriendo cliente");
                 try{
                     System.out.println("Entra Try-Catch");
-                    /*if((cadena = entradaServer.readUTF()) != null){
-                        System.out.println(cadena);
-                    }*/
-                    if(entradaServer.readObject() instanceof Mensaje mensaje1){
+
+                    Object entrada = entradaServer.readObject();
+                    
+                    if(entrada instanceof Mensaje mensaje1){
                         System.out.println("Recibe un mensaje");
                         respuesta = mensaje1;
                         System.out.println("Recibido: " + respuesta);
                     }
-                    if(entradaServer.readObject() instanceof ArrayList tablero){
+                    if(entrada instanceof ArrayList tablero){
                         System.out.println("Mandando tablero");
                         padre.getJuego().obtenerPersonajes(tablero);
                         padre.getSetUp().obtenerPersonajes(tablero);
                         salidaServer.writeUTF("Tablero recibido");
                     }
-                    if(entradaServer.readObject() instanceof String cadena){
+                    if(entrada instanceof String cadena){
                         System.out.println("Mensaje Server: " + cadena);
                     }
                 }catch(Exception e){
