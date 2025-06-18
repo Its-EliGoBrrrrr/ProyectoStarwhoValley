@@ -13,10 +13,15 @@ import misClases.ConexionBD;
 import misClases.Personaje;
 
 public class Server {
-    private List<AttClient> clientes;
+    protected List<AttClient> clientes;
+    protected ArrayList<Personaje> tablero;
     private boolean continuar;
-    protected boolean nuevoJuego;
     private int nClient;
+    
+    // Banderas de inicio de juego para permitir reinicar
+    protected boolean nuevoJuego;
+    protected boolean tableroListo;
+    protected boolean[] jugadoresListos;
     
     // Datos del servidor
     private final int puerto = 1234;
@@ -26,6 +31,8 @@ public class Server {
         this.serverSocket = new ServerSocket(puerto);
         this.continuar=true;
         this.nuevoJuego=true;
+        this.tableroListo=false;
+        this.jugadoresListos = new boolean[]{false,false};
         this.nClient=0;
         this.clientes = new ArrayList<>();
     }
@@ -50,9 +57,41 @@ public class Server {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
+        new Thread(()->{
+            while(continuar){
+                Iterator<AttClient> it = clientes.iterator();
+                if(this.nuevoJuego == true ){
+                    if(!tableroListo){ // Crea el tablero para ambos
+                        crearTablero();
+                        while(it.hasNext()){
+                            AttClient client = it.next();
+                            client.enviarTablero(tablero);
+                            System.out.println("Fin Tablero Client "+client.getnClient());
+                        }
+                        this.tableroListo = true;
+                    }
+                    
+                    if(!jugadoresListos[0]||!jugadoresListos[1]){ // Espera a que ambos marquen que estan preparados
+                        this.jugadoresListos[0] = clientes.get(0).getPreparado();
+                        this.jugadoresListos[1] = clientes.get(1).getPreparado();
+                    }else if(jugadoresListos[0] && jugadoresListos[1]){
+                        it = clientes.iterator();
+                        while(it.hasNext()){
+                            AttClient client = it.next();
+                            client.cambiarFrame();
+                            
+                            System.out.println("Client " + client.getnClient() + " preparado");
+                        }
+                    }
+                    this.nuevoJuego = false;
+                }
+            }
+        }).start();
+
     }
     
-    protected ArrayList crearTablero(){
+    protected void crearTablero(){
         List personajes = ConexionBD.obtenerPersonajes();
         ArrayList tablero = new ArrayList<Personaje>();
         int cont = 0, random = (int) (Math.random() * personajes.size());
@@ -66,6 +105,6 @@ public class Server {
         
         System.out.println("Tablero generado");
         
-        return tablero;
+        this.tablero=tablero;
     }
 }

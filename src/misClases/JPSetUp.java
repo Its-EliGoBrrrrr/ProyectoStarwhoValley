@@ -37,6 +37,13 @@ public class JPSetUp extends javax.swing.JPanel {
         this.personajes = tablero;
     }
     
+    protected void moverAJuego(){
+        JPJuego.setNombre(this.jTextFieldNombreJ.getText());
+        JPanel parent = (JPanel)getParent();
+        CardLayout cardLayout = (CardLayout)parent.getLayout();
+        cardLayout.show(parent, "GameScreen");
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -136,10 +143,8 @@ public class JPSetUp extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartGameActionPerformed
-        JPJuego.setNombre(this.jTextFieldNombreJ.getText());
-        JPanel parent = (JPanel)getParent();
-        CardLayout cardLayout = (CardLayout)parent.getLayout();
-        cardLayout.show(parent, "GameScreen");
+        // this.jugador.enviarPreparado();
+        this.jugador.enviarPregunta("Texto de prueba");
     }//GEN-LAST:event_jButtonStartGameActionPerformed
     
     @Override
@@ -149,7 +154,7 @@ public class JPSetUp extends javax.swing.JPanel {
             g.drawImage(imgFondo, 0, 0, getWidth(), getHeight(), this);
         }
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupModoSeleccion;
     private javax.swing.JButton jButtonStartGame;
