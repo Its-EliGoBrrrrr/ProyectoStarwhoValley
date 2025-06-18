@@ -46,9 +46,11 @@ public class JFAplicacion extends javax.swing.JFrame{
         
         // Inicio de Cliente
         try {
-            this.jugador = new Client(/*this*/);
+            this.jugador = new Client(this);
+            this.jugador.startClient();
         } catch (IOException ex) {
-            System.out.println("* Error al ejecutar al cliente, revise si el servidor esta activo *");
+            System.out.println("*** Error al ejecutar al cliente, revise si el servidor esta activo ***");
+            ex.printStackTrace();
         }
         
         // Esto es para poder modificar la pantalla como sea necesario
@@ -94,6 +96,15 @@ public class JFAplicacion extends javax.swing.JFrame{
         }
     }
 
+    public JPJuego getJuego() {
+        return card2;
+    }
+
+    public JPSetUp getSetUp() {
+        return card8;
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

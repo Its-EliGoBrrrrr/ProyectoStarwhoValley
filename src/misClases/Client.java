@@ -12,55 +12,54 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Client{
-    // private final JFAplicacion padre;
+    private final JFAplicacion padre;
     private final int puerto = 1234;
     public static boolean continuar = true;
     private Socket conexion;
-    private DataOutputStream salidaServer;
-    private DataInputStream entradaServer;
-    private String mensaje;
-    private String respuesta;
+    private ObjectOutputStream salidaServer;
+    private ObjectInputStream entradaServer;
+
+    private Mensaje respuesta;
     
-    public Client(/*JFAplicacion padre*/) throws IOException{
-        // this.padre = padre;
-        this.conexion=new Socket("localhost",puerto);
+    public Client(JFAplicacion padre) throws IOException{
+        this.padre = padre;
+        this.conexion = new Socket("127.0.0.2",puerto);
     }
     
     public void startClient() throws IOException{
-        salidaServer = new DataOutputStream(conexion.getOutputStream()); // Manda informacion al Server
-        entradaServer = new DataInputStream(conexion.getInputStream()); // Recibe informacion del Server
+        String mensaje;
+
+        salidaServer = new ObjectOutputStream(conexion.getOutputStream()); // Manda informacion al Server
+        entradaServer = new ObjectInputStream(conexion.getInputStream()); // Recibe informacion del Server
         
-        salidaServer.writeUTF("Iniciando transmision\n");
-        
-        respuesta = entradaServer.readUTF();
-        System.out.println("Mensaje Server: " + respuesta);
-        
-        
-        new Thread(()->{ // Aqui voy a encargarme de que reciba las preguntas
+        new Thread(()->{ // Aqui voy a encargarme de que reciba los mensajes
             while(continuar){
+                System.out.println("Corriendo cliente");
                 try{
-                    if((respuesta = entradaServer.readUTF()) != null){
+                    System.out.println("Entra Try-Catch");
+                    /*if((cadena = entradaServer.readUTF()) != null){
+                        System.out.println(cadena);
+                    }*/
+                    if(entradaServer.readObject() instanceof Mensaje mensaje1){
+                        System.out.println("Recibe un mensaje");
+                        respuesta = mensaje1;
                         System.out.println("Recibido: " + respuesta);
                     }
+                    if(entradaServer.readObject() instanceof ArrayList tablero){
+                        System.out.println("Mandando tablero");
+                        padre.getJuego().obtenerPersonajes(tablero);
+                        padre.getSetUp().obtenerPersonajes(tablero);
+                        salidaServer.writeUTF("Tablero recibido");
+                    }
+                    if(entradaServer.readObject() instanceof String cadena){
+                        System.out.println("Mensaje Server: " + cadena);
+                    }
                 }catch(Exception e){
-                    
+                    System.out.println("Error en: " + e.getMessage());
+                    e.printStackTrace();
                 }
             }
         }).start();
-    }
-    
-    private Map<String, String> recibirTablero(){
-        try {
-            ObjectInputStream entrada = new ObjectInputStream(conexion.getInputStream());
-            Map<String, String> tablero = (Map<String, String>) entrada.readObject();
-            
-            return tablero;
-        } catch (Exception ex) {
-            System.out.println("*** Error al conseguir tablero ***");
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return null;
     }
     
     public void endClient() throws IOException{
@@ -71,7 +70,8 @@ public class Client{
 
     public void enviarPregunta (String pregunta) {
         try {
-            salidaServer.writeUTF(pregunta);
+            Mensaje mens = new Mensaje(pregunta,0);
+            salidaServer.writeObject(mens);
             System.out.println("Pregunta enviada: "+pregunta);
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
@@ -79,22 +79,28 @@ public class Client{
     }
     
     public void enviarRespuesta(boolean resp){
-        String respuesta;
+        Mensaje respuesta;
         
         if(resp)
-            respuesta = "Si";
+            respuesta = new Mensaje("Si",1);
         else
-            respuesta = "No";
+            respuesta = new Mensaje("No",1);
         
         try {
-            salidaServer.writeUTF(respuesta);
+            salidaServer.writeObject(respuesta);
             System.out.println("Respuesta enviada: "+respuesta);
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public String getMensaje(){
-        return this.mensaje;
+    public void enviarAdivinar(String nombre){
+        String pregunta = "¿Tu personaje es "+nombre+'?';
+        
+        try{
+            Mensaje adivinar = new Mensaje(pregunta,2);
+        }catch(Exception ex){
+            
+        }
     }
 }

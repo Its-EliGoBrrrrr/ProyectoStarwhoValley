@@ -22,6 +22,8 @@ public class JPJuego extends JPanel {
     private Image imgFondo;
     private ArrayList<String> personajes = new ArrayList<>();
     private ArrayList<ImageIcon> iconos = new ArrayList<>();
+    private ArrayList<JLabel> labelsImg;
+    private ArrayList<JLabel> labelsNoms;
     private JLabel seleccionado;
     private int segundos;
     private int minutos;
@@ -81,7 +83,6 @@ public class JPJuego extends JPanel {
                 jLabelNombre21, jLabelNombre22, jLabelNombre23, jLabelNombre24, jLabelNombre25
                 
         ));
-        obtenerPersonajes();
         iniciarPersonajes();
         this.jButtonMusica.setIcon(ButtonIcons.getMusicButtonNormal());
         this.jLabelFondoReloj.setIcon(new ImageIcon("src/Resources/Assets/RelojB.png"));
@@ -1017,20 +1018,27 @@ public class JPJuego extends JPanel {
     }
     
     //Por ahora, esto solo tiene personajes establecidos
-    private void obtenerPersonajes(){
+    protected void obtenerPersonajes(ArrayList tablero){
+        System.out.println("Tablero enviado a Juego\n"+tablero);
+        ArrayList<Personaje> lista = tablero;
         ImageIcon portrait;
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 24; i++) {
+            portrait = new ImageIcon(lista.get(i).getImagen());
+            labelsImg.get(i).setIcon(new ImageIcon(portrait.getImage().getScaledInstance(102, 100, Image.SCALE_SMOOTH)));
+            labelsNoms.get(i).setText(lista.get(i).getNombre());
+            /*
             personajes.add("src/Resources/Assets/Alex.png");
             portrait = new ImageIcon(personajes.get(i));
             iconos.add(new ImageIcon(portrait.getImage().getScaledInstance(102, 100, Image.SCALE_SMOOTH)));
+            */
         }
     }
     
     private void iniciarPersonajes(){
-        for (int i = 0; i < labelsImg.size(); i++) {
+        /*for (int i = 0; i < labelsImg.size(); i++) {
             labelsImg.get(i).setIcon(iconos.get(i));
             labelsNoms.get(i).setText(" Nombre " + i);
-        }
+        }*/
         
         //Esto hay que cambiarlo
         ImageIcon chara = new ImageIcon("src/Resources/Assets/Alex.png");
@@ -1116,6 +1124,5 @@ public class JPJuego extends JPanel {
     private javax.swing.JPanel jPanelReloj;
     private javax.swing.JTextField jTextFieldQuestion;
     // End of variables declaration//GEN-END:variables
-    private ArrayList<JLabel> labelsImg;
-    private ArrayList<JLabel> labelsNoms;
+    
 }

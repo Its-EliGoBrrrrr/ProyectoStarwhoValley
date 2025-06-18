@@ -8,6 +8,7 @@ import java.awt.CardLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
@@ -15,6 +16,7 @@ public class JPSetUp extends javax.swing.JPanel {
     // Variables
     private Image imgFondo;
     private Client jugador;
+    private ArrayList personajes;
     
     // Creates new form JPSetUp
     public JPSetUp(Client jugador) {
@@ -31,6 +33,10 @@ public class JPSetUp extends javax.swing.JPanel {
         initComponents();
     }
 
+    protected void obtenerPersonajes(ArrayList tablero){
+        this.personajes = tablero;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

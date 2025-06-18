@@ -18,8 +18,10 @@ public class ConexionBD {
             String user = "root";
             String password = "";
             Connection conn = DriverManager.getConnection(url, user, password);
+            System.out.println("*** Conexion exitosa ***");
             return conn;
         } catch (Exception e) {
+            System.out.println("*** Fallo de conexion ***");
             e.printStackTrace();
             return null;
         }
@@ -30,18 +32,18 @@ public class ConexionBD {
         List lista = new ArrayList<Personaje>();
         
         try (Connection conn = conectar();
-                PreparedStatement stmt = conn.prepareStatement(sql);
-                ResultSet rs = stmt.executeQuery()){
-            
-            while (rs.next()) {
-                Personaje pers = new Personaje(rs.getString("Nombre"),
-                    rs.getString("Imagen"),
-                    rs.getInt("Id"));
-                
-                lista.add(pers);
-            }
-            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()){
+                while (rs.next()) {
+                    Personaje pers = new Personaje(
+                        rs.getString("Nombre"),
+                        rs.getString("Imagen"),
+                        rs.getInt("Id")
+                    );
+                    lista.add(pers);
+                }
         } catch (Exception e) {
+            System.out.println("*** Error al cargar los personajes ***");
             e.printStackTrace();
         }
         
