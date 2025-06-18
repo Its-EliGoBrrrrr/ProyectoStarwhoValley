@@ -70,4 +70,26 @@ public class ConexionBD {
             return false;
         }
     }
+    
+    public static List<String> ObtenerPreguntas(){
+        
+        String sql = "SELECT * FROM preguntas";
+        List lista = new ArrayList<String>();
+        
+        try (Connection conn = conectar();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()){
+            
+            while (rs.next()) {
+                String pregunta = rs.getString("Pregunta");
+                
+                lista.add(pregunta);
+            }
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return lista;
+    }
 }
