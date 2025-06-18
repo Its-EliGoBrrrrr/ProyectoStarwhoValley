@@ -12,19 +12,22 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class JPSetUp extends javax.swing.JPanel {
-
+    // Variables
     private Image imgFondo;
-    /**
-     * Creates new form JPSetUp
-     */
-    public JPSetUp() {
+    private Client jugador;
+    
+    // Creates new form JPSetUp
+    public JPSetUp(Client jugador) {
         this.setFont(StardewFonts.getSVThin());
+        this.jugador = jugador;
+        
         try{
             imgFondo = ImageIO.read(new File("src/Resources/Fondos/Fondo11.png"));
         }catch(Exception e){
             System.out.println("*** Error cargando fondo de panel ***");
             e.printStackTrace();
         }
+        
         initComponents();
     }
 

@@ -34,12 +34,22 @@ public class JFAplicacion extends javax.swing.JFrame{
     private ImageIcon BlueChickIcon;
     private Image BlueChicken;
     
+    // Cliente
+    private Client jugador;
+    
     // Creates new form FrameAplicacion
     public JFAplicacion() {
         initComponents();
         new StardewFonts();
         new ButtonIcons();
         loadIcon();
+        
+        // Inicio de Cliente
+        try {
+            this.jugador = new Client(/*this*/);
+        } catch (IOException ex) {
+            System.out.println("* Error al ejecutar al cliente, revise si el servidor esta activo *");
+        }
         
         // Esto es para poder modificar la pantalla como sea necesario
         gEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -53,13 +63,13 @@ public class JFAplicacion extends javax.swing.JFrame{
         
         // Se crea la instancia de cada uno de los JPanel a usar, se envia las fuentes para poder ser usadas en cada instancia sin problemas
         card1 = new JPInicio();
-        card2 = new JPJuego();
+        card2 = new JPJuego(jugador);
         card3 = new JPInstrucciones();
         card4 = new JPVictoria();
         card5 = new JPDerrota();
         card6 = new JPCreditos();
         card7 = new JPOpciones();
-        card8 = new JPSetUp();
+        card8 = new JPSetUp(jugador);
         
         // Se añaden a la carpeta los JPanel a usar básicamente
         pantallaPrincipal.add(card1,"MainScreen");

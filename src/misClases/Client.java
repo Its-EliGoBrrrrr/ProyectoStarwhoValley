@@ -4,40 +4,63 @@
  */
 package misClases;
 
-/**
- *
- * @author LENOVO
- */
-
+import misPruebas.JFAplicacion;
 import java.io.*;
 import java.net.*;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Client implements Runnable{
+public class Client{
+    // private final JFAplicacion padre;
     private final int puerto = 1234;
-    public static boolean flag = true;
+    public static boolean continuar = true;
     private Socket conexion;
     private DataOutputStream salidaServer;
-    private BufferedReader entradaServer;
+    private DataInputStream entradaServer;
     private String mensaje;
+    private String respuesta;
     
-    public Client() throws IOException{
+    public Client(/*JFAplicacion padre*/) throws IOException{
+        // this.padre = padre;
         this.conexion=new Socket("localhost",puerto);
     }
     
     public void startClient() throws IOException{
-        String inicio;
-        
-        salidaServer = new DataOutputStream(conexion.getOutputStream());
-        entradaServer = new BufferedReader(new InputStreamReader(conexion.getInputStream()));
+        salidaServer = new DataOutputStream(conexion.getOutputStream()); // Manda informacion al Server
+        entradaServer = new DataInputStream(conexion.getInputStream()); // Recibe informacion del Server
         
         salidaServer.writeUTF("Iniciando transmision\n");
         
-        inicio = entradaServer.readLine();
-        System.out.println("Mensaje Server: " + inicio);
+        respuesta = entradaServer.readUTF();
+        System.out.println("Mensaje Server: " + respuesta);
         
-        // this.run();
+        
+        new Thread(()->{ // Aqui voy a encargarme de que reciba las preguntas
+            while(continuar){
+                try{
+                    if((respuesta = entradaServer.readUTF()) != null){
+                        System.out.println("Recibido: " + respuesta);
+                    }
+                }catch(Exception e){
+                    
+                }
+            }
+        }).start();
+    }
+    
+    private Map<String, String> recibirTablero(){
+        try {
+            ObjectInputStream entrada = new ObjectInputStream(conexion.getInputStream());
+            Map<String, String> tablero = (Map<String, String>) entrada.readObject();
+            
+            return tablero;
+        } catch (Exception ex) {
+            System.out.println("*** Error al conseguir tablero ***");
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
     }
     
     public void endClient() throws IOException{
@@ -73,19 +96,5 @@ public class Client implements Runnable{
     
     public String getMensaje(){
         return this.mensaje;
-    }
-
-    @Override
-    public void run() {
-        while(flag){
-            try {
-                if(entradaServer.readLine() != null){
-                    mensaje = entradaServer.readLine();
-                    System.out.println(mensaje);
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
     }
 }
