@@ -4,11 +4,13 @@
  */
 package misClases;
 
+import java.io.Serializable;
+
 /**
  *
  * @author ferna
  */
-public class Personaje {
+public class Personaje implements Serializable {
     String nombre, imagen;
     int id;
 

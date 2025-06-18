@@ -6,14 +6,7 @@ package misPruebas;
 
 // @author LENOVO
 
-import misClases.JPOpciones;
-import misClases.JPVictoria;
-import misClases.JPCreditos;
-import misClases.StardewFonts;
-import misClases.JPInicio;
-import misClases.JPInstrucciones;
-import misClases.JPDerrota;
-import misClases.JPJuego;
+import misClases.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -30,6 +23,7 @@ public class JFAplicacion extends javax.swing.JFrame{
     private final JPInstrucciones card3;
     private final JPCreditos card6;
     private final JPOpciones card7;
+    private final JPSetUp card8;
     
     // Pantalla Completa
     private GraphicsEnvironment gEnvironment;
@@ -40,11 +34,24 @@ public class JFAplicacion extends javax.swing.JFrame{
     private ImageIcon BlueChickIcon;
     private Image BlueChicken;
     
+    // Cliente
+    private Client jugador;
+    
     // Creates new form FrameAplicacion
     public JFAplicacion() {
         initComponents();
         new StardewFonts();
+        new ButtonIcons();
         loadIcon();
+        
+        // Inicio de Cliente
+        try {
+            this.jugador = new Client(this);
+            this.jugador.startClient();
+        } catch (IOException ex) {
+            System.out.println("*** Error al ejecutar al cliente, revise si el servidor esta activo ***");
+            ex.printStackTrace();
+        }
         
         // Esto es para poder modificar la pantalla como sea necesario
         gEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -58,12 +65,13 @@ public class JFAplicacion extends javax.swing.JFrame{
         
         // Se crea la instancia de cada uno de los JPanel a usar, se envia las fuentes para poder ser usadas en cada instancia sin problemas
         card1 = new JPInicio();
-        card2 = new JPJuego();
+        card2 = new JPJuego(jugador);
         card3 = new JPInstrucciones();
         card4 = new JPVictoria();
         card5 = new JPDerrota();
         card6 = new JPCreditos();
         card7 = new JPOpciones();
+        card8 = new JPSetUp(jugador);
         
         // Se añaden a la carpeta los JPanel a usar básicamente
         pantallaPrincipal.add(card1,"MainScreen");
@@ -73,12 +81,13 @@ public class JFAplicacion extends javax.swing.JFrame{
         pantallaPrincipal.add(card5,"DefeatScreen");
         pantallaPrincipal.add(card6,"CreditsScreen");
         pantallaPrincipal.add(card7,"OptionScreen");
+        pantallaPrincipal.add(card8,"SetUpScreen");
     }
     
     // Se encarga de obtener
     private void loadIcon(){
         try{
-            BlueChickIcon = new ImageIcon(getClass().getResource("/Resources/Assets/IconBlueChicken.png"));
+            BlueChickIcon = new ImageIcon("src/Resources/Assets/IconBlueChicken.png");
             BlueChicken = BlueChickIcon.getImage();
             this.setIconImage(BlueChicken);
         }catch(Exception e){
@@ -87,6 +96,15 @@ public class JFAplicacion extends javax.swing.JFrame{
         }
     }
 
+    public JPJuego getJuego() {
+        return card2;
+    }
+
+    public JPSetUp getSetUp() {
+        return card8;
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
