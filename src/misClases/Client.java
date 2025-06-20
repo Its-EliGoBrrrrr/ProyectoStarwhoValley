@@ -5,12 +5,48 @@
 package misClases;
 
 import misPruebas.JFAplicacion;
-import servidor.Mensaje;
 import java.io.*;
 import java.net.*;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+class Mensaje implements Serializable {
+    private String texto;
+    private int tipo; // 0 = pregunta | 1 = respuesta | 2 = Adivinar | 3 = Cambiar a juego | 4 = cambiar estado de preparado
+    
+    public Mensaje(String texto, int tipo){
+        this.texto=texto;
+        this.tipo=tipo;
+    }
+
+    public String getTexto() {
+        return texto;
+    }
+
+    public int getTipo() {
+        return tipo;
+    }
+    
+    @Override
+    public String toString() {
+        switch (this.tipo) {
+        // Es pregunta
+            case 0:
+                return "Pregunta del jugador: " + this.texto;
+        // Es respuesta
+            case 1:
+                return "Respuesta del jugador: " + this.texto;
+        // Es adivinar
+            case 2:
+                return "Adivinanza del jugador: " + this.texto;
+            case 3:
+                return "Cambiando a juego";
+            default:
+                return "Cadena vacia";
+        }
+    }
+}
 
 public class Client{
     private final JFAplicacion padre;
@@ -36,7 +72,7 @@ public class Client{
                     
                     // Cualquier mensaje se capta aqui
                     if(entrada instanceof Mensaje mesg){
-                        System.out.println("*** Recibe un mensaje ***");
+                        System.out.println("Recibe un mensaje");
                         switch(mesg.getTipo()){
                             case 0: // Es pregunta
                                 // Mostrar en el panel como pregunta
@@ -60,8 +96,8 @@ public class Client{
                         System.out.println("Mandando tablero");
                         padre.getJuego().obtenerPersonajes(tablero);
                         padre.getSetUp().obtenerPersonajes(tablero);
-                        // salidaServer.writeUTF("Tablero recibido");
-                        // System.out.println("Mensaje de recibido enviado");
+                        salidaServer.writeUTF("Tablero recibido");
+                        System.out.println("Mensaje de recibido enviado");
                     }
                     
                     if(entrada instanceof String cadena){
@@ -69,7 +105,7 @@ public class Client{
                     }
                     
                 }catch(Exception e){
-                    System.out.println("Cliente || Error en: " + e.getMessage());
+                    System.out.println("Error en: " + e.getMessage());
                     e.printStackTrace();
                 }
             }
@@ -88,7 +124,6 @@ public class Client{
             salidaServer.writeObject(mens);
             System.out.println("Pregunta enviada: "+pregunta);
         } catch (IOException ex) {
-            System.out.println("Problema al enviar pregunta");
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

@@ -67,24 +67,15 @@ public class Server {
                         while(it.hasNext()){
                             AttClient client = it.next();
                             client.enviarTablero(tablero);
-                            client.enviarMensaje(new Mensaje("Tablero enviado",9));
                             System.out.println("Fin Tablero Client "+client.getnClient());
                         }
                         this.tableroListo = true;
                     }
                     
                     if(!jugadoresListos[0]||!jugadoresListos[1]){ // Espera a que ambos marquen que estan preparados
-                        System.out.println("Esperando a ambos jugadores");
-                        while(!jugadoresListos[0] || !jugadoresListos[1]){
-                            this.jugadoresListos[0] = clientes.get(0).getPreparado();
-                            this.jugadoresListos[1] = clientes.get(1).getPreparado();
-                            if(this.jugadoresListos[0]&&this.jugadoresListos[1])
-                                break;
-                        }
-                        System.out.println("Salida ciclo");
-                    }
-                    
-                    //if(jugadoresListos[0] && jugadoresListos[1]){
+                        this.jugadoresListos[0] = clientes.get(0).getPreparado();
+                        this.jugadoresListos[1] = clientes.get(1).getPreparado();
+                    }else if(jugadoresListos[0] && jugadoresListos[1]){
                         it = clientes.iterator();
                         while(it.hasNext()){
                             AttClient client = it.next();
@@ -92,7 +83,7 @@ public class Server {
                             
                             System.out.println("Client " + client.getnClient() + " preparado");
                         }
-                    //}
+                    }
                     this.nuevoJuego = false;
                 }
             }

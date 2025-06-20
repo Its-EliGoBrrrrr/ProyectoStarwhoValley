@@ -6,6 +6,43 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+class Mensaje implements Serializable {
+    private String texto;
+    private int tipo; // 0 = pregunta | 1 = respuesta | 2 = Adivinar | 3 = Cambiar a juego | 4 = cambiar estado de preparado
+    
+    public Mensaje(String texto, int tipo){
+        this.texto=texto;
+        this.tipo=tipo;
+    }
+
+    public String getTexto() {
+        return texto;
+    }
+
+    public int getTipo() {
+        return tipo;
+    }
+    
+    @Override
+    public String toString() {
+        switch (this.tipo) {
+        // Es pregunta
+            case 0:
+                return "Pregunta del jugador: " + this.texto;
+        // Es respuesta
+            case 1:
+                return "Respuesta del jugador: " + this.texto;
+        // Es adivinar
+            case 2:
+                return "Adivinanza del jugador: " + this.texto;
+            case 3:
+                return "Cambiando a juego";
+            default:
+                return "Cadena vacia";
+        }
+    }
+}
+
 public class AttClient extends Thread {
     private boolean continuar;
     
@@ -37,30 +74,27 @@ public class AttClient extends Thread {
             entradaClient = new ObjectInputStream(conexion.getInputStream()); // Recibe informacion del cliente
             
             while (continuar){
+                // System.out.println("Corriendo server client "+this.nClient);
                 try{
-                    Mensaje entrada = (Mensaje)entradaClient.readObject();
+                    Object entrada = entradaClient.readObject();
                     
                     if(entrada instanceof Mensaje mesg){ // Problema viene de aqui, no puede leer mensajes por alguna razon
-                        System.out.println("Recibe un mensaje tipo "+mesg.getTipo());
+                        /*System.out.println("Recibe un mensaje tipo "+mesg.getTipo());
                         if(mesg.getTipo() == 4){
                             this.preparado = true;
-                            // System.out.println("Client "+this.nClient+" preparado ="+this.preparado);
-                        } else if(nClient == 1){
+                            break;
+                        }
+                        if(nClient == 1){
                             server.clientes.get(1).salidaClient.writeObject(mesg);
                         }else{
                             server.clientes.get(0).salidaClient.writeObject(mesg);
                         }
-                        System.out.println("Recibido: " + mesg);
-                        // System.out.println("Entrada Mensaje");
+                        System.out.println("Recibido: " + mesg);*/
+                        System.out.println("Entrada Mensaje");
                     }
-                }catch(ObjectStreamException e){
-                    System.out.println("Servidor || Error en: " + e.getMessage());
-                    // e.printStackTrace();
-                    Logger.getLogger(AttClient.class.getName()).log(Level.SEVERE, null, e);
                 }catch(Exception e){
-                    System.out.println("Servidor || Error en: " + e.getMessage());
-                    // e.printStackTrace();
-                    Logger.getLogger(AttClient.class.getName()).log(Level.SEVERE, null, e);
+                    System.out.println("Error en: " + e.getMessage());
+                    e.printStackTrace();
                 }
             }
 
@@ -76,20 +110,11 @@ public class AttClient extends Thread {
     }
     
     public void enviarTablero(ArrayList tablero){
+        String mensaje = "";
         try {
             System.out.println("Recibiendo tablero");
             salidaClient.writeObject(tablero);
         } catch (IOException ex) {
-            Logger.getLogger(AttClient.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public void enviarMensaje(Mensaje mesg){
-        try{
-            System.out.println("Enviando Mensaje: "+mesg.getTexto());
-            salidaClient.writeObject(mesg);
-        } catch (Exception ex) {
-            System.out.println("*** Error al enviar objeto Mensaje ***");
             Logger.getLogger(AttClient.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -107,7 +132,6 @@ public class AttClient extends Thread {
     }
     
     public boolean getPreparado(){
-        System.out.println("Retornando "+preparado+" de Client "+this.nClient); // Esta linea es importante por alguna razon? Creo porque obliga el programa a correr la instruccion
         return preparado;
     }
 }
