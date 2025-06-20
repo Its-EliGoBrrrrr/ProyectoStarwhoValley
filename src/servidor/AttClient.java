@@ -107,6 +107,7 @@ public class AttClient extends Thread {
     }
     
     public boolean getPreparado(){
+        System.out.println("Client "+this.nClient+" preparado = "+this.preparado);
         return preparado;
     }
 }
