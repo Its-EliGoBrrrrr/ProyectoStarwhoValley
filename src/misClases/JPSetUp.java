@@ -143,8 +143,7 @@ public class JPSetUp extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartGameActionPerformed
-        // this.jugador.enviarPreparado();
-        this.jugador.enviarPregunta("Texto de prueba");
+        this.jugador.enviarPreparado();
     }//GEN-LAST:event_jButtonStartGameActionPerformed
     
     @Override
