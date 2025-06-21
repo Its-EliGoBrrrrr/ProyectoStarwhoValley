@@ -10,13 +10,15 @@ import java.awt.Image;
 import java.io.File;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class JPSetUp extends javax.swing.JPanel {
     // Variables
     private Image imgFondo;
+    private static ArrayList<Personaje> personajes = new ArrayList<>();
+    private static int metodo;
     private Client jugador;
-    private ArrayList personajes;
     
     // Creates new form JPSetUp
     public JPSetUp(Client jugador) {
@@ -34,7 +36,7 @@ public class JPSetUp extends javax.swing.JPanel {
     }
 
     protected void obtenerPersonajes(ArrayList tablero){
-        this.personajes = tablero;
+        personajes = tablero;
     }
     
     protected void moverAJuego(){
@@ -143,7 +145,15 @@ public class JPSetUp extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartGameActionPerformed
-        this.jugador.enviarPreparado();
+        
+        if(this.jToggleButtonElegirLista.isSelected() || this.jToggleButtonElegirAzar.isSelected() || 
+                this.jToggleButtonElegirTabla.isSelected()){
+            setMetodo();
+            this.jugador.enviarPreparado();
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Por favor seleccione su modo de eleccion");
+        }
     }//GEN-LAST:event_jButtonStartGameActionPerformed
     
     @Override
@@ -154,6 +164,23 @@ public class JPSetUp extends javax.swing.JPanel {
         }
     }
     
+    
+    private void setMetodo() {
+        if(this.jToggleButtonElegirLista.isSelected()){
+            metodo = 1;
+        }
+        else if(this.jToggleButtonElegirTabla.isSelected()){
+            metodo = 2;
+        }
+        else{
+            metodo = 3;
+        }
+    }
+
+    public static int getMetodo() {
+        return metodo;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupModoSeleccion;
     private javax.swing.JButton jButtonStartGame;

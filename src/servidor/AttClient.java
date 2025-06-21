@@ -15,6 +15,7 @@ public class AttClient extends Thread {
     
     // Datos
     private boolean preparado;
+    private boolean enTurno;
     private final int nClient;
     
     // Conexion
@@ -27,6 +28,7 @@ public class AttClient extends Thread {
         this.nClient = nClient;
         this.continuar = true;
         this.preparado = false;
+        this.enTurno = false;
     }
     
     @Override
@@ -42,16 +44,34 @@ public class AttClient extends Thread {
                     
                     if(entrada instanceof Mensaje mesg){ // Problema viene de aqui, no puede leer mensajes por alguna razon
                         System.out.println("Recibe un mensaje tipo "+mesg.getTipo());
-                        if(mesg.getTipo() == 4){
-                            this.preparado = true;
-                            System.out.println("Client "+this.nClient+" preparado ="+this.preparado);
-                        } else if(nClient == 1){
-                            server.clientes.get(1).salidaClient.writeObject(mesg);
-                        }else{
-                            server.clientes.get(0).salidaClient.writeObject(mesg);
+                        switch(mesg.getTipo()){
+                            case 4:
+                                this.preparado = true;
+                                System.out.println("Client "+this.nClient+" preparado ="+this.preparado);
+                                break;
+                            case 5:
+                                this.enTurno = false;
+                                salidaClient.writeObject(new Mensaje("Bloqueo Botones",5));
+                                System.out.println("Final de turno de Client "+this.nClient);
+                                break;
+                            case 7:
+                                this.enTurno = false;
+                                if(nClient == 1){
+                                    server.clientes.get(1).enTurno = false;
+                                } else{
+                                    server.clientes.get(0).enTurno = false;
+                                }
+                                break;
+                            default:
+                                if(nClient == 1){
+                                    server.clientes.get(1).salidaClient.writeObject(mesg);
+                                } else{
+                                    server.clientes.get(0).salidaClient.writeObject(mesg);
+                                }
+                                break;
                         }
+                        
                         System.out.println("Recibido: " + mesg);
-                        // System.out.println("Entrada Mensaje");
                     }
                 }catch(ObjectStreamException e){
                     System.out.println("Servidor || Error en: " + e.getMessage());
@@ -106,8 +126,25 @@ public class AttClient extends Thread {
         return nClient;
     }
     
+    public void setPreparado(boolean flag){
+        this.preparado = flag;
+    }
+    
     public boolean getPreparado(){
         System.out.println("Client "+this.nClient+" preparado = "+this.preparado);
         return preparado;
+    }
+    
+    public void setTurno(boolean turno){
+        this.enTurno = turno;
+    }
+    
+    public boolean getTurno(){
+        try {
+            wait(2);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(AttClient.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return this.enTurno;
     }
 }

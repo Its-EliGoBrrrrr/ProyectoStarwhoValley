@@ -22,6 +22,7 @@ public class Server {
     protected boolean nuevoJuego;
     protected boolean tableroListo;
     protected boolean[] jugadoresListos;
+    protected boolean[] turno;
     
     // Datos del servidor
     private final int puerto = 1234;
@@ -33,7 +34,8 @@ public class Server {
         this.nuevoJuego=true;
         this.tableroListo=false;
         this.jugadoresListos = new boolean[]{false,false};
-        this.nClient=0;
+        this.turno = new boolean[]{false,false};
+        this.nClient = 0;
         this.clientes = new ArrayList<>();
     }
     
@@ -92,6 +94,36 @@ public class Server {
                     }
                     this.nuevoJuego = false;
                 }
+                if(!this.nuevoJuego){
+                    clientes.get(0).setTurno(true);
+                    clientes.get(1).enviarMensaje(new Mensaje("Bloqueo Botones",5));
+                    turno[0] = true;
+                    while(turno[0] || turno[1]){
+                        if(turno[0]){
+                            while(turno[0]){
+                                turno[0] = clientes.get(0).getTurno();
+                            }
+                            clientes.get(1).setTurno(true);
+                            turno[1] = true;
+                            
+                            // Bloqueo Y desbloqueo de botones
+                            clientes.get(1).enviarMensaje(new Mensaje("Desbloqueo Botones",4));
+                            clientes.get(0).enviarMensaje(new Mensaje("Bloqueo Botones",5));
+                        }else if (turno[1]){
+                            while(turno[1]){
+                                turno[1] = clientes.get(1).getTurno();
+                            }
+                            clientes.get(0).setTurno(true);
+                            turno[0] = true;
+                            
+                            // Bloqueo y desbloqueo de botones
+                            clientes.get(0).enviarMensaje(new Mensaje("Desbloqueo Botones",4));
+                            clientes.get(1).enviarMensaje(new Mensaje("Bloqueo Botones",5));
+                        }
+                    }
+                }
+                
+                reiniciarJuego();
             }
         }).start();
 
@@ -112,5 +144,15 @@ public class Server {
         System.out.println("Tablero generado");
         
         this.tablero=tablero;
+    }
+    
+    private void reiniciarJuego(){
+        this.nuevoJuego = true;
+        this.tableroListo = false;
+        this.jugadoresListos = new boolean[]{false,false};
+        this.turno = new boolean[]{false,false};
+        for(AttClient cliente : clientes){
+            cliente.setPreparado(false);
+        }
     }
 }

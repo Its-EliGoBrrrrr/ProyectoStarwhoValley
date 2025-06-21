@@ -41,6 +41,7 @@
                   <Component id="ButtonCredits" alignment="2" min="-2" pref="200" max="-2" attributes="0"/>
                   <Component id="jLTitle" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="ButtonOptions" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonInfoPartidas" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="340" max="32767" attributes="0"/>
           </Group>
@@ -59,7 +60,9 @@
               <Component id="ButtonCredits" min="-2" pref="60" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="ButtonOptions" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="61" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jButtonInfoPartidas" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="20" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -166,6 +169,14 @@
           <Dimension value="[600, 280]"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonInfoPartidas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="InfoPartidas"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonInfoPartidasActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

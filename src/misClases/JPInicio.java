@@ -58,6 +58,7 @@ public class JPInicio extends javax.swing.JPanel {
         ButtonCredits = new javax.swing.JButton();
         ButtonOptions = new javax.swing.JButton();
         jLTitle = new javax.swing.JLabel();
+        jButtonInfoPartidas = new javax.swing.JButton();
 
         setFont(getFont());
         setMaximumSize(new java.awt.Dimension(1920, 1080));
@@ -125,6 +126,13 @@ public class JPInicio extends javax.swing.JPanel {
         jLTitle.setMinimumSize(new java.awt.Dimension(600, 280));
         jLTitle.setPreferredSize(new java.awt.Dimension(600, 280));
 
+        jButtonInfoPartidas.setText("InfoPartidas");
+        jButtonInfoPartidas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInfoPartidasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,7 +144,8 @@ public class JPInicio extends javax.swing.JPanel {
                     .addComponent(ButtonInstrucc, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ButtonCredits, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ButtonOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ButtonOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonInfoPartidas))
                 .addContainerGap(340, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -152,7 +161,9 @@ public class JPInicio extends javax.swing.JPanel {
                 .addComponent(ButtonCredits, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(ButtonOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonInfoPartidas)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         ButtonInstrucc.getAccessibleContext().setAccessibleName("InstruccionesButton");
@@ -194,12 +205,19 @@ public class JPInicio extends javax.swing.JPanel {
         this.ButtonOptions.setIcon(ButtonIcons.getOptionNormal());
     }//GEN-LAST:event_ButtonOptionsMouseExited
 
+    private void jButtonInfoPartidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInfoPartidasActionPerformed
+        JPanel parent = (JPanel)getParent();
+        CardLayout cardLayout = (CardLayout)parent.getLayout();
+        cardLayout.show(parent, "InfoPartidas");
+    }//GEN-LAST:event_jButtonInfoPartidasActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonCredits;
     private javax.swing.JButton ButtonInstrucc;
     private javax.swing.JButton ButtonOptions;
     private javax.swing.JButton ButtonStart;
+    private javax.swing.JButton jButtonInfoPartidas;
     private javax.swing.JLabel jLTitle;
     // End of variables declaration//GEN-END:variables
 }

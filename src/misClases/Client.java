@@ -39,17 +39,24 @@ public class Client{
                         System.out.println("*** Recibe un mensaje ***");
                         switch(mesg.getTipo()){
                             case 0: // Es pregunta
-                                // Mostrar en el panel como pregunta
+                                this.padre.getJuego().mostrarPregunta(mesg.getTexto());
                                 break;
                             case 1: // Es respuesta
-                                // Mostrar en el panel como respuesta
+                                this.padre.getJuego().mostrarRespuesta(mesg.getTexto());
                                 break;
                             case 2: // Es intento de adivinar
                                 // Decidir que hacer la verdad
                                 break;
-                            case 3:
+                            case 3: // Cambia el display
                                 padre.getSetUp().moverAJuego();
                                 break;
+                            case 4: // Comienzo de turno y desbloqueo de botones
+                                System.out.println("Desbloqueando Botones");
+                                padre.getJuego().desbloquearBotones();
+                                break;
+                            case 5: // Fin de turno, tiene que bloquear los botones del panel
+                                System.out.println("Bloqueando Botones");
+                                padre.getJuego().bloquearBotones();
                             default:
                                 break;
                         }
@@ -62,10 +69,6 @@ public class Client{
                         padre.getSetUp().obtenerPersonajes(tablero);
                         // salidaServer.writeUTF("Tablero recibido");
                         // System.out.println("Mensaje de recibido enviado");
-                    }
-                    
-                    if(entrada instanceof String cadena){
-                        System.out.println("Mensaje Server: " + cadena);
                     }
                     
                 }catch(Exception e){
@@ -126,6 +129,16 @@ public class Client{
             salidaServer.writeObject(listo);
         }catch(Exception e){
             e.printStackTrace();
+        }
+    }
+    
+    public void finDeTurno(){
+        try {
+            Mensaje fin = new Mensaje ("Fin de turno",5);
+            salidaServer.writeObject(fin);
+        } catch (IOException ex) {
+            System.out.println("*** Problema Terminando Turno ***");
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
