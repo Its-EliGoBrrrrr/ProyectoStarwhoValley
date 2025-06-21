@@ -13,7 +13,7 @@ public class JPInicio extends javax.swing.JPanel {
     
     // Creates new form JPInicio
     public JPInicio() {
-        this.setFont(StardewFonts.SVThin);
+        this.setFont(StardewFonts.getSVThin());
         
         initComponents();
     }
@@ -37,7 +37,7 @@ public class JPInicio extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
 
-        ButtonStart.setFont(StardewFonts.SVBold);
+        ButtonStart.setFont(StardewFonts.getSVBold());
         ButtonStart.setBorder(null);
         ButtonStart.setBorderPainted(false);
         ButtonStart.setLabel("Jugar");
@@ -117,7 +117,7 @@ public class JPInicio extends javax.swing.JPanel {
     private void ButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonStartActionPerformed
         JPanel parent = (JPanel)getParent();
         CardLayout cardLayout = (CardLayout)parent.getLayout();
-        cardLayout.show(parent, "GameScreen");
+        cardLayout.show(parent, "SetUpScreen");
     }//GEN-LAST:event_ButtonStartActionPerformed
 
     private void ButtonInstruccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonInstruccActionPerformed

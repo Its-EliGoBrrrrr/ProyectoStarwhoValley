@@ -16,7 +16,7 @@ public class JPCreditos extends javax.swing.JPanel {
     
     // Creates new form JPCreditos
     public JPCreditos() {
-        this.setFont(StardewFonts.SVThin);
+        this.setFont(StardewFonts.getSVThin());
         
         initComponents();
     }
@@ -37,7 +37,7 @@ public class JPCreditos extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(1920, 1080));
         setMinimumSize(new java.awt.Dimension(1280, 720));
 
-        ButtonReturn.setFont(StardewFonts.SVBold);
+        ButtonReturn.setFont(StardewFonts.getSVBold());
         ButtonReturn.setText("Regresar");
         ButtonReturn.setBorder(null);
         ButtonReturn.addActionListener(new java.awt.event.ActionListener() {
@@ -50,17 +50,17 @@ public class JPCreditos extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(490, Short.MAX_VALUE)
-                .addComponent(ButtonReturn, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                .addContainerGap(490, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(355, 355, 355)
+                .addComponent(ButtonReturn, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+                .addGap(355, 355, 355))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(615, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(605, Short.MAX_VALUE)
                 .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
