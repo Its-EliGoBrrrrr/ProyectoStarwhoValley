@@ -73,9 +73,27 @@ public class ConexionBD {
         }
     }
     
-    public static List<String> ObtenerPreguntas(){
+    //Se usa opciones para elegir que preguntas a importar
+    public static List<String> ObtenerPreguntas(int tabla){
+        String sql;
+        String pregunta;
         
-        String sql = "SELECT * FROM preguntas";
+        switch (tabla) {
+            case 1: // Tabla de sujetos
+                sql = "SELECT * FROM pregunta_sujeto";
+                pregunta = "Pregunta";
+                break;
+            case 2: // Tabla de objetos
+                sql = "SELECT * FROM pregunta_objeto";
+                pregunta = "objeto";
+                break;
+            case 3: // Tabla de adjetivos
+                sql = "SELECT * FROM pregunta_adjetivo";
+                pregunta = "adjetivo";
+                break;
+            default:
+                throw new AssertionError();
+        }
         List lista = new ArrayList<String>();
         
         try (Connection conn = conectar();
@@ -83,9 +101,9 @@ public class ConexionBD {
                 ResultSet rs = stmt.executeQuery()){
             
             while (rs.next()) {
-                String pregunta = rs.getString("Pregunta");
+                String variable = rs.getString(pregunta);
                 
-                lista.add(pregunta);
+                lista.add(variable);
             }
             
         }catch(Exception e){
