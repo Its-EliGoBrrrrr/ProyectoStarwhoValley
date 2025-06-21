@@ -107,7 +107,7 @@ public class Server {
                             turno[1] = true;
                             
                             // Bloqueo Y desbloqueo de botones
-                            clientes.get(1).enviarMensaje(new Mensaje("Desbloqueo Botones",4));
+                            // clientes.get(1).enviarMensaje(new Mensaje("Desbloqueo Botones",4));
                             clientes.get(0).enviarMensaje(new Mensaje("Bloqueo Botones",5));
                         }else if (turno[1]){
                             while(turno[1]){
@@ -117,7 +117,7 @@ public class Server {
                             turno[0] = true;
                             
                             // Bloqueo y desbloqueo de botones
-                            clientes.get(0).enviarMensaje(new Mensaje("Desbloqueo Botones",4));
+                            // clientes.get(0).enviarMensaje(new Mensaje("Desbloqueo Botones",4));
                             clientes.get(1).enviarMensaje(new Mensaje("Bloqueo Botones",5));
                         }
                     }

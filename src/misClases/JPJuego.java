@@ -1152,6 +1152,8 @@ public class JPJuego extends JPanel {
         }else if(opcion == JOptionPane.NO_OPTION){
             this.jugador.enviarRespuesta(false);
         }
+        
+        desbloquearBotones();
     }
     
     protected void mostrarRespuesta(String resp){

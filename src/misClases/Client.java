@@ -50,10 +50,10 @@ public class Client{
                             case 3: // Cambia el display
                                 padre.getSetUp().moverAJuego();
                                 break;
-                            case 4: // Comienzo de turno y desbloqueo de botones
+                            /*case 4: // Comienzo de turno y desbloqueo de botones
                                 System.out.println("Desbloqueando Botones");
                                 padre.getJuego().desbloquearBotones();
-                                break;
+                                break;*/
                             case 5: // Fin de turno, tiene que bloquear los botones del panel
                                 System.out.println("Bloqueando Botones");
                                 padre.getJuego().bloquearBotones();
