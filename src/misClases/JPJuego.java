@@ -16,31 +16,28 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.Normalizer;
 import java.util.Random;
-import misPruebas.JFAplicacion;
 
-/**
- *
- * @author LENOVO
- */
 public class JPJuego extends JPanel {
     // Variables
-    private static String nombre = "";
-    private Image imgFondo;
-    private ArrayList<Personaje> personajes = new ArrayList<>();
-    private ArrayList<ImageIcon> iconos = new ArrayList<>();
-    private JLabel seleccionado;
-    private int segundos;
-    private int minutos;
-    private int horas;
-    private Timer cronometro;
-    private Date fecha;
-    private SimpleDateFormat formato1, formato2;
-    private Personaje miPersonaje;
-    private boolean clicElegir;
-    Client jugador;
+    private static String nombre = ""; //Nombre del jugador
+    private Image imgFondo; //Fondo
+    private ArrayList<Personaje> personajes = new ArrayList<>(); //Personajes en el tablero
+    private ArrayList<ImageIcon> iconos = new ArrayList<>(); // Imagenes en uso (Personajes en el tablero)
+    private ArrayList<JLabel> labelsImg; //Lista de los labels de las imagenes
+    private ArrayList<JLabel> labelsNoms; //Lista de los labels de los nombres
+    private JLabel seleccionado; //Personaje elegido para adivinar
+    private int segundos; //Segundos del timer
+    private int minutos; //Minutos del timer
+    private int horas; //Horas del timer
+    private Timer cronometro; //El timer
+    private Date fecha; //Fecha del momento
+    private SimpleDateFormat formato1, formato2; //Formatos de fecha
+    private Personaje miPersonaje; //El personaje con el que se juega
+    private boolean clicElegir; //Comprobar si se elegira el personaje por el tablero
+    private Client jugador; 
     
     // Creates new form JPJuego
-    public JPJuego() {
+    public JPJuego(Client jugador) {
         addComponentListener(new ComponentAdapter(){
             @Override
             public void componentShown(ComponentEvent evt){
@@ -51,7 +48,6 @@ public class JPJuego extends JPanel {
                 horas = 0;
                 cronometro.start();
                 jLabelJugador.setText(nombre);
-                iniciarPersonajes();
                 
                 fecha = new Date();
                 //Normalizer es para "normalizar" el string y poder usar replaceAll para quitar los acentos
@@ -63,20 +59,23 @@ public class JPJuego extends JPanel {
                 elegirPersonaje();
             }
         });
+        
+        // Fuente estandar utilizada por el Panel
         this.setFont(StardewFonts.getSVThin());
+        this.jugador = jugador;
+        
+        // Insertar imagen de fondo en el Panel
         try{
             imgFondo = ImageIO.read(new File("src/Resources/Fondos/TablonEspecial2.png"));
         }catch(Exception e){
             System.out.println("*** Error cargando fondo de panel ***");
             e.printStackTrace();
         }
-        try {
-            this.jugador = new Client();
-        } catch (IOException ex) {
-            System.out.println("* Error al ejecutar al cliente, revise si el servidor esta activo *");
-        }
         
+        // Inicializa componentes
         initComponents();
+        
+        // Acciones que se tienen que tomar despues de inicializar
         this.labelsImg = new ArrayList<>(Arrays.asList(jLabelPersonaje1, jLabelPersonaje2, jLabelPersonaje3, jLabelPersonaje4,
             jLabelPersonaje5, jLabelPersonaje6, jLabelPersonaje7, jLabelPersonaje8,
             jLabelPersonaje9, jLabelPersonaje10, jLabelPersonaje11, jLabelPersonaje12,
@@ -607,9 +606,19 @@ public class JPJuego extends JPanel {
 
         jButtonDefQue.setFont(StardewFonts.getSVThin());
         jButtonDefQue.setText("Enviar");
+        jButtonDefQue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDefQueActionPerformed(evt);
+            }
+        });
 
         jButtonPersQue.setFont(StardewFonts.getSVThin());
         jButtonPersQue.setText("Enviar");
+        jButtonPersQue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPersQueActionPerformed(evt);
+            }
+        });
 
         jLabelAdivinar.setFont(StardewFonts.getSVBold());
         jLabelAdivinar.setText("Crees que ya lo tienes?");
@@ -1029,10 +1038,30 @@ public class JPJuego extends JPanel {
         }
     }//GEN-LAST:event_jButtonMusicaMouseClicked
 
-    private void enviarPregunta(){
+    private void jButtonDefQueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDefQueActionPerformed
+        String pregunta = this.jComboBoxPregunta1.getSelectedItem().toString()+this.jComboBoxPregunta2.getSelectedItem().toString()+this.jComboBoxPregunta3.getSelectedItem().toString();
         
-    }
-    
+        System.out.println("Pregunta creada: " + pregunta);
+        
+        try{
+            jugador.enviarPregunta(pregunta);
+        }catch(Exception e){
+            System.out.println("*** Error enviando pregunta ***");
+        }
+    }//GEN-LAST:event_jButtonDefQueActionPerformed
+
+    private void jButtonPersQueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPersQueActionPerformed
+        String pregunta = this.jTextFieldQuestion.getText().trim();
+        
+        System.out.println("Pregunta creada: " + pregunta);
+        
+        try{
+            jugador.enviarPregunta(pregunta);
+        }catch(Exception e){
+            System.out.println("*** Error enviando pregunta ***");
+        }
+    }//GEN-LAST:event_jButtonPersQueActionPerformed
+
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -1041,9 +1070,10 @@ public class JPJuego extends JPanel {
         }
     }
     
-    private void iniciarPersonajes(){
-        this.personajes.clear();
-        this.personajes = JPSetUp.obtenerPersonajes();
+    //Por ahora, esto solo tiene personajes establecidos
+    protected void obtenerPersonajes(ArrayList tablero){
+        System.out.println("Tablero enviado a Juego\n"+tablero);
+        personajes = tablero;
         ImageIcon portrait;
         for (int i = 0; i < labelsImg.size(); i++) {
             portrait = new ImageIcon(personajes.get(i).getImagen());
@@ -1087,7 +1117,17 @@ public class JPJuego extends JPanel {
     }
     
     private Personaje personajeLista(){
-        return JPListaPersonajes.getSeleccionado();
+        Frame parentFrame = (Frame) SwingUtilities.getWindowAncestor(this);
+        JDListaP lista = new JDListaP(parentFrame, personajes);
+        lista.setLocationRelativeTo(parentFrame);
+        lista.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+        lista.setVisible(true);
+        
+        return lista.getSeleccionado();
+    }
+    
+    public ArrayList<Personaje> getPersonajes(){
+        return personajes;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1165,6 +1205,5 @@ public class JPJuego extends JPanel {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextFieldQuestion;
     // End of variables declaration//GEN-END:variables
-    private ArrayList<JLabel> labelsImg;
-    private ArrayList<JLabel> labelsNoms;
+    
 }

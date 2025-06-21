@@ -6,33 +6,111 @@ package servidor;
 
 import java.io.*;
 import java.net.*;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import misClases.ConexionBD;
+import misClases.Personaje;
 
 public class Server {
+    protected List<AttClient> clientes;
+    protected ArrayList<Personaje> tablero;
     private boolean continuar;
     private int nClient;
+    
+    // Banderas de inicio de juego para permitir reinicar
+    protected boolean nuevoJuego;
+    protected boolean tableroListo;
+    protected boolean[] jugadoresListos;
+    
+    // Datos del servidor
     private final int puerto = 1234;
     private ServerSocket serverSocket;
-
+    
     public Server() throws IOException {
         this.serverSocket = new ServerSocket(puerto);
         this.continuar=true;
+        this.nuevoJuego=true;
+        this.tableroListo=false;
+        this.jugadoresListos = new boolean[]{false,false};
         this.nClient=0;
+        this.clientes = new ArrayList<>();
     }
     
-    public void startServer() throws IOException {
+    public void startServer(){
+        // Hilo de conseguir clientes
         Socket clientSocket;
-        
-        while(continuar){
-            System.out.println("Esperando cliente");
-            // Espera conexion de cliente
-            clientSocket = serverSocket.accept();
-            nClient++;
             
-            System.out.println("Conexion con cliente "+this.nClient+" exitosa");
-            AttClient client = new AttClient(clientSocket,nClient);
-            client.start();
+        while(continuar && (nClient < 2)){
+            System.out.println("Esperando cliente");
+            try {
+                // Espera conexion de cliente
+                clientSocket = serverSocket.accept();
+                nClient++;
+                
+                System.out.println("Conexion con cliente "+this.nClient+" exitosa");
+                
+                AttClient client = new AttClient(this,clientSocket,nClient);
+                client.start();
+                clientes.add(client);
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
-        this.serverSocket.close();
+        new Thread(()->{
+            while(continuar){
+                Iterator<AttClient> it = clientes.iterator();
+                if(this.nuevoJuego == true ){
+                    if(!tableroListo){ // Crea el tablero para ambos
+                        crearTablero();
+                        while(it.hasNext()){
+                            AttClient client = it.next();
+                            client.enviarTablero(tablero);
+                            client.enviarMensaje(new Mensaje("Tablero enviado",9));
+                            System.out.println("Fin Tablero Client "+client.getnClient());
+                        }
+                        this.tableroListo = true;
+                    }
+                    
+                    if(!jugadoresListos[0]||!jugadoresListos[1]){ // Espera a que ambos marquen que estan preparados
+                        System.out.println("Esperando a ambos jugadores");
+                        while(!jugadoresListos[0] || !jugadoresListos[1]){
+                            this.jugadoresListos[0] = clientes.get(0).getPreparado();
+                            this.jugadoresListos[1] = clientes.get(1).getPreparado();
+                        }
+                    }
+                    
+                    if(jugadoresListos[0] && jugadoresListos[1]){
+                        it = clientes.iterator();
+                        while(it.hasNext()){
+                            AttClient client = it.next();
+                            client.cambiarFrame();
+                            
+                            System.out.println("Client " + client.getnClient() + " preparado");
+                        }
+                    }
+                    this.nuevoJuego = false;
+                }
+            }
+        }).start();
+
+    }
+    
+    protected void crearTablero(){
+        List personajes = ConexionBD.obtenerPersonajes();
+        ArrayList tablero = new ArrayList<Personaje>();
+        int cont = 0, random = (int) (Math.random() * personajes.size());
+        
+        for(int i=0;i<24;i++){
+            while(tablero.contains(personajes.get(random))){
+                random = (int) (Math.random() * personajes.size());
+            }
+            tablero.add(personajes.get(random));
+        }
+        
+        System.out.println("Tablero generado");
+        
+        this.tablero=tablero;
     }
 }

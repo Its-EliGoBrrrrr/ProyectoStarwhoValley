@@ -18,15 +18,16 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class JPSetUp extends javax.swing.JPanel {
-
+    // Variables
     private Image imgFondo;
     private static ArrayList<Personaje> personajes = new ArrayList<>();
     private static int metodo;
-    /**
-     * Creates new form JPSetUp
-     */
-    public JPSetUp() {
+    private Client jugador;
+    
+    // Creates new form JPSetUp
+    public JPSetUp(Client jugador) {
         this.setFont(StardewFonts.getSVThin());
+        this.jugador = jugador;
         
         try{
             imgFondo = ImageIO.read(new File("src/Resources/Fondos/Fondo11.png"));
@@ -34,9 +35,21 @@ public class JPSetUp extends javax.swing.JPanel {
             System.out.println("*** Error cargando fondo de panel ***");
             e.printStackTrace();
         }
+        
         initComponents();
     }
 
+    protected void obtenerPersonajes(ArrayList tablero){
+        personajes = tablero;
+    }
+    
+    protected void moverAJuego(){
+        JPJuego.setNombre(this.jTextFieldNombreJ.getText());
+        JPanel parent = (JPanel)getParent();
+        CardLayout cardLayout = (CardLayout)parent.getLayout();
+        cardLayout.show(parent, "GameScreen");
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -136,19 +149,11 @@ public class JPSetUp extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartGameActionPerformed
+        
         if(this.jToggleButtonElegirLista.isSelected() || this.jToggleButtonElegirAzar.isSelected() || 
                 this.jToggleButtonElegirTabla.isSelected()){
-            JPJuego.setNombre(this.jTextFieldNombreJ.getText());
-            JPanel parent = (JPanel)getParent();
             setMetodo();
-            if(this.jToggleButtonElegirLista.isSelected()){
-                CardLayout cardLayout = (CardLayout)parent.getLayout();
-                cardLayout.show(parent, "ListaPersonajes");
-            }
-            else{
-                CardLayout cardLayout = (CardLayout)parent.getLayout();
-                cardLayout.show(parent, "GameScreen");
-            }
+            this.jugador.enviarPreparado();
         }
         else{
             JOptionPane.showMessageDialog(this, "Por favor seleccione su modo de eleccion");
@@ -161,16 +166,6 @@ public class JPSetUp extends javax.swing.JPanel {
         if(imgFondo != null){
             g.drawImage(imgFondo, 0, 0, getWidth(), getHeight(), this);
         }
-    }
-
-    public static ArrayList<Personaje> obtenerPersonajes(){
-        //OBTENER PERSONAJES
-        personajes.clear();
-        for (int i = 0; i < 23; i++) {
-            personajes.add(new Personaje("Alex","src/Resources/Assets/Alex.png",1));
-        }
-        personajes.add(new Personaje("Abigail","src/Resources/Assets/Abigail.png",0));
-        return personajes;
     }
     
     
