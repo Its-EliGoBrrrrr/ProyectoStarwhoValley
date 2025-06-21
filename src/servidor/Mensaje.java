@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 public class Mensaje implements Serializable {
     private String texto;
-    private Integer tipo; // 0 = pregunta | 1 = respuesta | 2 = Adivinar | 3 = Cambiar a juego | 4 = cambiar estado de preparado
+    private Integer tipo; // 0 = pregunta | 1 = respuesta | 2 = Adivinar | 3 = Cambiar a juego | 4 = cambiar estado de preparado | 5 = Fin de turno | 6 = Fin de juego
     
     public Mensaje(String texto, int tipo){
         this.texto=texto;
