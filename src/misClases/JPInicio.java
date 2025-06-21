@@ -65,9 +65,10 @@ public class JPInicio extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
 
-        ButtonStart.setFont(StardewFonts.getSVBold());
-        ButtonStart.setBorder(null);
-        ButtonStart.setBorderPainted(false);
+        ButtonStart.setBackground(new java.awt.Color(218, 173, 114));
+        ButtonStart.setFont(StardewFonts.getSVSmallTitle());
+        ButtonStart.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(226, 122, 62)));
+        ButtonStart.setBorderPainted(true);
         ButtonStart.setLabel("Jugar");
         ButtonStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,22 +76,30 @@ public class JPInicio extends javax.swing.JPanel {
             }
         });
 
-        ButtonInstrucc.setFont(getFont());
+        ButtonInstrucc.setBackground(new java.awt.Color(218, 173, 114));
+        ButtonInstrucc.setFont(StardewFonts.getSVSmallTitle());
         ButtonInstrucc.setText("Instrucciones");
-        ButtonInstrucc.setBorder(null);
-        ButtonInstrucc.setBorderPainted(false);
+        ButtonInstrucc.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(226, 122, 62)));
+        ButtonInstrucc.setBorderPainted(true);
         ButtonInstrucc.setIconTextGap(0);
         ButtonInstrucc.setInheritsPopupMenu(true);
+        ButtonInstrucc.setMaximumSize(new java.awt.Dimension(200, 60));
+        ButtonInstrucc.setMinimumSize(new java.awt.Dimension(200, 60));
+        ButtonInstrucc.setPreferredSize(new java.awt.Dimension(200, 60));
         ButtonInstrucc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonInstruccActionPerformed(evt);
             }
         });
 
-        ButtonCredits.setFont(getFont());
+        ButtonCredits.setBackground(new java.awt.Color(218, 173, 114));
+        ButtonCredits.setFont(StardewFonts.getSVSmallTitle());
         ButtonCredits.setText("Creditos");
-        ButtonCredits.setBorder(null);
-        ButtonCredits.setBorderPainted(false);
+        ButtonCredits.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(226, 122, 62)));
+        ButtonCredits.setBorderPainted(true);
+        ButtonCredits.setMaximumSize(new java.awt.Dimension(200, 60));
+        ButtonCredits.setMinimumSize(new java.awt.Dimension(200, 60));
+        ButtonCredits.setPreferredSize(new java.awt.Dimension(200, 60));
         ButtonCredits.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonCreditsActionPerformed(evt);
@@ -126,7 +135,13 @@ public class JPInicio extends javax.swing.JPanel {
         jLTitle.setMinimumSize(new java.awt.Dimension(600, 280));
         jLTitle.setPreferredSize(new java.awt.Dimension(600, 280));
 
+        jButtonInfoPartidas.setBackground(new java.awt.Color(218, 173, 114));
+        jButtonInfoPartidas.setFont(StardewFonts.getSVSmallTitle());
         jButtonInfoPartidas.setText("InfoPartidas");
+        jButtonInfoPartidas.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(226, 122, 62)));
+        jButtonInfoPartidas.setMaximumSize(new java.awt.Dimension(200, 60));
+        jButtonInfoPartidas.setMinimumSize(new java.awt.Dimension(200, 60));
+        jButtonInfoPartidas.setPreferredSize(new java.awt.Dimension(200, 60));
         jButtonInfoPartidas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonInfoPartidasActionPerformed(evt);
@@ -138,35 +153,38 @@ public class JPInicio extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(340, 340, 340)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(ButtonStart, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ButtonInstrucc, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ButtonCredits, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ButtonOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonInfoPartidas))
-                .addContainerGap(340, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addComponent(ButtonStart, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(ButtonInstrucc, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(ButtonCredits, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jButtonInfoPartidas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(ButtonOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(160, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
                 .addComponent(jLTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addComponent(ButtonStart, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(ButtonInstrucc, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 19, Short.MAX_VALUE)
-                .addComponent(ButtonCredits, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(ButtonOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonInfoPartidas)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(165, 165, 165)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(ButtonOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonInfoPartidas, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonCredits, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonInstrucc, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonStart, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
 
-        ButtonInstrucc.getAccessibleContext().setAccessibleName("InstruccionesButton");
+        ButtonInstrucc.getAccessibleContext().setAccessibleName("");
         ButtonOptions.getAccessibleContext().setAccessibleName("OpcionesButton");
 
         getAccessibleContext().setAccessibleName("MainScreen");

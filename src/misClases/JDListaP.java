@@ -4,22 +4,29 @@
  */
 package misClases;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
 public class JDListaP extends javax.swing.JDialog {
 
     private ArrayList<Personaje> personajes = new ArrayList<>();
     private Personaje seleccionado;
-    
+    private Image imgFondo;
     
     public JDListaP(java.awt.Frame parent, ArrayList<Personaje> chara) {
         super(parent, true);
-        
+        try{
+            imgFondo = ImageIO.read(new File("src/Resources/Fondos/Fondo3.png"));
+        }catch(Exception e){
+            System.out.println("*** Error cargando fondo de panel ***");
+            e.printStackTrace();
+        }
         initComponents();
         this.personajes = chara;
         DefaultListModel<String> modelo = new DefaultListModel<>();
@@ -27,6 +34,14 @@ public class JDListaP extends javax.swing.JDialog {
             modelo.addElement(personajes.get(i).getNombre());
         }
         jListPersonajes.setModel(modelo);
+        
+        this.jPanelFondo.setOpaque(false);
+        this.jPanelFondo.add(new JComponent(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.drawImage(imgFondo, 0, 0, jPanelFondo.getWidth(), jPanelFondo.getHeight(), this);
+            }
+        });
     }
 
     /**
@@ -45,16 +60,27 @@ public class JDListaP extends javax.swing.JDialog {
         jButtonContinuar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(400, 304));
+        setMinimumSize(new java.awt.Dimension(400, 304));
+        setPreferredSize(new java.awt.Dimension(400, 304));
+
+        jPanelFondo.setBackground(new java.awt.Color(0, 0, 0));
+        jPanelFondo.setMaximumSize(new java.awt.Dimension(400, 304));
+        jPanelFondo.setMinimumSize(new java.awt.Dimension(400, 304));
+        jPanelFondo.setPreferredSize(new java.awt.Dimension(400, 304));
 
         jLabelTitulo.setFont(StardewFonts.getSVSmallTitle());
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitulo.setText("Selecciona un Personaje:");
 
+        jListPersonajes.setBackground(new java.awt.Color(255, 245, 202));
         jListPersonajes.setFont(StardewFonts.getSVThin());
         jScrollPane1.setViewportView(jListPersonajes);
 
+        jButtonContinuar.setBackground(new java.awt.Color(218, 173, 114));
         jButtonContinuar.setFont(StardewFonts.getSVBold());
         jButtonContinuar.setText("Continuar");
+        jButtonContinuar.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(177, 78, 5)));
         jButtonContinuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonContinuarActionPerformed(evt);
@@ -65,35 +91,40 @@ public class JDListaP extends javax.swing.JDialog {
         jPanelFondo.setLayout(jPanelFondoLayout);
         jPanelFondoLayout.setHorizontalGroup(
             jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelFondoLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFondoLayout.createSequentialGroup()
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addGap(35, 35, 35))
         );
         jPanelFondoLayout.setVerticalGroup(
             jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelFondoLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(13, 13, 13)
                 .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
         );
 
         pack();

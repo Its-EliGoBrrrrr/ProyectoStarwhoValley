@@ -5,6 +5,7 @@
 package misClases;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.List;
@@ -40,6 +41,7 @@ public class JPInfoPartidas extends javax.swing.JPanel {
         modelo.addColumn("Fecha");
         modelo.addColumn("Duracion");
         this.jTableDatos.setModel(modelo);
+        this.ButtonReturn.setIcon(ButtonIcons.getBackButtonNormal());
     }
 
     /**
@@ -59,12 +61,13 @@ public class JPInfoPartidas extends javax.swing.JPanel {
         jTextFieldNombre = new javax.swing.JTextField();
         jLabelDuracion = new javax.swing.JLabel();
         jButtonDuracion = new javax.swing.JButton();
-        jButtonRegresar = new javax.swing.JButton();
+        ButtonReturn = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1920, 1080));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
 
+        jTableDatos.setBackground(new java.awt.Color(255, 245, 202));
         jTableDatos.setFont(StardewFonts.getSVThin());
         jTableDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -76,8 +79,10 @@ public class JPInfoPartidas extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTableDatos);
 
+        jButtonNombre.setBackground(new java.awt.Color(218, 173, 114));
         jButtonNombre.setFont(StardewFonts.getSVBold());
         jButtonNombre.setText("Mostrar Datos");
+        jButtonNombre.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(177, 78, 5)));
         jButtonNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNombreActionPerformed(evt);
@@ -88,32 +93,50 @@ public class JPInfoPartidas extends javax.swing.JPanel {
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitulo.setText("Informacion de Partidas");
 
-        jLabelNombre.setBackground(new java.awt.Color(242, 222, 146));
+        jLabelNombre.setBackground(new java.awt.Color(218, 173, 114));
         jLabelNombre.setFont(StardewFonts.getSVBold());
         jLabelNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelNombre.setText("Busqueda por Nombre:");
+        jLabelNombre.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
         jLabelNombre.setOpaque(true);
 
         jTextFieldNombre.setFont(StardewFonts.getSVThin());
 
-        jLabelDuracion.setBackground(new java.awt.Color(242, 222, 146));
+        jLabelDuracion.setBackground(new java.awt.Color(218, 173, 114));
         jLabelDuracion.setFont(StardewFonts.getSVBold());
         jLabelDuracion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelDuracion.setText("Mostrar todo por duracion:");
+        jLabelDuracion.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
         jLabelDuracion.setOpaque(true);
 
+        jButtonDuracion.setBackground(new java.awt.Color(218, 173, 114));
         jButtonDuracion.setFont(StardewFonts.getSVBold());
         jButtonDuracion.setText("Mostrar Datos");
+        jButtonDuracion.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(177, 78, 5)));
         jButtonDuracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDuracionActionPerformed(evt);
             }
         });
 
-        jButtonRegresar.setText("<-");
-        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+        ButtonReturn.setBackground(new Color(0,0,0,0));
+        ButtonReturn.setFont(StardewFonts.getSVBold());
+        ButtonReturn.setBorder(null);
+        ButtonReturn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ButtonReturn.setMaximumSize(new java.awt.Dimension(132, 54));
+        ButtonReturn.setMinimumSize(new java.awt.Dimension(132, 54));
+        ButtonReturn.setPreferredSize(new java.awt.Dimension(132, 54));
+        ButtonReturn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ButtonReturnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ButtonReturnMouseExited(evt);
+            }
+        });
+        ButtonReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRegresarActionPerformed(evt);
+                ButtonReturnActionPerformed(evt);
             }
         });
 
@@ -121,6 +144,12 @@ public class JPInfoPartidas extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabelNombre)
+                .addGap(237, 237, 237)
+                .addComponent(jLabelDuracion)
+                .addGap(333, 333, 333))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -135,27 +164,21 @@ public class JPInfoPartidas extends javax.swing.JPanel {
                         .addGap(430, 430, 430)
                         .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jButtonRegresar))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(301, 301, 301)
-                        .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(140, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabelNombre)
-                .addGap(237, 237, 237)
-                .addComponent(jLabelDuracion)
-                .addGap(333, 333, 333))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jButtonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -172,12 +195,6 @@ public class JPInfoPartidas extends javax.swing.JPanel {
 
         jLabelTitulo.setBorder(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
-        JPanel parent = (JPanel)getParent();
-        CardLayout cardLayout = (CardLayout)parent.getLayout();
-        cardLayout.show(parent, "MainScreen");
-    }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     private void jButtonNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNombreActionPerformed
         String nombre = this.jLabelNombre.getText().trim();
@@ -239,6 +256,20 @@ public class JPInfoPartidas extends javax.swing.JPanel {
             }
     }//GEN-LAST:event_jButtonDuracionActionPerformed
 
+    private void ButtonReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonReturnActionPerformed
+        JPanel parent = (JPanel)getParent();
+        CardLayout cardLayout = (CardLayout)parent.getLayout();
+        cardLayout.show(parent, "MainScreen");
+    }//GEN-LAST:event_ButtonReturnActionPerformed
+
+    private void ButtonReturnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonReturnMouseEntered
+        this.ButtonReturn.setIcon(ButtonIcons.getBackButtonHover());
+    }//GEN-LAST:event_ButtonReturnMouseEntered
+
+    private void ButtonReturnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonReturnMouseExited
+        this.ButtonReturn.setIcon(ButtonIcons.getBackButtonNormal());
+    }//GEN-LAST:event_ButtonReturnMouseExited
+
     
     @Override
     protected void paintComponent(Graphics g){
@@ -249,9 +280,9 @@ public class JPInfoPartidas extends javax.swing.JPanel {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonReturn;
     private javax.swing.JButton jButtonDuracion;
     private javax.swing.JButton jButtonNombre;
-    private javax.swing.JButton jButtonRegresar;
     private javax.swing.JLabel jLabelDuracion;
     private javax.swing.JLabel jLabelNombre;
     private javax.swing.JLabel jLabelTitulo;

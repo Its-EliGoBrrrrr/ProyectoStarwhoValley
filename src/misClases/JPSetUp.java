@@ -5,6 +5,7 @@
 package misClases;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
@@ -33,6 +34,7 @@ public class JPSetUp extends javax.swing.JPanel {
         }
         
         initComponents();
+        this.ButtonReturn.setIcon(ButtonIcons.getBackButtonNormal());
     }
 
     protected void obtenerPersonajes(ArrayList tablero){
@@ -63,13 +65,16 @@ public class JPSetUp extends javax.swing.JPanel {
         jToggleButtonElegirTabla = new javax.swing.JToggleButton();
         jToggleButtonElegirAzar = new javax.swing.JToggleButton();
         jTextFieldNombreJ = new javax.swing.JTextField();
+        ButtonReturn = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1920, 1080));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
 
+        jButtonStartGame.setBackground(new java.awt.Color(255, 235, 210));
         jButtonStartGame.setFont(StardewFonts.getSVBold());
         jButtonStartGame.setText("Start");
+        jButtonStartGame.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(226, 122, 62)));
         jButtonStartGame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonStartGameActionPerformed(evt);
@@ -82,17 +87,44 @@ public class JPSetUp extends javax.swing.JPanel {
         jLabelModo.setFont(StardewFonts.getSVBold());
         jLabelModo.setText("Seleccione el modo de seleccion de personaje:");
 
+        jToggleButtonElegirLista.setBackground(new java.awt.Color(255, 235, 210));
         buttonGroupModoSeleccion.add(jToggleButtonElegirLista);
         jToggleButtonElegirLista.setFont(StardewFonts.getSVBold());
         jToggleButtonElegirLista.setText("Seleccion de Lista");
+        jToggleButtonElegirLista.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(226, 122, 62)));
 
+        jToggleButtonElegirTabla.setBackground(new java.awt.Color(255, 235, 210));
         buttonGroupModoSeleccion.add(jToggleButtonElegirTabla);
         jToggleButtonElegirTabla.setFont(StardewFonts.getSVBold());
         jToggleButtonElegirTabla.setText("Seleccion de Tabla");
+        jToggleButtonElegirTabla.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(226, 122, 62)));
 
+        jToggleButtonElegirAzar.setBackground(new java.awt.Color(255, 235, 210));
         buttonGroupModoSeleccion.add(jToggleButtonElegirAzar);
         jToggleButtonElegirAzar.setFont(StardewFonts.getSVBold());
         jToggleButtonElegirAzar.setText("Aleatorio");
+        jToggleButtonElegirAzar.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(226, 122, 62)));
+
+        ButtonReturn.setBackground(new Color(0,0,0,0));
+        ButtonReturn.setFont(StardewFonts.getSVBold());
+        ButtonReturn.setBorder(null);
+        ButtonReturn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ButtonReturn.setMaximumSize(new java.awt.Dimension(132, 54));
+        ButtonReturn.setMinimumSize(new java.awt.Dimension(132, 54));
+        ButtonReturn.setPreferredSize(new java.awt.Dimension(132, 54));
+        ButtonReturn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ButtonReturnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ButtonReturnMouseExited(evt);
+            }
+        });
+        ButtonReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonReturnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -116,17 +148,22 @@ public class JPSetUp extends javax.swing.JPanel {
                             .addComponent(jButtonStartGame, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(601, 601, 601)
-                        .addComponent(jToggleButtonElegirAzar)))
-                .addGap(515, 515, 515))
+                        .addComponent(jToggleButtonElegirAzar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(430, 430, 430))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(194, Short.MAX_VALUE)
+                .addGap(16, 16, 16)
+                .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                 .addComponent(jLabelNombre)
                 .addGap(18, 18, 18)
                 .addComponent(jTextFieldNombreJ, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addComponent(jLabelModo)
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -155,6 +192,20 @@ public class JPSetUp extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Por favor seleccione su modo de eleccion");
         }
     }//GEN-LAST:event_jButtonStartGameActionPerformed
+
+    private void ButtonReturnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonReturnMouseEntered
+        this.ButtonReturn.setIcon(ButtonIcons.getBackButtonHover());
+    }//GEN-LAST:event_ButtonReturnMouseEntered
+
+    private void ButtonReturnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonReturnMouseExited
+        this.ButtonReturn.setIcon(ButtonIcons.getBackButtonNormal());
+    }//GEN-LAST:event_ButtonReturnMouseExited
+
+    private void ButtonReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonReturnActionPerformed
+        JPanel parent = (JPanel)getParent();
+        CardLayout cardLayout = (CardLayout)parent.getLayout();
+        cardLayout.show(parent, "MainScreen");
+    }//GEN-LAST:event_ButtonReturnActionPerformed
     
     @Override
     protected void paintComponent(Graphics g){
@@ -182,6 +233,7 @@ public class JPSetUp extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonReturn;
     private javax.swing.ButtonGroup buttonGroupModoSeleccion;
     private javax.swing.JButton jButtonStartGame;
     private javax.swing.JLabel jLabelModo;
