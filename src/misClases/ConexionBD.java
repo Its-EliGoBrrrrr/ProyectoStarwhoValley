@@ -6,6 +6,7 @@ package misClases;
 
 import java.sql.*;
 import java.util.*;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -52,7 +53,7 @@ public class ConexionBD {
     
     public static boolean guardarPartida(Partida partida){
         
-        String sql = "INSERT INTO partidas (ID, jugador_1, Jugador_2, Ganador, Personaje, Fecha, Duracion_partida) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO partidas (ID, Jugador_1, Jugador_2, Ganador, Personaje, Fecha, Duracion_partida) VALUES (?, ?, ?, ?, ?, ?, ?)";
         
         try (Connection conn = conectar();
                 PreparedStatement stmt = conn.prepareStatement(sql);
@@ -94,4 +95,36 @@ public class ConexionBD {
         
         return lista;
     }
+    
+    public static List<Partida> obtenerPartidas(){
+        String sql = "SELECT * FROM partidas";
+        List lista = new ArrayList<Partida>();
+        
+        try (Connection conn = conectar();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()){
+                while (rs.next()) {
+                    java.text.SimpleDateFormat formato = new java.text.SimpleDateFormat("yyyy/MM/dd");
+                    String fecha = formato.format(rs.getDate("Fecha"));
+                    DateTimeFormatter formato2 = DateTimeFormatter.ofPattern("HH:mm:ss");
+                    String duracion = (rs.getTime("Duracion_partida")).toLocalTime().format(formato2);
+                    
+                    Partida part = new Partida(
+                        rs.getString("Jugador_1"),
+                        rs.getString("Jugador_2"),
+                        rs.getString("Ganador"),
+                        rs.getString("Personaje"),
+                        fecha,
+                        duracion
+                    );
+                    lista.add(part);
+                }
+        } catch (Exception e) {
+            System.out.println("*** Error al cargar las partidas ***");
+            e.printStackTrace();
+        }
+        
+        return lista;
+    }
+    
 }
