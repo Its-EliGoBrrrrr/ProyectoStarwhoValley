@@ -55,7 +55,6 @@ public class Client{
                                 padre.getJuego().desbloquearBotones();
                                 break;*/
                             case 5: // Fin de turno, tiene que bloquear los botones del panel
-                                System.out.println("Bloqueando Botones");
                                 padre.getJuego().bloquearBotones();
                             default:
                                 break;
