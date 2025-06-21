@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 21-06-2025 a las 05:09:46
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 21-06-2025 a las 23:11:16
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -123,25 +123,22 @@ CREATE TABLE `pregunta_adjetivo` (
 --
 
 INSERT INTO `pregunta_adjetivo` (`id`, `adjetivo`) VALUES
-(1, 'pobladas'),
-(2, 'delgadas'),
-(3, 'pobladas'),
-(4, 'delgadas'),
-(5, 'Largo'),
-(6, 'Corto'),
-(7, 'Negro'),
-(8, 'Rubio'),
-(9, 'Azul'),
-(10, 'verde'),
-(11, 'Castaño'),
-(12, 'Rojo'),
-(13, 'Roja'),
-(14, 'Negra'),
-(15, 'Azul'),
-(16, 'Clara'),
-(17, 'Obscura'),
-(18, 'Bronceada'),
-(19, 'delgadas');
+(1, 'Pobladas'),
+(2, 'Delgadas'),
+(3, 'Largo'),
+(4, 'Corto'),
+(5, 'Blanco'),
+(6, 'Negro'),
+(7, 'Cafe'),
+(8, 'Rojo'),
+(9, 'Naranja'),
+(10, 'Rubio/Amarillo'),
+(11, 'Verde'),
+(12, 'Azul'),
+(13, 'Morado'),
+(14, 'Clara'),
+(15, 'Obscura'),
+(16, 'Bronceada');
 
 -- --------------------------------------------------------
 
@@ -161,20 +158,18 @@ CREATE TABLE `pregunta_objeto` (
 INSERT INTO `pregunta_objeto` (`id`, `objeto`) VALUES
 (1, 'Hombre'),
 (2, 'Mujer'),
-(3, 'Un hombre'),
-(4, 'Una mujer'),
-(5, 'un Adulto'),
-(6, 'Un menor'),
-(7, 'Un anciano'),
-(8, 'Calvo'),
-(9, 'Lentes'),
-(10, 'Cejas'),
-(11, 'Pelo'),
-(12, 'Ojos'),
-(13, 'Ropa'),
-(14, 'Piel'),
-(15, 'Gorro'),
-(16, 'Vello facial');
+(3, 'un Adulto'),
+(4, 'un Joven'),
+(5, 'un Anciano'),
+(6, 'Calvo'),
+(7, 'Lentes'),
+(8, 'Cejas'),
+(9, 'Pelo'),
+(10, 'Ojos'),
+(11, 'Ropa'),
+(12, 'Piel'),
+(13, 'un Gorro'),
+(14, 'Vello facial');
 
 -- --------------------------------------------------------
 
@@ -261,7 +256,7 @@ ALTER TABLE `preguntas_partida`
 -- AUTO_INCREMENT de la tabla `pregunta_adjetivo`
 --
 ALTER TABLE `pregunta_adjetivo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `pregunta_objeto`

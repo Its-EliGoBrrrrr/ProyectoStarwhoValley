@@ -45,6 +45,8 @@ public class AttClient extends Thread {
                     if(entrada instanceof Mensaje mesg){ // Problema viene de aqui, no puede leer mensajes por alguna razon
                         System.out.println("Recibe un mensaje tipo "+mesg.getTipo());
                         switch(mesg.getTipo()){
+                            case 2:
+                                break;
                             case 4:
                                 this.preparado = true;
                                 System.out.println("Client "+this.nClient+" preparado ="+this.preparado);
@@ -132,6 +134,11 @@ public class AttClient extends Thread {
     
     public boolean getPreparado(){
         System.out.println("Client "+this.nClient+" preparado = "+this.preparado);
+        /*try {
+            wait(2);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(AttClient.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
         return preparado;
     }
     
