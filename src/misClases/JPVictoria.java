@@ -5,6 +5,8 @@
 package misClases;
 
 import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 /**
  *
@@ -12,15 +14,34 @@ import java.awt.*;
  */
 public class JPVictoria extends javax.swing.JPanel {
     // Variables
+    private JFrame contenedorPrincipal; // Ventana que contiene los paneles
     
     /**
      * Creates new form JPVictoria
      */
     public JPVictoria() {
         this.setFont(StardewFonts.getSVThin());
-        
+        this.contenedorPrincipal = contenedorPrincipal;
+        this.setFont(StardewFonts.getSVThin());
         initComponents();
+        configurarEventos();
+
     }
+    
+    private void configurarEventos() {
+        jButtonRegInicio.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Buscar el panel contenedor y cambiar al panel "inicio"
+                Container parent = contenedorPrincipal.getContentPane();
+                if (parent.getLayout() instanceof CardLayout) {
+                    CardLayout cl = (CardLayout) parent.getLayout();
+                    cl.show(parent, "MainScreen");
+                }
+            }
+        });
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,23 +52,34 @@ public class JPVictoria extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButtonRegInicio = new javax.swing.JButton();
+
         setFont(getFont());
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
+
+        jButtonRegInicio.setText("jButton1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1280, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(291, 291, 291)
+                .addComponent(jButtonRegInicio)
+                .addContainerGap(910, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(169, 169, 169)
+                .addComponent(jButtonRegInicio)
+                .addContainerGap(524, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonRegInicio;
     // End of variables declaration//GEN-END:variables
 }

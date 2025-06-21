@@ -16,6 +16,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.Normalizer;
 import java.util.Random;
+import javax.sound.sampled.*;
 
 public class JPJuego extends JPanel {
     // Variables
@@ -34,7 +35,9 @@ public class JPJuego extends JPanel {
     private SimpleDateFormat formato1, formato2; //Formatos de fecha
     private Personaje miPersonaje; //El personaje con el que se juega
     private boolean clicElegir; //Comprobar si se elegira el personaje por el tablero
-    private Client jugador; 
+    private Client jugador;
+    private Clip clip;
+    private boolean reproduciendo = true;
     
     // Creates new form JPJuego
     public JPJuego(Client jugador) {
@@ -74,6 +77,7 @@ public class JPJuego extends JPanel {
         
         // Inicializa componentes
         initComponents();
+        cargarYReproducirSonido("src/Resources/Musica/01.-Stardew-Valley-Overture.wav");
         
         // Acciones que se tienen que tomar despues de inicializar
         this.labelsImg = new ArrayList<>(Arrays.asList(jLabelPersonaje1, jLabelPersonaje2, jLabelPersonaje3, jLabelPersonaje4,
@@ -586,6 +590,11 @@ public class JPJuego extends JPanel {
                 jButtonMusicaMouseClicked(evt);
             }
         });
+        jButtonMusica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMusicaActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(245, 210, 152));
 
@@ -863,7 +872,7 @@ public class JPJuego extends JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 102, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabelPersonajeJugable, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelNombreJugable, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1076,6 +1085,18 @@ public class JPJuego extends JPanel {
         }
     }//GEN-LAST:event_jButtonPersQueActionPerformed
 
+    private void jButtonMusicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMusicaActionPerformed
+        // TODO add your handling code here:
+        if (reproduciendo) {
+            detenerSonido();
+            jButtonMusica.setText("Reproducir sonido");
+        } else {
+            reproducirSonido();
+            jButtonMusica.setText("Detener sonido");
+        }
+
+    }//GEN-LAST:event_jButtonMusicaActionPerformed
+
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -1193,6 +1214,36 @@ public class JPJuego extends JPanel {
     
     public static void setNombre(String nombre) {
         JPJuego.nombre = nombre;
+    }
+    
+    //busca y reproduce el sonido
+    private void cargarYReproducirSonido(String rutaArchivo) {
+        try {
+            File archivo = new File(rutaArchivo);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivo);
+            clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //hace que el sonido se reproduzca desde el principio
+    private void reproducirSonido() {
+        if (clip != null) {
+            clip.setFramePosition(0); // Reinicia desde el principio
+            clip.start();
+            reproduciendo = true;
+        }
+    }
+
+    //tal cual dice detiene el sonido
+    private void detenerSonido() {
+        if (clip != null && clip.isRunning()) {
+            clip.stop();
+            reproduciendo = false;
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
