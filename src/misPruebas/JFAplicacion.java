@@ -25,6 +25,7 @@ public class JFAplicacion extends javax.swing.JFrame{
     private final JPOpciones card7;
     private final JPSetUp card8;
     private final JPListaPersonajes card9;
+    private final JPInfoPartidas card10;
     
     // Pantalla Completa
     private GraphicsEnvironment gEnvironment;
@@ -62,6 +63,7 @@ public class JFAplicacion extends javax.swing.JFrame{
         card7 = new JPOpciones();
         card8 = new JPSetUp();
         card9 = new JPListaPersonajes();
+        card10 = new JPInfoPartidas();
         
         // Se añaden a la carpeta los JPanel a usar básicamente
         pantallaPrincipal.add(card1,"MainScreen");
@@ -73,6 +75,7 @@ public class JFAplicacion extends javax.swing.JFrame{
         pantallaPrincipal.add(card7,"OptionScreen");
         pantallaPrincipal.add(card8,"SetUpScreen");
         pantallaPrincipal.add(card9,"ListaPersonajes");
+        pantallaPrincipal.add(card10,"InfoPartidas");
     }
     
     // Se encarga de obtener
