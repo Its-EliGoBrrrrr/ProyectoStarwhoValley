@@ -10,12 +10,12 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import misClases.ConexionBD;
-import misClases.Juego;
 import misClases.Partida;
 import misClases.Personaje;
 import java.time.*;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
+import misClases.Juego;
 
 public class Server {
     protected List<AttClient> clientes;
@@ -26,9 +26,8 @@ public class Server {
     // Banderas de inicio de juego para permitir reinicar
     protected boolean nuevoJuego;
     protected boolean tableroListo;
-    protected boolean juegoActivo;
+    protected boolean enJuego;
     protected boolean[] jugadoresListos;
-    protected boolean[] ganador;
     protected boolean[] turno;
     
     protected Juego[] juegos;
@@ -42,9 +41,8 @@ public class Server {
         this.continuar=true;
         this.nuevoJuego=true;
         this.tableroListo=false;
-        this.juegoActivo=false;
+        this.enJuego = false;
         this.jugadoresListos = new boolean[]{false,false};
-        this.ganador = new boolean[]{false,false};
         this.turno = new boolean[]{false,false};
         this.juegos = new Juego[2];
         this.nClient = 0;
@@ -107,47 +105,47 @@ public class Server {
                     this.nuevoJuego = false;
                 }
                 //if(!this.nuevoJuego){
+                    this.enJuego = true;
                     clientes.get(0).setTurno(true);
                     clientes.get(1).enviarMensaje(new Mensaje("Bloqueo Botones",5));
                     turno[0] = true;
-                    this.juegoActivo = true;
-                    while(this.juegoActivo){
+                    while(this.enJuego){
+                        System.out.println("JuegoActivo = "+this.enJuego);
                         if(turno[0]){
+                            System.out.println("Entrada Turno Client 1");
                             while(turno[0]){
                                 turno[0] = clientes.get(0).getTurno();
                             }
-                            clientes.get(1).setTurno(true);
-                            turno[1] = true;
-                            
-                            // Bloqueo Y desbloqueo de botones
-                            // clientes.get(1).enviarMensaje(new Mensaje("Desbloqueo Botones",4));
-                            clientes.get(0).enviarMensaje(new Mensaje("Bloqueo Botones",5));
+                            if(this.enJuego){
+                                clientes.get(1).setTurno(true);
+                                turno[1] = true;
+                                clientes.get(0).enviarMensaje(new Mensaje("Bloqueo Botones",5));
+                            }
+                            System.out.println("Salida Turno Client 1");
                         }else if (turno[1]){
+                            System.out.println("Entrada Turno Client 2");
                             while(turno[1]){
                                 turno[1] = clientes.get(1).getTurno();
                             }
-                            clientes.get(0).setTurno(true);
-                            turno[0] = true;
-                            
-                            // Bloqueo y desbloqueo de botones
-                            // clientes.get(0).enviarMensaje(new Mensaje("Desbloqueo Botones",4));
-                            clientes.get(1).enviarMensaje(new Mensaje("Bloqueo Botones",5));
+                            if(this.enJuego){
+                                clientes.get(0).setTurno(true);
+                                turno[0] = true;
+                                clientes.get(1).enviarMensaje(new Mensaje("Bloqueo Botones",5));
+                            }
+                            System.out.println("Salida Turno Client 2");
                         }
+                        if(!this.enJuego)
+                            break;
                     }
                     System.out.println("*** Fin del juego ***");
                 //}
                 
-                do{
+                while(this.juegos[0] == null || this.juegos[1] == null){
                     this.juegos[0] = clientes.get(0).getResultados();
                     this.juegos[1] = clientes.get(1).getResultados();
-                }while(this.juegos[0] == null && this.juegos[1] == null);
-                System.out.println("*** Juego cargado ***");
+                }
                 
-                do{
-                    this.ganador[0] = clientes.get(0).isGanador();
-                    this.ganador[1] = clientes.get(1).isGanador();
-                }while(!ganador[0] && !ganador[1]);
-                System.out.println("*** Ganador obtenido ***");
+                System.out.println("*** Datos de juego obtenidos ***");
                 
                 cargarPartida();
                 
@@ -178,11 +176,11 @@ public class Server {
         this.nuevoJuego = true;
         this.tableroListo = false;
         this.jugadoresListos = new boolean[]{false,false};
-        this.ganador = new boolean[]{false,false};
+        this.enJuego = false;
         this.turno = new boolean[]{false,false};
+        this.juegos = new Juego[2];
         for(AttClient cliente : clientes){
             cliente.setPreparado(false);
-            cliente.setGanador(false);
             cliente.setResultados(null);
         }
     }
@@ -197,10 +195,10 @@ public class Server {
         jugador1 = this.juegos[0].getJugador();
         jugador2 = this.juegos[1].getJugador();
         
-        if(this.ganador[0]){
+        if(this.juegos[0].getGanador()){
             ganador1 = this.juegos[0].getJugador();
             personaje = this.juegos[0].getPersonaje();
-        }else if(this.ganador[1]){
+        }else if(this.juegos[0].getGanador()){
             ganador1 = this.juegos[1].getJugador();
             personaje = this.juegos[1].getPersonaje();
         }
@@ -215,6 +213,7 @@ public class Server {
         String tiempoF = tiempo.format(formatoHora);
         
         resultado = new Partida(jugador1,jugador2,ganador1,personaje,fechaF,tiempoF);
+        System.out.println(resultado);
         
         ConexionBD.guardarPartida(resultado);
     }

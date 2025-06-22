@@ -9,6 +9,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.io.File;
 import javax.imageio.ImageIO;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,19 +17,11 @@ import javax.imageio.ImageIO;
  */
 public class JPDerrota extends javax.swing.JPanel {
     // Variables
-    Client jugador;
     private Image imgFondo; //Fondo
     
     // Creates new form JPDerrota
-    public JPDerrota(Client jugador) {
-        addComponentListener(new ComponentAdapter(){
-            @Override
-            public void componentShown(ComponentEvent evt){
-                //Aqui se realizan las cosas al mostrarse el panel
-            }
-        });
+    public JPDerrota() {
         this.setFont(StardewFonts.getSVThin());
-        this.jugador = jugador;
         
         try{
             imgFondo = ImageIO.read(new File("src/Resources/Fondos/CieloNoche.png"));
@@ -58,10 +51,13 @@ public class JPDerrota extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabelDerrota = new javax.swing.JLabel();
+        jButtonAgain = new javax.swing.JButton();
+        jButtonSalir = new javax.swing.JButton();
 
         setFont(getFont());
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         jLabelDerrota.setBackground(new java.awt.Color(255, 238, 175));
         jLabelDerrota.setFont(StardewFonts.getSVTitleCaps());
@@ -70,6 +66,24 @@ public class JPDerrota extends javax.swing.JPanel {
         jLabelDerrota.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(158, 79, 19)));
         jLabelDerrota.setOpaque(true);
 
+        jButtonAgain.setBackground(new java.awt.Color(255, 241, 189));
+        jButtonAgain.setFont(StardewFonts.getSVBold());
+        jButtonAgain.setText("Jugar de Nuevo");
+        jButtonAgain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgainActionPerformed(evt);
+            }
+        });
+
+        jButtonSalir.setBackground(new java.awt.Color(255, 241, 189));
+        jButtonSalir.setFont(StardewFonts.getSVBold());
+        jButtonSalir.setText("Salir");
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,19 +91,43 @@ public class JPDerrota extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(74, 74, 74)
                 .addComponent(jLabelDerrota, javax.swing.GroupLayout.PREFERRED_SIZE, 1132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(250, 250, 250)
+                .addComponent(jButtonAgain, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(180, 180, 180)
+                .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(250, 250, 250))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jLabelDerrota, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(422, 422, 422))
+                .addGap(150, 150, 150)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAgain, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        JPanel parent = (JPanel)getParent();
+        CardLayout cardLayout = (CardLayout)parent.getLayout();
+        cardLayout.show(parent, "MainScreen");
+    }//GEN-LAST:event_jButtonSalirActionPerformed
+
+    private void jButtonAgainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgainActionPerformed
+        JPanel parent = (JPanel)getParent();
+        CardLayout cardLayout = (CardLayout)parent.getLayout();
+        cardLayout.show(parent, "SetUpScreen");
+    }//GEN-LAST:event_jButtonAgainActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAgain;
+    private javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabelDerrota;
     // End of variables declaration//GEN-END:variables
 }

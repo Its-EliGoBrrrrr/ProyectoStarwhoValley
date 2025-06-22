@@ -152,22 +152,12 @@ public class Client{
         }
     }
     
-    public void enviarGanador(String estado){
+    public void enviarResultado(Juego result){
         try{
-            Mensaje listo = new Mensaje(estado,7);
-            salidaServer.writeObject(listo);
+            System.out.println("Enviando : "+result);
+            salidaServer.writeObject(result);
         }catch(Exception e){
             e.printStackTrace();
-        }
-    }
-    
-    public void enviarResultados(Juego result){
-        System.out.println("Enviando resultados de la partida: "+result);
-        try {
-            salidaServer.writeObject(result);
-        } catch (IOException ex) {
-            System.out.println("*** Problema enviando resultados de la partida ***");
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

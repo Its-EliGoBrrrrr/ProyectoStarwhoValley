@@ -68,6 +68,11 @@ public class Partida {
     public void setTiempo(String tiempo) {
         this.tiempo = tiempo;
     }
+
+    @Override
+    public String toString() {
+        return "Partida{" + "jugador1=" + jugador1 + ", jugador2=" + jugador2 + ", Ganador=" + Ganador + ", Personaje=" + Personaje + ", fecha=" + fecha + ", tiempo=" + tiempo + '}';
+    }
     
     
 }
