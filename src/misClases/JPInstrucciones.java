@@ -53,12 +53,55 @@ public class JPInstrucciones extends JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         ButtonReturn = new javax.swing.JButton();
+        jPanelSetUp = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea3 = new javax.swing.JTextArea();
+        jPanelJuego = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextArea4 = new javax.swing.JTextArea();
+        jPanelPreguntas = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextArea5 = new javax.swing.JTextArea();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 0, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFont(getFont());
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         jLabel1.setFont(StardewFonts.getSVTitleCaps());
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -70,7 +113,6 @@ public class JPInstrucciones extends JPanel {
         ButtonReturn.setBorderPainted(false);
         ButtonReturn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ButtonReturn.setHideActionText(true);
-        ButtonReturn.setLabel("");
         ButtonReturn.setMaximumSize(new java.awt.Dimension(132, 54));
         ButtonReturn.setMinimumSize(new java.awt.Dimension(132, 54));
         ButtonReturn.setName(""); // NOI18N
@@ -89,24 +131,336 @@ public class JPInstrucciones extends JPanel {
             }
         });
 
+        jPanelSetUp.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelSetUp.setMaximumSize(new java.awt.Dimension(350, 520));
+        jPanelSetUp.setMinimumSize(new java.awt.Dimension(350, 482));
+        jPanelSetUp.setOpaque(false);
+        jPanelSetUp.setPreferredSize(new java.awt.Dimension(350, 482));
+
+        jLabel2.setFont(StardewFonts.getSVThin());
+        jLabel2.setText("En la pantalla de preparacion:");
+
+        jLabel3.setFont(StardewFonts.getSVThin());
+        jLabel3.setText("Ingresa tu nombre de jugador");
+
+        jLabel4.setFont(StardewFonts.getSVThin());
+        jLabel4.setText("Selecciona tu modo de eleccion de personajes:");
+
+        jLabel5.setFont(StardewFonts.getSVThin());
+        jLabel5.setText("Seleccion de Lista");
+
+        jLabel6.setFont(StardewFonts.getSVThin());
+        jLabel6.setText("Seleccion de Tablero");
+
+        jLabel7.setFont(StardewFonts.getSVThin());
+        jLabel7.setText("Seleccion Al Azar");
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(StardewFonts.getSVThin());
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Al iniciar la partida se mostrara una lista con \nlos personajes disponibles en el tablero, \ndeberas elegir uno de ellos y presionar el \nboton de aceptar.");
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jTextArea2.setEditable(false);
+        jTextArea2.setColumns(20);
+        jTextArea2.setFont(StardewFonts.getSVThin());
+        jTextArea2.setRows(5);
+        jTextArea2.setText("Al iniciar la partida se seleccionara un \npersonaje al azar entre todos los disponibles \nen el tablero");
+        jScrollPane2.setViewportView(jTextArea2);
+
+        jTextArea3.setEditable(false);
+        jTextArea3.setColumns(20);
+        jTextArea3.setFont(StardewFonts.getSVThin());
+        jTextArea3.setRows(5);
+        jTextArea3.setText("Al iniciar la partida y tener el tablero de \npersonajes deberas elegir con cual quieres \njugar haciendo clic izquierdo sobre la imagen \ndel personaje elegido");
+        jScrollPane3.setViewportView(jTextArea3);
+
+        javax.swing.GroupLayout jPanelSetUpLayout = new javax.swing.GroupLayout(jPanelSetUp);
+        jPanelSetUp.setLayout(jPanelSetUpLayout);
+        jPanelSetUpLayout.setHorizontalGroup(
+            jPanelSetUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelSetUpLayout.createSequentialGroup()
+                .addGroup(jPanelSetUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelSetUpLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanelSetUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelSetUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel6)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                                .addComponent(jScrollPane3)
+                                .addComponent(jScrollPane2)
+                                .addComponent(jLabel7))
+                            .addComponent(jLabel5)))
+                    .addGroup(jPanelSetUpLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanelSetUpLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanelSetUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))))
+                .addGap(0, 35, Short.MAX_VALUE))
+        );
+        jPanelSetUpLayout.setVerticalGroup(
+            jPanelSetUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelSetUpLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanelJuego.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelJuego.setMaximumSize(new java.awt.Dimension(350, 520));
+        jPanelJuego.setMinimumSize(new java.awt.Dimension(350, 482));
+        jPanelJuego.setOpaque(false);
+        jPanelJuego.setPreferredSize(new java.awt.Dimension(350, 482));
+
+        jLabel9.setFont(StardewFonts.getSVThin());
+        jLabel9.setText("El juego se basa en preguntas y respuestas por turnos");
+
+        jLabel10.setFont(StardewFonts.getSVThin());
+        jLabel10.setText("Hay 2 opciones para hacer preguntas");
+
+        jLabel11.setFont(StardewFonts.getSVThin());
+        jLabel11.setText("Preguntas predeterminadas");
+
+        jLabel12.setFont(StardewFonts.getSVThin());
+        jLabel12.setText("Preguntas personalizadas");
+
+        jLabel13.setFont(StardewFonts.getSVThin());
+        jLabel13.setText("Al recibir una respuesta, esta junto con su pregunta se");
+
+        jLabel14.setFont(StardewFonts.getSVThin());
+        jLabel14.setText("mostraran en un recuadro de texto que mantendra ");
+
+        jLabel15.setFont(StardewFonts.getSVThin());
+        jLabel15.setText("todas las respuestas para mantener el registro");
+
+        jLabel16.setFont(StardewFonts.getSVThin());
+        jLabel16.setText("Al recibir una pregunta se mostrara un recuadro que ");
+
+        jLabel17.setFont(StardewFonts.getSVThin());
+        jLabel17.setText("dara la opcion de responder si o no, responde a la ");
+
+        jLabel18.setFont(StardewFonts.getSVThin());
+        jLabel18.setText("pregunta correctamente y sigue con tu turno");
+
+        jLabel19.setFont(StardewFonts.getSVThin());
+        jLabel19.setText("Conforme pasan los turnos descubriras mas y mas ");
+
+        jLabel20.setFont(StardewFonts.getSVThin());
+        jLabel20.setText("pistas acerca del personaje del rival, eso te permitira ");
+
+        jLabel21.setFont(StardewFonts.getSVThin());
+        jLabel21.setText("descartar posibles opciones hasta dar con el correcto");
+
+        jTextArea4.setEditable(false);
+        jTextArea4.setColumns(20);
+        jTextArea4.setFont(StardewFonts.getSVThin());
+        jTextArea4.setRows(5);
+        jTextArea4.setText("Para descartar un personaje, basta con hacer clic \nizquierdo sobre la tarjeta del personaje sobre el \ncual no tengas sospechas.\nEn caso de arrepentirte, no te preocupes! Puede \nvolver a hacer clic izquierdo sobre el espacio del \npersonaje y volvera a aparecer.");
+        jScrollPane4.setViewportView(jTextArea4);
+
+        javax.swing.GroupLayout jPanelJuegoLayout = new javax.swing.GroupLayout(jPanelJuego);
+        jPanelJuego.setLayout(jPanelJuegoLayout);
+        jPanelJuegoLayout.setHorizontalGroup(
+            jPanelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelJuegoLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel21)
+                        .addComponent(jLabel20)
+                        .addComponent(jLabel19)
+                        .addComponent(jLabel18)
+                        .addComponent(jLabel17)
+                        .addComponent(jLabel16)
+                        .addComponent(jLabel15)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel13)
+                        .addComponent(jLabel10)
+                        .addComponent(jLabel9)
+                        .addGroup(jPanelJuegoLayout.createSequentialGroup()
+                            .addGap(31, 31, 31)
+                            .addGroup(jPanelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel12)
+                                .addComponent(jLabel11))))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+        jPanelJuegoLayout.setVerticalGroup(
+            jPanelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelJuegoLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel15)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel18)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
+        jPanelPreguntas.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelPreguntas.setMaximumSize(new java.awt.Dimension(350, 520));
+        jPanelPreguntas.setMinimumSize(new java.awt.Dimension(350, 425));
+        jPanelPreguntas.setOpaque(false);
+        jPanelPreguntas.setPreferredSize(new java.awt.Dimension(350, 425));
+
+        jLabel22.setFont(StardewFonts.getSVThin());
+        jLabel22.setText("Conforme vayas descartando opciones es probable ");
+
+        jLabel23.setFont(StardewFonts.getSVThin());
+        jLabel23.setText("que haya un personaje en particular del cual sospeches");
+
+        jLabel24.setFont(StardewFonts.getSVThin());
+        jLabel24.setText("por encima de los demas");
+
+        jLabel25.setFont(StardewFonts.getSVThin());
+        jLabel25.setText("Si eso ocurre y crees que tienes la respuesta, puedes ");
+
+        jLabel26.setFont(StardewFonts.getSVThin());
+        jLabel26.setText("hacer clic derecho sobre ese personaje y se marcara ");
+
+        jLabel27.setFont(StardewFonts.getSVThin());
+        jLabel27.setText("con un borde rojo, pero no te preocupes, de ");
+
+        jLabel28.setFont(StardewFonts.getSVThin());
+        jLabel28.setText("momento esta marca es solo para ti");
+
+        jTextArea5.setColumns(20);
+        jTextArea5.setFont(StardewFonts.getSVThin());
+        jTextArea5.setRows(5);
+        jTextArea5.setText("Si estas seguro de tu opcion y decides probar \nsuerte, puedes presionar el boton de Adivinar \npara realizar la comprobacion, pero cuidado! \nEsto cuenta como tu turno, por lo que si fallas \nperderas tu oportunidad de hacer una pregunta");
+        jScrollPane5.setViewportView(jTextArea5);
+
+        jLabel29.setFont(StardewFonts.getSVThin());
+        jLabel29.setText("El juego termina cuando uno de los dos jugadores ");
+
+        jLabel30.setFont(StardewFonts.getSVThin());
+        jLabel30.setText("adivina el personaje del jugador rival");
+
+        jLabel31.setFont(StardewFonts.getSVSmallTitle());
+        jLabel31.setText("MUCHA SUERTE!");
+
+        javax.swing.GroupLayout jPanelPreguntasLayout = new javax.swing.GroupLayout(jPanelPreguntas);
+        jPanelPreguntas.setLayout(jPanelPreguntasLayout);
+        jPanelPreguntasLayout.setHorizontalGroup(
+            jPanelPreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPreguntasLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanelPreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel31)
+                    .addComponent(jLabel30)
+                    .addComponent(jLabel29)
+                    .addGroup(jPanelPreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel28)
+                        .addComponent(jLabel27)
+                        .addComponent(jLabel26)
+                        .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel24)
+                        .addComponent(jLabel23)
+                        .addComponent(jLabel22))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
+        );
+        jPanelPreguntasLayout.setVerticalGroup(
+            jPanelPreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPreguntasLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel28)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel30)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel31)
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addGap(52, 52, 52)
+                .addComponent(jPanelSetUp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
+                .addComponent(jPanelJuego, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanelPreguntas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 456, Short.MAX_VALUE)
-                .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanelPreguntas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanelJuego, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+                        .addComponent(jPanelSetUp, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleName("JPInstrucciones");
@@ -131,5 +485,47 @@ public class JPInstrucciones extends JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonReturn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanelJuego;
+    private javax.swing.JPanel jPanelPreguntas;
+    private javax.swing.JPanel jPanelSetUp;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextArea3;
+    private javax.swing.JTextArea jTextArea4;
+    private javax.swing.JTextArea jTextArea5;
     // End of variables declaration//GEN-END:variables
 }

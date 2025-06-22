@@ -8,6 +8,8 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.io.File;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
@@ -23,6 +25,15 @@ public class JPSetUp extends javax.swing.JPanel {
     
     // Creates new form JPSetUp
     public JPSetUp(Client jugador) {
+        addComponentListener(new ComponentAdapter(){
+            @Override
+            public void componentShown(ComponentEvent evt){
+                jTextFieldNombreJ.setText("");
+                jToggleButtonElegirLista.setSelected(false);
+                jToggleButtonElegirAzar.setSelected(false);
+                jToggleButtonElegirTabla.setSelected(false);
+            }
+        });
         this.setFont(StardewFonts.getSVThin());
         this.jugador = jugador;
         

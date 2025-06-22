@@ -1224,6 +1224,7 @@ public class JPJuego extends JPanel {
         System.out.println("Tablero enviado a Juego\n"+tablero);
         personajes = tablero;
         ImageIcon portrait;
+        iconos.clear();
         
         for (int i = 0; i < labelsImg.size(); i++) {
             portrait = new ImageIcon(personajes.get(i).getImagen());
