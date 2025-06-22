@@ -26,6 +26,7 @@ public class Server {
     // Banderas de inicio de juego para permitir reinicar
     protected boolean nuevoJuego;
     protected boolean tableroListo;
+    protected boolean enJuego;
     protected boolean[] jugadoresListos;
     protected boolean[] turno;
     
@@ -40,6 +41,7 @@ public class Server {
         this.continuar=true;
         this.nuevoJuego=true;
         this.tableroListo=false;
+        this.enJuego = false;
         this.jugadoresListos = new boolean[]{false,false};
         this.turno = new boolean[]{false,false};
         this.juegos = new Juego[2];
@@ -103,31 +105,37 @@ public class Server {
                     this.nuevoJuego = false;
                 }
                 //if(!this.nuevoJuego){
+                    this.enJuego = true;
                     clientes.get(0).setTurno(true);
                     clientes.get(1).enviarMensaje(new Mensaje("Bloqueo Botones",5));
                     turno[0] = true;
-                    while(turno[0] || turno[1]){
+                    while(this.enJuego){
+                        System.out.println("JuegoActivo = "+this.enJuego);
                         if(turno[0]){
+                            System.out.println("Entrada Turno Client 1");
                             while(turno[0]){
                                 turno[0] = clientes.get(0).getTurno();
                             }
-                            clientes.get(1).setTurno(true);
-                            turno[1] = true;
-                            
-                            // Bloqueo Y desbloqueo de botones
-                            // clientes.get(1).enviarMensaje(new Mensaje("Desbloqueo Botones",4));
-                            clientes.get(0).enviarMensaje(new Mensaje("Bloqueo Botones",5));
+                            if(this.enJuego){
+                                clientes.get(1).setTurno(true);
+                                turno[1] = true;
+                                clientes.get(0).enviarMensaje(new Mensaje("Bloqueo Botones",5));
+                            }
+                            System.out.println("Salida Turno Client 1");
                         }else if (turno[1]){
+                            System.out.println("Entrada Turno Client 2");
                             while(turno[1]){
                                 turno[1] = clientes.get(1).getTurno();
                             }
-                            clientes.get(0).setTurno(true);
-                            turno[0] = true;
-                            
-                            // Bloqueo y desbloqueo de botones
-                            // clientes.get(0).enviarMensaje(new Mensaje("Desbloqueo Botones",4));
-                            clientes.get(1).enviarMensaje(new Mensaje("Bloqueo Botones",5));
+                            if(this.enJuego){
+                                clientes.get(0).setTurno(true);
+                                turno[0] = true;
+                                clientes.get(1).enviarMensaje(new Mensaje("Bloqueo Botones",5));
+                            }
+                            System.out.println("Salida Turno Client 2");
                         }
+                        if(!this.enJuego)
+                            break;
                     }
                     System.out.println("*** Fin del juego ***");
                 //}
@@ -136,6 +144,8 @@ public class Server {
                     this.juegos[0] = clientes.get(0).getResultados();
                     this.juegos[1] = clientes.get(1).getResultados();
                 }
+                
+                System.out.println("*** Datos de juego obtenidos ***");
                 
                 cargarPartida();
                 
@@ -166,7 +176,9 @@ public class Server {
         this.nuevoJuego = true;
         this.tableroListo = false;
         this.jugadoresListos = new boolean[]{false,false};
+        this.enJuego = false;
         this.turno = new boolean[]{false,false};
+        this.juegos = new Juego[2];
         for(AttClient cliente : clientes){
             cliente.setPreparado(false);
             cliente.setResultados(null);

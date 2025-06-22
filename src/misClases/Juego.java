@@ -4,6 +4,7 @@
  */
 package misClases;
 
+import java.io.Serializable;
 import java.util.Timer;
 import java.time.LocalTime;
 
@@ -13,7 +14,7 @@ import java.time.LocalTime;
  * @author LENOVO
  */
 
-public class Juego {
+public class Juego implements Serializable{
     private String jugador, personaje;
     LocalTime tiempo;
     boolean ganador;
@@ -40,4 +41,11 @@ public class Juego {
     public boolean getGanador(){
         return ganador;
     }
+
+    @Override
+    public String toString() {
+        return "Juego{" + "jugador=" + jugador + ", personaje=" + personaje + ", tiempo=" + tiempo + ", ganador=" + ganador + '}';
+    }
+    
+    
 }

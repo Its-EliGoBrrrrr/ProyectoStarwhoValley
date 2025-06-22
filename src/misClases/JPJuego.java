@@ -1146,13 +1146,17 @@ public class JPJuego extends JPanel {
     private void cargarOpcionesPregunta(){
         DefaultComboBoxModel modelo;
         
-        this.interrogativo = ConexionBD.ObtenerPreguntas(1,0);
-        this.verboEs = ConexionBD.ObtenerPreguntas(2,1);
-        this.verboTiene = ConexionBD.ObtenerPreguntas(2,2);
-        this.complementoCeja = ConexionBD.ObtenerPreguntas(3,3);
-        this.complementoPelo = ConexionBD.ObtenerPreguntas(3,4);
-        this.complementoColor = ConexionBD.ObtenerPreguntas(3,5);
-        this.complementoPiel = ConexionBD.ObtenerPreguntas(3,6);
+        try{
+            this.interrogativo = ConexionBD.ObtenerPreguntas(1,0);
+            this.verboEs = ConexionBD.ObtenerPreguntas(2,1);
+            this.verboTiene = ConexionBD.ObtenerPreguntas(2,2);
+            this.complementoCeja = ConexionBD.ObtenerPreguntas(3,3);
+            this.complementoPelo = ConexionBD.ObtenerPreguntas(3,4);
+            this.complementoColor = ConexionBD.ObtenerPreguntas(3,5);
+            this.complementoPiel = ConexionBD.ObtenerPreguntas(3,6);
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
         
         System.out.println("Interrogativo: "+this.interrogativo);
         System.out.println("Es: "+this.verboEs);
@@ -1269,6 +1273,7 @@ public class JPJuego extends JPanel {
         if(pregunta.equals(this.miPersonaje.getNombre())){
             this.jugador.enviarRespAdivinar(true);
             this.resultados = new Juego(nombre,this.miPersonaje.getNombre(),this.tiempo, this.segundos, this.minutos, this.horas,false);
+            this.jugador.enviarResultado(resultados);
             //cambiar al panel de derrota
             this.derrota();
         }else if(!pregunta.equals(this.miPersonaje.getNombre())){
@@ -1282,6 +1287,7 @@ public class JPJuego extends JPanel {
     protected void mostrarGanador(String pregunta){
         JOptionPane.showMessageDialog(null, "Adivinaste Correctamente");
         this.resultados = new Juego(nombre,this.miPersonaje.getNombre(),this.tiempo, this.segundos, this.minutos, this.horas,true);
+        this.jugador.enviarResultado(resultados);
         this.victoria();
     }
     

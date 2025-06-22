@@ -152,10 +152,9 @@ public class Client{
         }
     }
     
-    public void enviarGanador(String estado){
+    public void enviarResultado(Juego result){
         try{
-            Mensaje listo = new Mensaje(estado,7);
-            salidaServer.writeObject(listo);
+            salidaServer.writeObject(result);
         }catch(Exception e){
             e.printStackTrace();
         }

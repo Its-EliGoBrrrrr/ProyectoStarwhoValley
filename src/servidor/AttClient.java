@@ -61,6 +61,7 @@ public class AttClient extends Thread {
                                 break;
                             case 6:
                                 this.enTurno = false;
+                                server.enJuego = false;
                                 Mensaje vic = new Mensaje("Victoria",6);
                                 if(nClient == 1){
                                     server.clientes.get(1).salidaClient.writeObject(vic);
@@ -69,6 +70,7 @@ public class AttClient extends Thread {
                                     server.clientes.get(0).salidaClient.writeObject(vic);
                                     server.clientes.get(0).enTurno = false;
                                 }
+                                
                                 break;
                             default:
                                 if(nClient == 1){
@@ -164,7 +166,8 @@ public class AttClient extends Thread {
         } catch (InterruptedException ex) {
             Logger.getLogger(AttClient.class.getName()).log(Level.SEVERE, null, ex);
         }*/
-        System.out.println("");
+        System.out.println("Client "+this.nClient+" | Turno: "+this.enTurno);
+        
         return this.enTurno;
     }
 
