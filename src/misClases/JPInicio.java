@@ -6,8 +6,6 @@ package misClases;
 
 import java.awt.*;
 import java.io.File;
-import java.io.IOException;
-import javax.sound.sampled.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -18,7 +16,6 @@ public class JPInicio extends javax.swing.JPanel {
     private Image imgFondo;
     private ImageIcon imgTitle;
     public static boolean soundActive = true;
-    private Clip clip;
     
     // Creates new form JPInicio
     public JPInicio() {
@@ -197,21 +194,18 @@ public class JPInicio extends javax.swing.JPanel {
         JPanel parent = (JPanel)getParent();
         CardLayout cardLayout = (CardLayout)parent.getLayout();
         cardLayout.show(parent, "SetUpScreen");
-        cargarYReproducirSonido("src/Resources/Sonidos/FishHit.wav");
     }//GEN-LAST:event_ButtonStartActionPerformed
 
     private void ButtonInstruccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonInstruccActionPerformed
         JPanel parent = (JPanel)getParent();
         CardLayout cardLayout = (CardLayout)parent.getLayout();
         cardLayout.show(parent, "InstructScreen");
-        cargarYReproducirSonido("src/Resources/Sonidos/healSound.wav");
     }//GEN-LAST:event_ButtonInstruccActionPerformed
 
     private void ButtonCreditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCreditsActionPerformed
         JPanel parent = (JPanel)getParent();
         CardLayout cardLayout = (CardLayout)parent.getLayout();
         cardLayout.show(parent, "CreditsScreen");
-        cargarYReproducirSonido("src/Resources/Sonidos/questcomplete.wav");
     }//GEN-LAST:event_ButtonCreditsActionPerformed
 
     private void ButtonOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonOptionsActionPerformed
@@ -219,7 +213,6 @@ public class JPInicio extends javax.swing.JPanel {
         JPanel parent = (JPanel)getParent();
         CardLayout cardLayout = (CardLayout)parent.getLayout();
         cardLayout.show(parent, "OptionScreen");
-        cargarYReproducirSonido("src/Resources/Sonidos/cast.wav");
     }//GEN-LAST:event_ButtonOptionsActionPerformed
 
     private void ButtonOptionsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonOptionsMouseEntered
@@ -237,19 +230,6 @@ public class JPInicio extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonInfoPartidasActionPerformed
 
 
-    //para reproducir sonidos en botones
-    private void cargarYReproducirSonido(String rutaArchivo) {
-        try {
-            File archivo = new File(rutaArchivo);
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivo);
-            clip = AudioSystem.getClip();
-            clip.open(audioStream);
-            clip.start();
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-            e.printStackTrace();
-        }
-    }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonCredits;
     private javax.swing.JButton ButtonInstrucc;

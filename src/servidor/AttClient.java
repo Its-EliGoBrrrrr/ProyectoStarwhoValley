@@ -17,7 +17,6 @@ public class AttClient extends Thread {
     // Datos
     private boolean preparado;
     private boolean enTurno;
-    private boolean ganador;
     private final int nClient;
     private Juego resultados;
     
@@ -32,7 +31,6 @@ public class AttClient extends Thread {
         this.continuar = true;
         this.preparado = false;
         this.enTurno = false;
-        this.ganador = false;
     }
     
     @Override
@@ -71,15 +69,6 @@ public class AttClient extends Thread {
                                     server.clientes.get(0).salidaClient.writeObject(vic);
                                     server.clientes.get(0).enTurno = false;
                                 }
-                                
-                                server.juegoActivo = false;
-                                break;
-                            case 7:
-                                if("True".equals(mesg.getTexto()))
-                                    this.ganador = true;
-                                else
-                                    this.ganador = false;
-                                System.out.println("Client "+this.nClient+" ganador ="+this.ganador);
                                 break;
                             default:
                                 if(nClient == 1){
@@ -93,7 +82,7 @@ public class AttClient extends Thread {
                             this.resultados = juego;
                         }
                         
-                        System.out.println("Client "+this.nClient+" | Recibido: " + mesg);
+                        System.out.println("Recibido: " + mesg);
                     }
                 }catch(ObjectStreamException e){
                     System.out.println("Servidor || Error en: " + e.getMessage());
@@ -170,26 +159,17 @@ public class AttClient extends Thread {
     }
     
     public boolean getTurno(){
-        System.out.print("");
         /*try {
             wait(2);
         } catch (InterruptedException ex) {
             Logger.getLogger(AttClient.class.getName()).log(Level.SEVERE, null, ex);
         }*/
+        System.out.println("");
         return this.enTurno;
     }
 
-    public boolean isGanador() {
-        System.out.print("");
-        return ganador;
-    }
-
-    public void setGanador(boolean ganador) {
-        this.ganador = ganador;
-    }
-
     public Juego getResultados() {
-        System.out.print("Recibiendo "+this.resultados);
+        System.out.print("");
         return resultados;
     }
 

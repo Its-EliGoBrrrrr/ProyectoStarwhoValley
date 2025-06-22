@@ -26,9 +26,7 @@ public class Server {
     // Banderas de inicio de juego para permitir reinicar
     protected boolean nuevoJuego;
     protected boolean tableroListo;
-    protected boolean juegoActivo;
     protected boolean[] jugadoresListos;
-    protected boolean[] ganador;
     protected boolean[] turno;
     
     protected Juego[] juegos;
@@ -42,9 +40,7 @@ public class Server {
         this.continuar=true;
         this.nuevoJuego=true;
         this.tableroListo=false;
-        this.juegoActivo=false;
         this.jugadoresListos = new boolean[]{false,false};
-        this.ganador = new boolean[]{false,false};
         this.turno = new boolean[]{false,false};
         this.juegos = new Juego[2];
         this.nClient = 0;
@@ -110,8 +106,7 @@ public class Server {
                     clientes.get(0).setTurno(true);
                     clientes.get(1).enviarMensaje(new Mensaje("Bloqueo Botones",5));
                     turno[0] = true;
-                    this.juegoActivo = true;
-                    while(this.juegoActivo){
+                    while(turno[0] || turno[1]){
                         if(turno[0]){
                             while(turno[0]){
                                 turno[0] = clientes.get(0).getTurno();
@@ -137,17 +132,10 @@ public class Server {
                     System.out.println("*** Fin del juego ***");
                 //}
                 
-                do{
+                while(this.juegos[0] == null && this.juegos[1] == null){
                     this.juegos[0] = clientes.get(0).getResultados();
                     this.juegos[1] = clientes.get(1).getResultados();
-                }while(this.juegos[0] == null && this.juegos[1] == null);
-                System.out.println("*** Juego cargado ***");
-                
-                do{
-                    this.ganador[0] = clientes.get(0).isGanador();
-                    this.ganador[1] = clientes.get(1).isGanador();
-                }while(!ganador[0] && !ganador[1]);
-                System.out.println("*** Ganador obtenido ***");
+                }
                 
                 cargarPartida();
                 
@@ -178,11 +166,9 @@ public class Server {
         this.nuevoJuego = true;
         this.tableroListo = false;
         this.jugadoresListos = new boolean[]{false,false};
-        this.ganador = new boolean[]{false,false};
         this.turno = new boolean[]{false,false};
         for(AttClient cliente : clientes){
             cliente.setPreparado(false);
-            cliente.setGanador(false);
             cliente.setResultados(null);
         }
     }
@@ -197,10 +183,10 @@ public class Server {
         jugador1 = this.juegos[0].getJugador();
         jugador2 = this.juegos[1].getJugador();
         
-        if(this.ganador[0]){
+        if(this.juegos[0].getGanador()){
             ganador1 = this.juegos[0].getJugador();
             personaje = this.juegos[0].getPersonaje();
-        }else if(this.ganador[1]){
+        }else if(this.juegos[0].getGanador()){
             ganador1 = this.juegos[1].getJugador();
             personaje = this.juegos[1].getPersonaje();
         }

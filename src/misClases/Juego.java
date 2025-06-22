@@ -4,7 +4,7 @@
  */
 package misClases;
 
-import java.io.Serializable;
+import java.util.Timer;
 import java.time.LocalTime;
 
 
@@ -13,23 +13,18 @@ import java.time.LocalTime;
  * @author LENOVO
  */
 
-public class Juego implements Serializable{
+public class Juego {
     private String jugador, personaje;
-    // Timer tiempo;
     LocalTime tiempo;
+    boolean ganador;
 
-    public Juego(String jugador, String personaje, /*Timer tiempo,*/ int s, int m, int h) {
+    public Juego(String jugador, String personaje, Timer tiempo, int s, int m, int h, boolean ganador) {
         this.jugador = jugador;
         this.personaje = personaje;
-        // this.tiempo = tiempo;
         this.tiempo = LocalTime.of(h, m, s);
+        this.ganador = ganador;
     }
 
-    @Override
-    public String toString() {
-        return "Juego{" + "jugador=" + jugador + ", personaje=" + personaje + ", tiempo=" + tiempo + '}';
-    }
-    
     public String getJugador() {
         return jugador;
     }
@@ -40,5 +35,9 @@ public class Juego implements Serializable{
 
     public LocalTime getTiempo() {
         return tiempo;
+    }
+    
+    public boolean getGanador(){
+        return ganador;
     }
 }

@@ -5,8 +5,6 @@
 package misClases;
 
 import java.awt.*;
-import javax.swing.JPanel;
-
 
 /**
  *
@@ -33,68 +31,23 @@ public class JPDerrota extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonRegDerrota = new javax.swing.JButton();
-        jButtonDerrConf = new javax.swing.JButton();
-
         setFont(getFont());
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
-
-        jButtonRegDerrota.setText("Inicio");
-        jButtonRegDerrota.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRegDerrotaActionPerformed(evt);
-            }
-        });
-
-        jButtonDerrConf.setText("Volver a jugar");
-        jButtonDerrConf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDerrConfActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(449, 449, 449)
-                .addComponent(jButtonRegDerrota, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64)
-                .addComponent(jButtonDerrConf)
-                .addContainerGap(564, Short.MAX_VALUE))
+            .addGap(0, 1280, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(541, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonRegDerrota, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonDerrConf, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(115, 115, 115))
+            .addGap(0, 720, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonRegDerrotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegDerrotaActionPerformed
-        // TODO add your handling code here:
-        JPanel parent = (JPanel)getParent();
-        CardLayout cardLayout = (CardLayout)parent.getLayout();
-
-        cardLayout.show(parent, "MainScreen");
-    }//GEN-LAST:event_jButtonRegDerrotaActionPerformed
-
-    private void jButtonDerrConfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDerrConfActionPerformed
-        // TODO add your handling code here:
-        JPanel parent = (JPanel)getParent();
-        CardLayout cardLayout = (CardLayout)parent.getLayout();
-
-        cardLayout.show(parent, "SetUpScreen");
-    }//GEN-LAST:event_jButtonDerrConfActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonDerrConf;
-    private javax.swing.JButton jButtonRegDerrota;
     // End of variables declaration//GEN-END:variables
 }
