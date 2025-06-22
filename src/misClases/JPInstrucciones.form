@@ -82,7 +82,6 @@
           <Color id="Hand Cursor"/>
         </Property>
         <Property name="hideActionText" type="boolean" value="true"/>
-        <Property name="label" type="java.lang.String" value=""/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[132, 54]"/>
         </Property>

@@ -77,6 +77,7 @@ public class JPJuego extends JPanel {
         
         // Inicializa componentes
         initComponents();
+        //llama a cargar sonido
         cargarYReproducirSonido("src/Resources/Musica/01.-Stardew-Valley-Overture.wav");
         
         // Acciones que se tienen que tomar despues de inicializar

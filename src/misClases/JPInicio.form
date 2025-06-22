@@ -56,7 +56,7 @@
               <Component id="ButtonStart" min="-2" pref="60" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="ButtonInstrucc" min="-2" pref="60" max="-2" attributes="0"/>
-              <EmptySpace type="separate" pref="19" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="32767" attributes="0"/>
               <Component id="ButtonCredits" min="-2" pref="60" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="ButtonOptions" min="-2" max="-2" attributes="0"/>

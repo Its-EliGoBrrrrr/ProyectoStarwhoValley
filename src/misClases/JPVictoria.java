@@ -4,9 +4,8 @@
  */
 package misClases;
 
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -14,34 +13,14 @@ import javax.swing.*;
  */
 public class JPVictoria extends javax.swing.JPanel {
     // Variables
-    private JFrame contenedorPrincipal; // Ventana que contiene los paneles
     
     /**
      * Creates new form JPVictoria
      */
     public JPVictoria() {
         this.setFont(StardewFonts.getSVThin());
-        this.contenedorPrincipal = contenedorPrincipal;
-        this.setFont(StardewFonts.getSVThin());
         initComponents();
-        configurarEventos();
-
     }
-    
-    private void configurarEventos() {
-        jButtonRegInicio.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Buscar el panel contenedor y cambiar al panel "inicio"
-                Container parent = contenedorPrincipal.getContentPane();
-                if (parent.getLayout() instanceof CardLayout) {
-                    CardLayout cl = (CardLayout) parent.getLayout();
-                    cl.show(parent, "MainScreen");
-                }
-            }
-        });
-    }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,33 +32,67 @@ public class JPVictoria extends javax.swing.JPanel {
     private void initComponents() {
 
         jButtonRegInicio = new javax.swing.JButton();
+        jButtonVicConf = new javax.swing.JButton();
 
         setFont(getFont());
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
 
-        jButtonRegInicio.setText("jButton1");
+        jButtonRegInicio.setText("Inicio");
+        jButtonRegInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegInicioActionPerformed(evt);
+            }
+        });
+
+        jButtonVicConf.setText("Volver a jugar");
+        jButtonVicConf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVicConfActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(291, 291, 291)
-                .addComponent(jButtonRegInicio)
-                .addContainerGap(910, Short.MAX_VALUE))
+                .addGap(403, 403, 403)
+                .addComponent(jButtonRegInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(105, 105, 105)
+                .addComponent(jButtonVicConf)
+                .addContainerGap(565, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(169, 169, 169)
-                .addComponent(jButtonRegInicio)
-                .addContainerGap(524, Short.MAX_VALUE))
+                .addGap(310, 310, 310)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonRegInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonVicConf, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(347, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonRegInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegInicioActionPerformed
+        // TODO add your handling code here:
+        JPanel parent = (JPanel)getParent();
+        CardLayout cardLayout = (CardLayout)parent.getLayout();
+
+        cardLayout.show(parent, "MainScreen");
+    }//GEN-LAST:event_jButtonRegInicioActionPerformed
+
+    private void jButtonVicConfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVicConfActionPerformed
+        // TODO add your handling code here:
+        JPanel parent = (JPanel)getParent();
+        CardLayout cardLayout = (CardLayout)parent.getLayout();
+
+        cardLayout.show(parent, "SetUpScreen");
+    }//GEN-LAST:event_jButtonVicConfActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonRegInicio;
+    private javax.swing.JButton jButtonVicConf;
     // End of variables declaration//GEN-END:variables
 }
