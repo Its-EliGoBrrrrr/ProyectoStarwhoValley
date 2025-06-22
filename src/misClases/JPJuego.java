@@ -46,7 +46,6 @@ public class JPJuego extends JPanel {
     private int segundos; //Segundos del timer
     private int minutos; //Minutos del timer
     private int horas; //Horas del timer
-    private java.util.Timer tiempo; // Para tiempo final <---------------------------------------------------------------------------------------- Esto es lo que ocupo
     private Timer cronometro; //El timer
     private Date fecha; //Fecha del momento
     private SimpleDateFormat formato1, formato2; //Formatos de fecha
@@ -1268,6 +1267,9 @@ public class JPJuego extends JPanel {
         
         if(pregunta.equals(this.miPersonaje.getNombre())){
             this.jugador.enviarRespAdivinar(true);
+            this.jugador.enviarGanador("False");
+            this.resultados = new Juego(nombre,this.miPersonaje.getNombre(), this.segundos, this.minutos, this.horas);
+            this.jugador.enviarResultados(this.resultados);
             //cambiar al panel de derrota
             this.derrota();
         }else if(!pregunta.equals(this.miPersonaje.getNombre())){
@@ -1280,7 +1282,9 @@ public class JPJuego extends JPanel {
     // Ganador
     protected void mostrarGanador(String pregunta){
         JOptionPane.showMessageDialog(null, "Adivinaste Correctamente");
-        this.resultados = new Juego(nombre,this.miPersonaje.getNombre(),this.tiempo, this.segundos, this.minutos, this.horas);
+        this.jugador.enviarGanador("True");
+        this.resultados = new Juego(nombre,this.miPersonaje.getNombre(), this.segundos, this.minutos, this.horas);
+        this.jugador.enviarResultados(this.resultados);
         this.victoria();
     }
     

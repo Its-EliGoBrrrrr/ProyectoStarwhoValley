@@ -26,6 +26,7 @@ public class Server {
     // Banderas de inicio de juego para permitir reinicar
     protected boolean nuevoJuego;
     protected boolean tableroListo;
+    protected boolean juegoActivo;
     protected boolean[] jugadoresListos;
     protected boolean[] ganador;
     protected boolean[] turno;
@@ -41,6 +42,7 @@ public class Server {
         this.continuar=true;
         this.nuevoJuego=true;
         this.tableroListo=false;
+        this.juegoActivo=false;
         this.jugadoresListos = new boolean[]{false,false};
         this.ganador = new boolean[]{false,false};
         this.turno = new boolean[]{false,false};
@@ -108,7 +110,8 @@ public class Server {
                     clientes.get(0).setTurno(true);
                     clientes.get(1).enviarMensaje(new Mensaje("Bloqueo Botones",5));
                     turno[0] = true;
-                    while(turno[0] || turno[1]){
+                    this.juegoActivo = true;
+                    while(this.juegoActivo){
                         if(turno[0]){
                             while(turno[0]){
                                 turno[0] = clientes.get(0).getTurno();
@@ -201,7 +204,7 @@ public class Server {
         }
         
         fecha = new java.util.Date();
-        tiempo = this.juegos[0].getTiempooo();
+        tiempo = this.juegos[0].getTiempo();
 
         SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
         String fechaF = formatoFecha.format(fecha);
