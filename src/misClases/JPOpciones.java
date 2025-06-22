@@ -6,9 +6,6 @@ package misClases;
 
 import java.awt.*;
 import javax.swing.*;
-import javax.sound.sampled.*;
-import java.io.File;
-import java.io.IOException;
 
 /**
  *
@@ -17,7 +14,6 @@ import java.io.IOException;
 public class JPOpciones extends JPanel {
     // Variables
     public static String cardAnterior; // Este es static para que pueda modificar los otros JPanel para que guarde el nombre del panel anterior en el
-    private Clip clip;
     
     // Creates new form JPOpciones
     public JPOpciones() {
@@ -72,25 +68,12 @@ public class JPOpciones extends JPanel {
         CardLayout cardLayout = (CardLayout)parent.getLayout();
         
         cardLayout.show(parent, cardAnterior);
-        cargarYReproducirSonido("src/Resources/Sonidos/shadowHit.wav");
     }//GEN-LAST:event_ButtonReturnActionPerformed
 
     public void setCardAnterior(String cardAnterior){
         this.cardAnterior = cardAnterior;
     }
 
-    private void cargarYReproducirSonido(String rutaArchivo) {
-        try {
-            File archivo = new File(rutaArchivo);
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivo);
-            clip = AudioSystem.getClip();
-            clip.open(audioStream);
-            clip.start();
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-            e.printStackTrace();
-        }
-    }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonReturn;
     // End of variables declaration//GEN-END:variables

@@ -161,16 +161,6 @@ public class Client{
         }
     }
     
-    public void enviarResultados(Juego result){
-        System.out.println("Enviando resultados de la partida: "+result);
-        try {
-            salidaServer.writeObject(result);
-        } catch (IOException ex) {
-            System.out.println("*** Problema enviando resultados de la partida ***");
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
     public void finDeTurno(){
         try {
             Mensaje fin = new Mensaje ("Fin de turno",5);

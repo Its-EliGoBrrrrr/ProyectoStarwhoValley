@@ -26,7 +26,6 @@ public class Server {
     // Banderas de inicio de juego para permitir reinicar
     protected boolean nuevoJuego;
     protected boolean tableroListo;
-    protected boolean juegoActivo;
     protected boolean[] jugadoresListos;
     protected boolean[] ganador;
     protected boolean[] turno;
@@ -42,7 +41,6 @@ public class Server {
         this.continuar=true;
         this.nuevoJuego=true;
         this.tableroListo=false;
-        this.juegoActivo=false;
         this.jugadoresListos = new boolean[]{false,false};
         this.ganador = new boolean[]{false,false};
         this.turno = new boolean[]{false,false};
@@ -110,8 +108,7 @@ public class Server {
                     clientes.get(0).setTurno(true);
                     clientes.get(1).enviarMensaje(new Mensaje("Bloqueo Botones",5));
                     turno[0] = true;
-                    this.juegoActivo = true;
-                    while(this.juegoActivo){
+                    while(turno[0] || turno[1]){
                         if(turno[0]){
                             while(turno[0]){
                                 turno[0] = clientes.get(0).getTurno();
@@ -137,17 +134,15 @@ public class Server {
                     System.out.println("*** Fin del juego ***");
                 //}
                 
-                do{
+                while(this.juegos[0] == null && this.juegos[1] == null){
                     this.juegos[0] = clientes.get(0).getResultados();
                     this.juegos[1] = clientes.get(1).getResultados();
-                }while(this.juegos[0] == null && this.juegos[1] == null);
-                System.out.println("*** Juego cargado ***");
+                }
                 
-                do{
+                while(!ganador[0] || !ganador[1]){
                     this.ganador[0] = clientes.get(0).isGanador();
                     this.ganador[1] = clientes.get(1).isGanador();
-                }while(!ganador[0] && !ganador[1]);
-                System.out.println("*** Ganador obtenido ***");
+                }
                 
                 cargarPartida();
                 
@@ -206,7 +201,7 @@ public class Server {
         }
         
         fecha = new java.util.Date();
-        tiempo = this.juegos[0].getTiempo();
+        tiempo = this.juegos[0].getTiempooo();
 
         SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
         String fechaF = formatoFecha.format(fecha);
