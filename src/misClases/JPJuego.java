@@ -1062,7 +1062,7 @@ public class JPJuego extends JPanel {
         
         System.out.println("Pregunta creada: " + pregunta);
         String texto = this.ZonaPreguntaRespuesta.getText().trim();
-        texto += pregunta;
+        texto += ("\n" + pregunta);
         
         this.ZonaPreguntaRespuesta.setText("");
         this.ZonaPreguntaRespuesta.setText(texto);
