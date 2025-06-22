@@ -93,7 +93,7 @@ public class AttClient extends Thread {
                             this.resultados = juego;
                         }
                         
-                        System.out.println("Recibido: " + mesg);
+                        System.out.println("Client "+this.nClient+" | Recibido: " + mesg);
                     }
                 }catch(ObjectStreamException e){
                     System.out.println("Servidor || Error en: " + e.getMessage());
@@ -189,7 +189,7 @@ public class AttClient extends Thread {
     }
 
     public Juego getResultados() {
-        System.out.print("");
+        System.out.print("Recibiendo "+this.resultados);
         return resultados;
     }
 

@@ -137,15 +137,17 @@ public class Server {
                     System.out.println("*** Fin del juego ***");
                 //}
                 
-                while(this.juegos[0] == null && this.juegos[1] == null){
+                do{
                     this.juegos[0] = clientes.get(0).getResultados();
                     this.juegos[1] = clientes.get(1).getResultados();
-                }
+                }while(this.juegos[0] == null && this.juegos[1] == null);
+                System.out.println("*** Juego cargado ***");
                 
-                while(!ganador[0] || !ganador[1]){
+                do{
                     this.ganador[0] = clientes.get(0).isGanador();
                     this.ganador[1] = clientes.get(1).isGanador();
-                }
+                }while(!ganador[0] && !ganador[1]);
+                System.out.println("*** Ganador obtenido ***");
                 
                 cargarPartida();
                 

@@ -25,6 +25,11 @@ public class Juego implements Serializable{
         this.tiempo = LocalTime.of(h, m, s);
     }
 
+    @Override
+    public String toString() {
+        return "Juego{" + "jugador=" + jugador + ", personaje=" + personaje + ", tiempo=" + tiempo + '}';
+    }
+    
     public String getJugador() {
         return jugador;
     }

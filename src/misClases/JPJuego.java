@@ -34,7 +34,7 @@ public class JPJuego extends JPanel {
     private ArrayList<JLabel> labelsImg; //Lista de los labels de las imagenes
     private ArrayList<JLabel> labelsNoms; //Lista de los labels de los nombres
     private JLabel seleccionado; //Personaje elegido para adivinar
-    private Juego resultados; // Guarda resultados finales de la partida
+    private static Juego resultados; // Guarda resultados finales de la partida
     
     // Datos jugador
     private static String nombre = ""; //Nombre del jugador
@@ -1327,6 +1327,10 @@ public class JPJuego extends JPanel {
     
     public static void setNombre(String nombre) {
         JPJuego.nombre = nombre;
+    }
+    
+    public static Juego getResultados(){
+        return JPJuego.resultados;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

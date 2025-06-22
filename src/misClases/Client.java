@@ -162,6 +162,7 @@ public class Client{
     }
     
     public void enviarResultados(Juego result){
+        System.out.println("Enviando resultados de la partida: "+result);
         try {
             salidaServer.writeObject(result);
         } catch (IOException ex) {
