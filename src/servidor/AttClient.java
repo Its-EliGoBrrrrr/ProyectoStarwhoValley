@@ -5,6 +5,7 @@ import java.net.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import misClases.Juego;
 
 public class AttClient extends Thread {
     private boolean continuar;
@@ -16,7 +17,9 @@ public class AttClient extends Thread {
     // Datos
     private boolean preparado;
     private boolean enTurno;
+    private boolean ganador;
     private final int nClient;
+    private Juego resultados;
     
     // Conexion
     private ObjectOutputStream salidaClient;
@@ -29,6 +32,7 @@ public class AttClient extends Thread {
         this.continuar = true;
         this.preparado = false;
         this.enTurno = false;
+        this.ganador = false;
     }
     
     @Override
@@ -40,15 +44,16 @@ public class AttClient extends Thread {
             
             while (continuar){
                 try{
-                    Mensaje entrada = (Mensaje)entradaClient.readObject();
+                    Object entrada = entradaClient.readObject();
                     
                     if(entrada instanceof Mensaje mesg){ // Problema viene de aqui, no puede leer mensajes por alguna razon
                         System.out.println("Recibe un mensaje tipo "+mesg.getTipo());
                         switch(mesg.getTipo()){
-                            case 2:
-                                break;
                             case 4:
-                                this.preparado = true;
+                                if("True".equals(mesg.getTexto()))
+                                    this.preparado = true;
+                                else
+                                    this.preparado = false;
                                 System.out.println("Client "+this.nClient+" preparado ="+this.preparado);
                                 break;
                             case 5:
@@ -58,13 +63,21 @@ public class AttClient extends Thread {
                                 break;
                             case 6:
                                 this.enTurno = false;
+                                Mensaje vic = new Mensaje("Victoria",6);
                                 if(nClient == 1){
-                                    //server.clientes.get(1).salidaClient.writeObject(mesg);
+                                    server.clientes.get(1).salidaClient.writeObject(vic);
                                     server.clientes.get(1).enTurno = false;
                                 } else{
-                                    //server.clientes.get(0).salidaClient.writeObject(mesg);
+                                    server.clientes.get(0).salidaClient.writeObject(vic);
                                     server.clientes.get(0).enTurno = false;
                                 }
+                                break;
+                            case 7:
+                                if("True".equals(mesg.getTexto()))
+                                    this.ganador = true;
+                                else
+                                    this.ganador = false;
+                                System.out.println("Client "+this.nClient+" preparado ="+this.preparado);
                                 break;
                             default:
                                 if(nClient == 1){
@@ -73,6 +86,9 @@ public class AttClient extends Thread {
                                     server.clientes.get(0).salidaClient.writeObject(mesg);
                                 }
                                 break;
+                        }
+                        if(entrada instanceof Juego juego){
+                            this.resultados = juego;
                         }
                         
                         System.out.println("Recibido: " + mesg);
@@ -126,6 +142,8 @@ public class AttClient extends Thread {
         }
     }
 
+    // Getters y Setters
+    
     public int getnClient() {
         return nClient;
     }
@@ -135,7 +153,8 @@ public class AttClient extends Thread {
     }
     
     public boolean getPreparado(){
-        System.out.println("Client "+this.nClient+" preparado = "+this.preparado);
+        //System.out.println("Client "+this.nClient+" preparado = "+this.preparado);
+        System.out.print("");
         /*try {
             wait(2);
         } catch (InterruptedException ex) {
@@ -156,4 +175,24 @@ public class AttClient extends Thread {
         }
         return this.enTurno;
     }
+
+    public boolean isGanador() {
+        System.out.print("");
+        return ganador;
+    }
+
+    public void setGanador(boolean ganador) {
+        this.ganador = ganador;
+    }
+
+    public Juego getResultados() {
+        System.out.print("");
+        return resultados;
+    }
+
+    public void setResultados(Juego resultados) {
+        this.resultados = resultados;
+    }
+    
+    
 }

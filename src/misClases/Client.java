@@ -58,7 +58,7 @@ public class Client{
                                 padre.getJuego().bloquearBotones();
                                 break;
                             case 6:
-                                //this.padre.getJuego().mostrarGanador(mesg.getTexto());
+                                this.padre.getJuego().mostrarGanador(mesg.getTexto());
                             default:
                                 break;
                         }
@@ -142,10 +142,19 @@ public class Client{
         }
     }
     
-    public void enviarPreparado(){ // En esta parte por alguna razon hay un error aca fuerte
+    public void enviarPreparado(String estado){ // En esta parte por alguna razon hay un error aca fuerte
         System.out.println("Enviar preparado");
         try{
-            Mensaje listo = new Mensaje("Jugador Listo",4);
+            Mensaje listo = new Mensaje(estado,4);
+            salidaServer.writeObject(listo);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void enviarGanador(String estado){
+        try{
+            Mensaje listo = new Mensaje(estado,7);
             salidaServer.writeObject(listo);
         }catch(Exception e){
             e.printStackTrace();

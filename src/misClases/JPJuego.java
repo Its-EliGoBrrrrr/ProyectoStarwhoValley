@@ -34,6 +34,7 @@ public class JPJuego extends JPanel {
     private ArrayList<JLabel> labelsImg; //Lista de los labels de las imagenes
     private ArrayList<JLabel> labelsNoms; //Lista de los labels de los nombres
     private JLabel seleccionado; //Personaje elegido para adivinar
+    private Juego resultados; // Guarda resultados finales de la partida
     
     // Datos jugador
     private static String nombre = ""; //Nombre del jugador
@@ -45,6 +46,7 @@ public class JPJuego extends JPanel {
     private int segundos; //Segundos del timer
     private int minutos; //Minutos del timer
     private int horas; //Horas del timer
+    private java.util.Timer tiempo; // Para tiempo final <---------------------------------------------------------------------------------------- Esto es lo que ocupo
     private Timer cronometro; //El timer
     private Date fecha; //Fecha del momento
     private SimpleDateFormat formato1, formato2; //Formatos de fecha
@@ -140,8 +142,6 @@ public class JPJuego extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ButtonReturn = new javax.swing.JButton();
-        ButtonOption = new javax.swing.JButton();
         jLabelPersonaje1 = new javax.swing.JLabel();
         jLabelPersonaje2 = new javax.swing.JLabel();
         jLabelPersonaje3 = new javax.swing.JLabel();
@@ -218,24 +218,6 @@ public class JPJuego extends JPanel {
         setMaximumSize(new java.awt.Dimension(1920, 1080));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
-
-        ButtonReturn.setFont(getFont());
-        ButtonReturn.setText("Cambiar CardLayout");
-        ButtonReturn.setToolTipText("");
-        ButtonReturn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        ButtonReturn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonReturnActionPerformed(evt);
-            }
-        });
-
-        ButtonOption.setFont(getFont());
-        ButtonOption.setText("Opciones");
-        ButtonOption.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonOptionActionPerformed(evt);
-            }
-        });
 
         jLabelPersonaje1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -860,11 +842,7 @@ public class JPJuego extends JPanel {
                             .addComponent(jLabelNombre24, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(206, 206, 206)
-                                .addComponent(ButtonOption)
-                                .addGap(26, 26, 26)
-                                .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(50, 50, 50)
+                                .addGap(402, 402, 402)
                                 .addComponent(jButtonMusica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(52, 52, 52)
@@ -898,10 +876,7 @@ public class JPJuego extends JPanel {
                         .addComponent(jLabelJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ButtonReturn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ButtonOption, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonMusica, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButtonMusica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -999,19 +974,6 @@ public class JPJuego extends JPanel {
                 .addGap(100, 100, 100))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void ButtonReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonReturnActionPerformed
-        JPanel parent = (JPanel)getParent();
-        CardLayout cardLayout = (CardLayout)parent.getLayout();
-        cardLayout.show(parent, "MainScreen");
-    }//GEN-LAST:event_ButtonReturnActionPerformed
-
-    private void ButtonOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonOptionActionPerformed
-        JPOpciones.cardAnterior="GameScreen";
-        JPanel parent = (JPanel)getParent();
-        CardLayout cardLayout = (CardLayout)parent.getLayout();
-        cardLayout.show(parent, "OptionScreen");
-    }//GEN-LAST:event_ButtonOptionActionPerformed
 
     private void jLabelPersonajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPersonajeMouseClicked
         if(clicElegir == false){
@@ -1220,6 +1182,7 @@ public class JPJuego extends JPanel {
         this.jComboBoxPregunta3.setEnabled(false);
     }
     
+    // Tablero
     protected void obtenerPersonajes(ArrayList tablero){
         System.out.println("Tablero enviado a Juego\n"+tablero);
         personajes = tablero;
@@ -1277,7 +1240,6 @@ public class JPJuego extends JPanel {
     }
     
     // Preguntas, respuestas y adivinar
-    
     protected void mostrarPregunta(String pregunta){
         int opcion = JOptionPane.showConfirmDialog(null, pregunta,"Recibió una pregunta",JOptionPane.YES_NO_OPTION);
         
@@ -1307,7 +1269,7 @@ public class JPJuego extends JPanel {
         if(pregunta.equals(this.miPersonaje.getNombre())){
             this.jugador.enviarRespAdivinar(true);
             //cambiar al panel de derrota
-            //this.derrota();
+            this.derrota();
         }else if(!pregunta.equals(this.miPersonaje.getNombre())){
             this.jugador.enviarRespAdivinar(false);
         }
@@ -1315,11 +1277,14 @@ public class JPJuego extends JPanel {
         desbloquearBotones();
     }
     
+    // Ganador
     protected void mostrarGanador(String pregunta){
         JOptionPane.showMessageDialog(null, "Adivinaste Correctamente");
+        this.resultados = new Juego(nombre,this.miPersonaje.getNombre(),this.tiempo);
         this.victoria();
     }
     
+    // Mover pantalla
     protected void victoria(){
         JPanel parent = (JPanel)getParent();
         CardLayout cardLayout = (CardLayout)parent.getLayout();
@@ -1361,8 +1326,6 @@ public class JPJuego extends JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonOption;
-    private javax.swing.JButton ButtonReturn;
     private javax.swing.JTextArea ZonaPreguntaRespuesta;
     private javax.swing.JButton jButtonAdivinar;
     private javax.swing.JButton jButtonDefQue;

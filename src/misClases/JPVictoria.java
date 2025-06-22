@@ -12,16 +12,22 @@ import java.awt.*;
  */
 public class JPVictoria extends javax.swing.JPanel {
     // Variables
+    Client jugador;
     
     /**
      * Creates new form JPVictoria
      */
-    public JPVictoria() {
+    public JPVictoria(Client jugador) {
         this.setFont(StardewFonts.getSVThin());
+        this.jugador = jugador;
         
         initComponents();
     }
 
+    private void enviarDatos(){
+        System.out.println("");
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
