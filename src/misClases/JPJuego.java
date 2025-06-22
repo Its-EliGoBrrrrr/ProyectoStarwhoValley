@@ -78,7 +78,7 @@ public class JPJuego extends JPanel {
         // Inicializa componentes
         initComponents();
         //llama a cargar sonido
-        cargarYReproducirSonido("src/Resources/Musica/01.-Stardew-Valley-Overture.wav");
+        ciclarmusica("src/Resources/Musica/01.-Stardew-Valley-Overture.wav");
         
         // Acciones que se tienen que tomar despues de inicializar
         this.labelsImg = new ArrayList<>(Arrays.asList(jLabelPersonaje1, jLabelPersonaje2, jLabelPersonaje3, jLabelPersonaje4,
@@ -1229,6 +1229,19 @@ public class JPJuego extends JPanel {
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
         }
+    }
+    
+    private void ciclarmusica(String rutaArchivo){
+        try {
+        File archivo = new File(rutaArchivo);
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivo);
+        clip = AudioSystem.getClip();
+        clip.open(audioStream);
+        clip.loop(Clip.LOOP_CONTINUOUSLY); // Hace que el sonido se repita indefinidamente
+        clip.start();
+    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+        e.printStackTrace();
+    }
     }
 
     //hace que el sonido se reproduzca desde el principio
