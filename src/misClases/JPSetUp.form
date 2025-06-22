@@ -72,7 +72,7 @@
               <Component id="jLabelNombre" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jTextFieldNombreJ" min="-2" pref="26" max="-2" attributes="0"/>
-              <EmptySpace pref="103" max="32767" attributes="0"/>
+              <EmptySpace pref="97" max="32767" attributes="0"/>
               <Component id="jLabelModo" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -130,9 +130,6 @@
     </Component>
     <Component class="javax.swing.JToggleButton" name="jToggleButtonElegirLista">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="d2" green="eb" red="ff" type="rgb"/>
-        </Property>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroupModoSeleccion"/>
         </Property>
@@ -140,20 +137,10 @@
           <Connection code="StardewFonts.getSVBold()" type="code"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Seleccion de Lista"/>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="2" right="2" top="2">
-              <Color PropertyName="color" blue="3e" green="7a" red="e2" type="rgb"/>
-            </MatteColorBorder>
-          </Border>
-        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JToggleButton" name="jToggleButtonElegirTabla">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="d2" green="eb" red="ff" type="rgb"/>
-        </Property>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroupModoSeleccion"/>
         </Property>
@@ -161,20 +148,10 @@
           <Connection code="StardewFonts.getSVBold()" type="code"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Seleccion de Tabla"/>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="2" right="2" top="2">
-              <Color PropertyName="color" blue="3e" green="7a" red="e2" type="rgb"/>
-            </MatteColorBorder>
-          </Border>
-        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JToggleButton" name="jToggleButtonElegirAzar">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="d2" green="eb" red="ff" type="rgb"/>
-        </Property>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroupModoSeleccion"/>
         </Property>
@@ -182,13 +159,6 @@
           <Connection code="StardewFonts.getSVBold()" type="code"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Aleatorio"/>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="2" right="2" top="2">
-              <Color PropertyName="color" blue="3e" green="7a" red="e2" type="rgb"/>
-            </MatteColorBorder>
-          </Border>
-        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldNombreJ">

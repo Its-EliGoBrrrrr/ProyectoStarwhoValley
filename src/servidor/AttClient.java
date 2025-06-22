@@ -54,11 +54,13 @@ public class AttClient extends Thread {
                                 salidaClient.writeObject(new Mensaje("Bloqueo Botones",5));
                                 System.out.println("Final de turno de Client "+this.nClient);
                                 break;
-                            case 7:
+                            case 6:
                                 this.enTurno = false;
                                 if(nClient == 1){
+                                    //server.clientes.get(1).salidaClient.writeObject(mesg);
                                     server.clientes.get(1).enTurno = false;
                                 } else{
+                                    //server.clientes.get(0).salidaClient.writeObject(mesg);
                                     server.clientes.get(0).enTurno = false;
                                 }
                                 break;

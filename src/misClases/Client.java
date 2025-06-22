@@ -45,7 +45,7 @@ public class Client{
                                 this.padre.getJuego().mostrarRespuesta(mesg.getTexto());
                                 break;
                             case 2: // Es intento de adivinar
-                                // Decidir que hacer la verdad
+                                this.padre.getJuego().mostrarAdivinarPersonaje(mesg.getTexto());
                                 break;
                             case 3: // Cambia el display
                                 padre.getSetUp().moverAJuego();
@@ -56,6 +56,9 @@ public class Client{
                                 break;*/
                             case 5: // Fin de turno, tiene que bloquear los botones del panel
                                 padre.getJuego().bloquearBotones();
+                                break;
+                            case 6:
+                                //this.padre.getJuego().mostrarGanador(mesg.getTexto());
                             default:
                                 break;
                         }
@@ -112,12 +115,30 @@ public class Client{
     }
     
     public void enviarAdivinar(String nombre){
-        String pregunta = "¿Tu personaje es "+nombre+'?';
+        String pregunta = nombre;
         
         try{
             Mensaje adivinar = new Mensaje(pregunta,2);
+            salidaServer.writeObject(adivinar);
+            System.out.println("Personaje enviado: "+pregunta);
         }catch(Exception ex){
-            
+            System.out.println("Problema al enviar pregunta");
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void enviarRespAdivinar(boolean resp){
+        Mensaje respuesta;
+        
+        if(resp)
+            respuesta = new Mensaje("Si",6);
+        else
+            respuesta = new Mensaje("No",1);
+        try {
+            salidaServer.writeObject(respuesta);
+            System.out.println("Respuesta enviada: "+respuesta);
+        } catch (IOException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

@@ -87,23 +87,17 @@ public class JPSetUp extends javax.swing.JPanel {
         jLabelModo.setFont(StardewFonts.getSVBold());
         jLabelModo.setText("Seleccione el modo de seleccion de personaje:");
 
-        jToggleButtonElegirLista.setBackground(new java.awt.Color(255, 235, 210));
         buttonGroupModoSeleccion.add(jToggleButtonElegirLista);
         jToggleButtonElegirLista.setFont(StardewFonts.getSVBold());
         jToggleButtonElegirLista.setText("Seleccion de Lista");
-        jToggleButtonElegirLista.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(226, 122, 62)));
 
-        jToggleButtonElegirTabla.setBackground(new java.awt.Color(255, 235, 210));
         buttonGroupModoSeleccion.add(jToggleButtonElegirTabla);
         jToggleButtonElegirTabla.setFont(StardewFonts.getSVBold());
         jToggleButtonElegirTabla.setText("Seleccion de Tabla");
-        jToggleButtonElegirTabla.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(226, 122, 62)));
 
-        jToggleButtonElegirAzar.setBackground(new java.awt.Color(255, 235, 210));
         buttonGroupModoSeleccion.add(jToggleButtonElegirAzar);
         jToggleButtonElegirAzar.setFont(StardewFonts.getSVBold());
         jToggleButtonElegirAzar.setText("Aleatorio");
-        jToggleButtonElegirAzar.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(226, 122, 62)));
 
         ButtonReturn.setBackground(new Color(0,0,0,0));
         ButtonReturn.setFont(StardewFonts.getSVBold());
@@ -161,7 +155,7 @@ public class JPSetUp extends javax.swing.JPanel {
                 .addComponent(jLabelNombre)
                 .addGap(18, 18, 18)
                 .addComponent(jTextFieldNombreJ, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                 .addComponent(jLabelModo)
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

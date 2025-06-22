@@ -1028,7 +1028,22 @@ public class JPJuego extends JPanel {
     }//GEN-LAST:event_jLabelPersonajeMouseClicked
 
     private void jButtonAdivinarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdivinarActionPerformed
-        // TODO add your handling code here:
+        int indice = this.labelsImg.indexOf(seleccionado);
+        Personaje guess = this.personajes.get(indice);
+        String pregunta = guess.getNombre();
+        
+        System.out.println("Pregunta creada: ¿Tu personaje es " + pregunta + '?');
+        String texto = this.ZonaPreguntaRespuesta.getText().trim();
+        texto += ("¿Tu personaje es " + pregunta + "?");
+        
+        this.ZonaPreguntaRespuesta.setText("");
+        this.ZonaPreguntaRespuesta.setText(texto);
+        
+        try{
+            jugador.enviarAdivinar(pregunta);
+        }catch(Exception e){
+            System.out.println("*** Error enviando pregunta ***");
+        }
     }//GEN-LAST:event_jButtonAdivinarActionPerformed
 
     private void jButtonMusicaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMusicaMouseClicked
@@ -1165,6 +1180,37 @@ public class JPJuego extends JPanel {
         this.ZonaPreguntaRespuesta.setText(texto);
         
         this.jugador.finDeTurno();
+    }
+    
+    protected void mostrarAdivinarPersonaje(String pregunta){
+        JOptionPane.showMessageDialog(null, "El contrincante esta intentando adivinar personaje...");
+        
+        if(pregunta.equals(this.miPersonaje.getNombre())){
+            this.jugador.enviarRespAdivinar(true);
+            //cambiar al panel de derrota
+            //this.derrota();
+        }else if(!pregunta.equals(this.miPersonaje.getNombre())){
+            this.jugador.enviarRespAdivinar(false);
+        }
+        
+        desbloquearBotones();
+    }
+    
+    protected void mostrarGanador(String pregunta){
+        JOptionPane.showMessageDialog(null, "Adivinaste Correctamente");
+        this.victoria();
+    }
+    
+    protected void victoria(){
+        JPanel parent = (JPanel)getParent();
+        CardLayout cardLayout = (CardLayout)parent.getLayout();
+        cardLayout.show(parent, "VictoryScreen");
+    }
+    
+    protected void derrota(){
+        JPanel parent = (JPanel)getParent();
+        CardLayout cardLayout = (CardLayout)parent.getLayout();
+        cardLayout.show(parent, "DefeatScreen");
     }
     
     // Turnos
