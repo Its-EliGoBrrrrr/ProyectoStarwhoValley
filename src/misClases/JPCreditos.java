@@ -8,6 +8,8 @@ import java.awt.*;
 import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.sound.sampled.*;
+import java.io.IOException;
 
 /**
  *
@@ -16,6 +18,7 @@ import javax.swing.*;
 public class JPCreditos extends javax.swing.JPanel {
     // Variables
     private Image imgFondo;
+    private Clip clip;
     
     // Creates new form JPCreditos
     public JPCreditos() {
@@ -312,6 +315,7 @@ public class JPCreditos extends javax.swing.JPanel {
         JPanel parent = (JPanel)getParent();
         CardLayout cardLayout = (CardLayout)parent.getLayout();
         cardLayout.show(parent, "MainScreen");
+        cargarYReproducirSonido("src/Resources/Sonidos/shadowHit.wav");
     }//GEN-LAST:event_ButtonReturnActionPerformed
 
     private void ButtonReturnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonReturnMouseEntered
@@ -322,6 +326,17 @@ public class JPCreditos extends javax.swing.JPanel {
         this.ButtonReturn.setIcon(ButtonIcons.getBackButtonNormal());
     }//GEN-LAST:event_ButtonReturnMouseExited
 
+    private void cargarYReproducirSonido(String rutaArchivo) {
+        try {
+            File archivo = new File(rutaArchivo);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(archivo);
+            clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonReturn;
