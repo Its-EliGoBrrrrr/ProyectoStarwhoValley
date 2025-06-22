@@ -74,19 +74,79 @@ public class ConexionBD {
         }
     }
     
-    public static List<String> ObtenerPreguntas(){
+    //Se usa opciones para elegir que preguntas a importar
+    public static Vector<String> ObtenerPreguntas(int tabla,int tipo){
+        String sql;
+        String pregunta,variable="";
+        int id;
         
-        String sql = "SELECT * FROM preguntas";
-        List lista = new ArrayList<String>();
+        switch (tabla) {
+            case 1: // Tabla de sujetos
+                sql = "SELECT * FROM pregunta_sujeto";
+                pregunta = "Pregunta";
+                break;
+            case 2: // Tabla de objetos
+                sql = "SELECT * FROM pregunta_objeto";
+                pregunta = "objeto";
+                break;
+            case 3: // Tabla de adjetivos
+                sql = "SELECT * FROM pregunta_adjetivo";
+                pregunta = "adjetivo";
+                break;
+            default:
+                throw new AssertionError();
+        }
+
+        Vector lista = new Vector<String>();
         
         try (Connection conn = conectar();
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 ResultSet rs = stmt.executeQuery()){
             
             while (rs.next()) {
-                String pregunta = rs.getString("Pregunta");
-                
-                lista.add(pregunta);
+                id = rs.getInt("id");
+                switch(tipo){
+                case 0: // Solo las interogantes
+                    variable = rs.getString(pregunta);
+                    lista.add(variable);
+                    break;
+                case 1: // Es
+                    if(id<=6){
+                        variable = rs.getString(pregunta);
+                        lista.add(variable);
+                    }
+                    break;
+                case 2: // Tiene
+                    if(id>6){
+                        variable = rs.getString(pregunta);
+                        lista.add(variable);
+                    }
+                    break;
+                case 3: // Cejas
+                    if(id<=2){
+                        variable = rs.getString(pregunta);
+                        lista.add(variable);
+                    }
+                    break;
+                case 4: // Pelo
+                    if(id == 3 || id == 4){
+                        variable = rs.getString(pregunta);
+                        lista.add(variable);
+                    }
+                    break;
+                case 5: // Color
+                    if(id>=5 && id<=13){
+                        variable = rs.getString(pregunta);
+                        lista.add(variable);
+                    }
+                    break;
+                case 6: // Piel
+                    if(id>=14 && id<=16){
+                        variable = rs.getString(pregunta);
+                        lista.add(variable);
+                    }
+                    break;
+                }
             }
             
         }catch(Exception e){

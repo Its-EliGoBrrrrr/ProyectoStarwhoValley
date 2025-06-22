@@ -99,6 +99,7 @@ public class JPSetUp extends javax.swing.JPanel {
         jToggleButtonElegirAzar.setFont(StardewFonts.getSVBold());
         jToggleButtonElegirAzar.setText("Aleatorio");
 
+        jTextFieldNombreJ.setFont(getFont());
         ButtonReturn.setBackground(new Color(0,0,0,0));
         ButtonReturn.setFont(StardewFonts.getSVBold());
         ButtonReturn.setBorder(null);

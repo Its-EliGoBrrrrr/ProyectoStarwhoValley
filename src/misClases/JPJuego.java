@@ -7,34 +7,47 @@ package misClases;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import javax.imageio.ImageIO;
+import java.util.*;
+import javax.imageio.*;
 import javax.swing.*;
-import javax.swing.border.Border;
-import java.util.Date;
-import java.text.SimpleDateFormat;
-import java.text.Normalizer;
-import java.util.Random;
+import javax.swing.border.*;
+import java.text.*;
+import javax.swing.Timer;
 
 public class JPJuego extends JPanel {
     // Variables
-    private static String nombre = ""; //Nombre del jugador
     private Image imgFondo; //Fondo
+    
+    // Datos preguntas
+    private Vector<String> interrogativo;       // Tipo 0
+    private Vector<String> verboEs;             // Tipo 1
+    private Vector<String> verboTiene;          // Tipo 2
+    private Vector<String> complementoCeja;     // Tipo 3
+    private Vector<String> complementoPelo;     // Tipo 4
+    private Vector<String> complementoColor;    // Tipo 5
+    private Vector<String> complementoPiel;     // Tipo 6
+    private boolean esTiene;
+    
+    // Datos Juego
     private ArrayList<Personaje> personajes = new ArrayList<>(); //Personajes en el tablero
     private ArrayList<ImageIcon> iconos = new ArrayList<>(); // Imagenes en uso (Personajes en el tablero)
     private ArrayList<JLabel> labelsImg; //Lista de los labels de las imagenes
     private ArrayList<JLabel> labelsNoms; //Lista de los labels de los nombres
     private JLabel seleccionado; //Personaje elegido para adivinar
+    
+    // Datos jugador
+    private static String nombre = ""; //Nombre del jugador
+    private Personaje miPersonaje; //El personaje con el que se juega
+    private boolean clicElegir; //Comprobar si se elegira el personaje por el tablero
+    private Client jugador; 
+    
+    // Timer
     private int segundos; //Segundos del timer
     private int minutos; //Minutos del timer
     private int horas; //Horas del timer
     private Timer cronometro; //El timer
     private Date fecha; //Fecha del momento
     private SimpleDateFormat formato1, formato2; //Formatos de fecha
-    private Personaje miPersonaje; //El personaje con el que se juega
-    private boolean clicElegir; //Comprobar si se elegira el personaje por el tablero
-    private Client jugador; 
     
     // Creates new form JPJuego
     public JPJuego(Client jugador) {
@@ -57,6 +70,7 @@ public class JPJuego extends JPanel {
                 jLabelFecha2.setText(formato2.format(fecha));
                 
                 elegirPersonaje();
+                cargarOpcionesPregunta();
             }
         });
         
@@ -74,6 +88,7 @@ public class JPJuego extends JPanel {
         
         // Inicializa componentes
         initComponents();
+        // cargarOpcionesPregunta();
         
         // Acciones que se tienen que tomar despues de inicializar
         this.labelsImg = new ArrayList<>(Arrays.asList(jLabelPersonaje1, jLabelPersonaje2, jLabelPersonaje3, jLabelPersonaje4,
@@ -593,13 +608,20 @@ public class JPJuego extends JPanel {
         jLabelPregunta1.setText("Tu Personaje");
 
         jComboBoxPregunta1.setFont(StardewFonts.getSVThin());
-        jComboBoxPregunta1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ehe", "Ehehehe", "Ehehehehe" }));
+        jComboBoxPregunta1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxPregunta1ItemStateChanged(evt);
+            }
+        });
 
         jComboBoxPregunta2.setFont(StardewFonts.getSVThin());
-        jComboBoxPregunta2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Triki", "Traka", "Telas" }));
+        jComboBoxPregunta2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxPregunta2ItemStateChanged(evt);
+            }
+        });
 
         jComboBoxPregunta3.setFont(StardewFonts.getSVThin());
-        jComboBoxPregunta3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Planta", "Fuego", "Agua" }));
 
         jLabelPregunta2.setFont(StardewFonts.getSVThin());
         jLabelPregunta2.setText("?");
@@ -1057,7 +1079,7 @@ public class JPJuego extends JPanel {
     }//GEN-LAST:event_jButtonMusicaMouseClicked
 
     private void jButtonDefQueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDefQueActionPerformed
-        String pregunta = "¿Tu personaje "+this.jComboBoxPregunta1.getSelectedItem().toString()+' '+this.jComboBoxPregunta2.getSelectedItem().toString()+' '+this.jComboBoxPregunta3.getSelectedItem().toString() + "?";
+        String pregunta = "Tu personaje "+this.jComboBoxPregunta1.getSelectedItem().toString()+' '+this.jComboBoxPregunta2.getSelectedItem().toString()+' '+this.jComboBoxPregunta3.getSelectedItem().toString() + "?";
         
         System.out.println("Pregunta creada: " + pregunta);
         
@@ -1091,6 +1113,64 @@ public class JPJuego extends JPanel {
         }
     }//GEN-LAST:event_jButtonPersQueActionPerformed
 
+    private void jComboBoxPregunta1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxPregunta1ItemStateChanged
+        ComboBoxModel modeloCaja2;
+        
+        if(this.jComboBoxPregunta1.getSelectedIndex() == 0){
+            // Cambia a la lista de objetos para Es
+            modeloCaja2 = new DefaultComboBoxModel(this.verboEs);
+            this.jComboBoxPregunta2.setModel(modeloCaja2);
+            
+            this.esTiene = false;
+            
+            // Bloquea los complementos
+            this.jComboBoxPregunta3.setSelectedIndex(0);
+            this.jComboBoxPregunta3.setEnabled(false);
+        }else{
+            // Cambia a la lista de objetos para Tiene
+            modeloCaja2 = new DefaultComboBoxModel(this.verboTiene);
+            this.jComboBoxPregunta2.setModel(modeloCaja2);
+            
+            this.esTiene = true;
+            
+            // Desbloquea los complementos
+            this.jComboBoxPregunta3.setSelectedIndex(0);
+            this.jComboBoxPregunta3.setEnabled(true);
+        }
+    }//GEN-LAST:event_jComboBoxPregunta1ItemStateChanged
+
+    private void jComboBoxPregunta2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxPregunta2ItemStateChanged
+        DefaultComboBoxModel modeloCaja3 = new DefaultComboBoxModel();
+        
+        Vector <String> modelo;
+        
+        if(this.esTiene == true){
+            System.out.println("Entra porque es Tiene");
+            int id = this.jComboBoxPregunta2.getSelectedIndex();
+            
+            switch(id){
+                case 2: case 7: // Pelo, vello facial
+                    modelo = new Vector(this.complementoPelo);
+                    modelo.addAll(this.complementoColor);
+                    break;
+                case 1: // Cejas
+                    modelo = this.complementoCeja;
+                    break;
+                case 5: // Piel
+                    modelo = this.complementoPiel;
+                    break;
+                default: // Lentes, Ojos, Ropa, Gorro
+                    modelo = this.complementoColor;
+                    break;
+            }
+            
+            modeloCaja3.addElement(" ");
+            modeloCaja3.addAll(modelo);
+            modeloCaja3.setSelectedItem(" ");
+            this.jComboBoxPregunta3.setModel(modeloCaja3);
+        }
+    }//GEN-LAST:event_jComboBoxPregunta2ItemStateChanged
+
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -1100,6 +1180,45 @@ public class JPJuego extends JPanel {
     }
     
     // Inicio de partida
+    
+    private void cargarOpcionesPregunta(){
+        DefaultComboBoxModel modelo;
+        
+        this.interrogativo = ConexionBD.ObtenerPreguntas(1,0);
+        this.verboEs = ConexionBD.ObtenerPreguntas(2,1);
+        this.verboTiene = ConexionBD.ObtenerPreguntas(2,2);
+        this.complementoCeja = ConexionBD.ObtenerPreguntas(3,3);
+        this.complementoPelo = ConexionBD.ObtenerPreguntas(3,4);
+        this.complementoColor = ConexionBD.ObtenerPreguntas(3,5);
+        this.complementoPiel = ConexionBD.ObtenerPreguntas(3,6);
+        
+        System.out.println("Interrogativo: "+this.interrogativo);
+        System.out.println("Es: "+this.verboEs);
+        System.out.println("Tiene: "+this.verboTiene);
+        System.out.println("Cejas: "+this.complementoCeja);
+        System.out.println("Pelo: "+this.complementoPelo);
+        System.out.println("Color: "+this.complementoColor);
+        System.out.println("Piel: "+this.complementoPiel);
+        
+        // Caja de preguntas 1
+        modelo = new DefaultComboBoxModel(this.interrogativo);
+        modelo.setSelectedItem(this.interrogativo.get(0));
+        this.jComboBoxPregunta1.setModel(modelo);
+        
+        // Caja de preguntas 2
+        modelo = new DefaultComboBoxModel(this.verboEs);
+        modelo.setSelectedItem(this.verboEs.get(0));
+        this.jComboBoxPregunta2.setModel(modelo);
+        
+        // Caja de Preguntas 3
+        modelo = new DefaultComboBoxModel();
+        modelo.addElement(" ");
+        modelo.addAll(this.complementoColor);
+        modelo.setSelectedItem(" ");
+        
+        this.jComboBoxPregunta3.setModel(modelo);
+        this.jComboBoxPregunta3.setEnabled(false);
+    }
     
     protected void obtenerPersonajes(ArrayList tablero){
         System.out.println("Tablero enviado a Juego\n"+tablero);
@@ -1123,7 +1242,6 @@ public class JPJuego extends JPanel {
     }
     
     // Formas de elección de personaje
-    
     private void elegirPersonaje(){
         int n = JPSetUp.getMetodo();
         switch(n){
@@ -1174,7 +1292,7 @@ public class JPJuego extends JPanel {
     protected void mostrarRespuesta(String resp){
         String texto = this.ZonaPreguntaRespuesta.getText().trim();
         
-        texto += "\nRespuesta: "+resp+'\n';
+        texto += "\nRespuesta: "+resp+"\n";
         
         this.ZonaPreguntaRespuesta.setText("");
         this.ZonaPreguntaRespuesta.setText(texto);
