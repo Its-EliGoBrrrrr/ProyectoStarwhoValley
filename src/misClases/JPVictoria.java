@@ -12,20 +12,14 @@ import java.awt.*;
  */
 public class JPVictoria extends javax.swing.JPanel {
     // Variables
-    Client jugador;
     
     /**
      * Creates new form JPVictoria
      */
-    public JPVictoria(Client jugador) {
+    public JPVictoria() {
         this.setFont(StardewFonts.getSVThin());
-        this.jugador = jugador;
         
         initComponents();
-    }
-
-    private void enviarDatos(){
-        System.out.println("");
     }
     
     /**
