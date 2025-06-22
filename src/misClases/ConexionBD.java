@@ -53,11 +53,11 @@ public class ConexionBD {
     
     public static boolean guardarPartida(Partida partida){
         
-        String sql = "INSERT INTO partidas (ID, Jugador_1, Jugador_2, Ganador, Personaje, Fecha, Duracion_partida) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO partidas (Jugador_1, Jugador_2, Ganador, Personaje, Fecha, Duracion_partida) VALUES (?, ?, ?, ?, ?, ?)";
         
         try (Connection conn = conectar();
                 PreparedStatement stmt = conn.prepareStatement(sql);
-                ResultSet rs = stmt.executeQuery()){
+                /*ResultSet rs = stmt.executeQuery()*/){
             
             stmt.setString(1, partida.getJugador1());
             stmt.setString(2, partida.getJugador2());
