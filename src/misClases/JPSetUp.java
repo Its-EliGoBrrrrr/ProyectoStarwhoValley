@@ -181,7 +181,7 @@ public class JPSetUp extends javax.swing.JPanel {
         if(this.jToggleButtonElegirLista.isSelected() || this.jToggleButtonElegirAzar.isSelected() || 
                 this.jToggleButtonElegirTabla.isSelected()){
             setMetodo();
-            this.jugador.enviarPreparado();
+            this.jugador.enviarPreparado("True");
         }
         else{
             JOptionPane.showMessageDialog(this, "Por favor seleccione su modo de eleccion");
@@ -197,6 +197,8 @@ public class JPSetUp extends javax.swing.JPanel {
     }//GEN-LAST:event_ButtonReturnMouseExited
 
     private void ButtonReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonReturnActionPerformed
+        this.jugador.enviarPreparado("False");
+        
         JPanel parent = (JPanel)getParent();
         CardLayout cardLayout = (CardLayout)parent.getLayout();
         cardLayout.show(parent, "MainScreen");

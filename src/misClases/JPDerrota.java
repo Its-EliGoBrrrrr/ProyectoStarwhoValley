@@ -12,10 +12,12 @@ import java.awt.*;
  */
 public class JPDerrota extends javax.swing.JPanel {
     // Variables
+    Client jugador;
     
     // Creates new form JPDerrota
-    public JPDerrota() {
+    public JPDerrota(Client jugador) {
         this.setFont(StardewFonts.getSVThin());
+        this.jugador = jugador;
         
         initComponents();
     }

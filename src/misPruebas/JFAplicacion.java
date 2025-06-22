@@ -68,8 +68,8 @@ public class JFAplicacion extends javax.swing.JFrame{
         card1 = new JPInicio();
         card2 = new JPJuego(jugador);
         card3 = new JPInstrucciones();
-        card4 = new JPVictoria();
-        card5 = new JPDerrota();
+        card4 = new JPVictoria(jugador);
+        card5 = new JPDerrota(jugador);
         card6 = new JPCreditos();
         card7 = new JPOpciones();
         card8 = new JPSetUp(jugador);
