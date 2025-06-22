@@ -10,12 +10,12 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import misClases.ConexionBD;
-import misClases.Juego;
 import misClases.Partida;
 import misClases.Personaje;
 import java.time.*;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
+import misClases.Juego;
 
 public class Server {
     protected List<AttClient> clientes;
@@ -140,7 +140,7 @@ public class Server {
                     System.out.println("*** Fin del juego ***");
                 //}
                 
-                while(this.juegos[0] == null && this.juegos[1] == null){
+                while(this.juegos[0] == null || this.juegos[1] == null){
                     this.juegos[0] = clientes.get(0).getResultados();
                     this.juegos[1] = clientes.get(1).getResultados();
                 }
@@ -213,6 +213,7 @@ public class Server {
         String tiempoF = tiempo.format(formatoHora);
         
         resultado = new Partida(jugador1,jugador2,ganador1,personaje,fechaF,tiempoF);
+        System.out.println(resultado);
         
         ConexionBD.guardarPartida(resultado);
     }

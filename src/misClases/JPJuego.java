@@ -34,7 +34,7 @@ public class JPJuego extends JPanel {
     private ArrayList<JLabel> labelsImg; //Lista de los labels de las imagenes
     private ArrayList<JLabel> labelsNoms; //Lista de los labels de los nombres
     private JLabel seleccionado; //Personaje elegido para adivinar
-    private Juego resultados; // Guarda resultados finales de la partida
+    private static Juego resultados; // Guarda resultados finales de la partida
     
     // Datos jugador
     private static String nombre = ""; //Nombre del jugador
@@ -46,7 +46,6 @@ public class JPJuego extends JPanel {
     private int segundos; //Segundos del timer
     private int minutos; //Minutos del timer
     private int horas; //Horas del timer
-    private java.util.Timer tiempo; // Para tiempo final <---------------------------------------------------------------------------------------- Esto es lo que ocupo
     private Timer cronometro; //El timer
     private Date fecha; //Fecha del momento
     private SimpleDateFormat formato1, formato2; //Formatos de fecha
@@ -1272,8 +1271,9 @@ public class JPJuego extends JPanel {
         
         if(pregunta.equals(this.miPersonaje.getNombre())){
             this.jugador.enviarRespAdivinar(true);
-            this.resultados = new Juego(nombre,this.miPersonaje.getNombre(),this.tiempo, this.segundos, this.minutos, this.horas,false);
+            this.resultados = new Juego(nombre,this.miPersonaje.getNombre(), this.segundos, this.minutos, this.horas,false);
             this.jugador.enviarResultado(resultados);
+            
             //cambiar al panel de derrota
             this.derrota();
         }else if(!pregunta.equals(this.miPersonaje.getNombre())){
@@ -1286,8 +1286,9 @@ public class JPJuego extends JPanel {
     // Ganador
     protected void mostrarGanador(String pregunta){
         JOptionPane.showMessageDialog(null, "Adivinaste Correctamente");
-        this.resultados = new Juego(nombre,this.miPersonaje.getNombre(),this.tiempo, this.segundos, this.minutos, this.horas,true);
+        this.resultados = new Juego(nombre,this.miPersonaje.getNombre(), this.segundos, this.minutos, this.horas,true);
         this.jugador.enviarResultado(resultados);
+        
         this.victoria();
     }
     

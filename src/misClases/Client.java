@@ -154,6 +154,7 @@ public class Client{
     
     public void enviarResultado(Juego result){
         try{
+            System.out.println("Enviando : "+result);
             salidaServer.writeObject(result);
         }catch(Exception e){
             e.printStackTrace();

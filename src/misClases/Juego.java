@@ -15,11 +15,12 @@ import java.time.LocalTime;
  */
 
 public class Juego implements Serializable{
+    private static final long serialVersionUID = 6529685098267757690L;
     private String jugador, personaje;
     LocalTime tiempo;
-    boolean ganador;
+    Boolean ganador;
 
-    public Juego(String jugador, String personaje, Timer tiempo, int s, int m, int h, boolean ganador) {
+    public Juego(String jugador, String personaje, int s, int m, int h, boolean ganador) {
         this.jugador = jugador;
         this.personaje = personaje;
         this.tiempo = LocalTime.of(h, m, s);
@@ -38,7 +39,7 @@ public class Juego implements Serializable{
         return tiempo;
     }
     
-    public boolean getGanador(){
+    public Boolean getGanador(){
         return ganador;
     }
 

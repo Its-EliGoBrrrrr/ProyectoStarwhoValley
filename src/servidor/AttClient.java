@@ -80,11 +80,12 @@ public class AttClient extends Thread {
                                 }
                                 break;
                         }
-                        if(entrada instanceof Juego juego){
-                            this.resultados = juego;
-                        }
                         
                         System.out.println("Recibido: " + mesg);
+                    }
+                    if(entrada instanceof Juego juego){
+                        System.out.println("Recibiendo | "+juego);
+                        this.resultados = juego;
                     }
                 }catch(ObjectStreamException e){
                     System.out.println("Servidor || Error en: " + e.getMessage());
@@ -172,6 +173,7 @@ public class AttClient extends Thread {
     }
 
     public Juego getResultados() {
+        // System.out.print("Client "+this.nClient+" | Resultados: "+this.resultados);
         System.out.print("");
         return resultados;
     }
