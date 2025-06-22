@@ -1039,6 +1039,7 @@ public class JPJuego extends JPanel {
 
     private void jButtonAdivinarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdivinarActionPerformed
         // TODO add your handling code here:
+        cargarYReproducirSonido("src/Resources/Sonidos/Cowboy_Secret.wav");
     }//GEN-LAST:event_jButtonAdivinarActionPerformed
 
     private void jButtonMusicaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMusicaMouseClicked
