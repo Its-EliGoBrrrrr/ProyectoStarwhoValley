@@ -5,7 +5,7 @@
 package misClases;
 
 import java.util.Timer;
-
+import java.time.LocalTime;
 
 
 /**
@@ -16,11 +16,13 @@ import java.util.Timer;
 public class Juego {
     private String jugador, personaje;
     Timer tiempo;
+    LocalTime tiempooo;
 
-    public Juego(String jugador, String personaje, Timer tiempo) {
+    public Juego(String jugador, String personaje, Timer tiempo, int s, int m, int h) {
         this.jugador = jugador;
         this.personaje = personaje;
         this.tiempo = tiempo;
+        this.tiempooo = LocalTime.of(h, m, s);
     }
 
     public String getJugador() {
@@ -34,6 +36,8 @@ public class Juego {
     public Timer getTiempo() {
         return tiempo;
     }
-    
-    
+
+    public LocalTime getTiempooo() {
+        return tiempooo;
+    }
 }

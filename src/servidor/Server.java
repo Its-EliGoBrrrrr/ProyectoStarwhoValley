@@ -13,6 +13,9 @@ import misClases.ConexionBD;
 import misClases.Juego;
 import misClases.Partida;
 import misClases.Personaje;
+import java.time.*;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 
 public class Server {
     protected List<AttClient> clientes;
@@ -180,13 +183,14 @@ public class Server {
     }
     
     private void cargarPartida(){
+        System.out.println("Entre a cargar partida");
         Partida resultado;
         String jugador1, jugador2, ganador1="", personaje="";
         Date fecha;
-        Timer tiempo;
+        LocalTime tiempo;
         
         jugador1 = this.juegos[0].getJugador();
-        jugador2 = this.juegos[2].getJugador();
+        jugador2 = this.juegos[1].getJugador();
         
         if(this.ganador[0]){
             ganador1 = this.juegos[0].getJugador();
@@ -196,9 +200,16 @@ public class Server {
             personaje = this.juegos[1].getPersonaje();
         }
         
-        fecha = new Date();
-        tiempo = this.juegos[0].getTiempo();
-        resultado = new Partida(jugador1,jugador2,ganador1,personaje,fecha.toString(),tiempo.toString());
+        fecha = new java.util.Date();
+        tiempo = this.juegos[0].getTiempooo();
+
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaF = formatoFecha.format(fecha);
+
+        DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String tiempoF = tiempo.format(formatoHora);
+        
+        resultado = new Partida(jugador1,jugador2,ganador1,personaje,fechaF,tiempoF);
         
         ConexionBD.guardarPartida(resultado);
     }

@@ -63,7 +63,7 @@ public class JDListaP extends javax.swing.JDialog {
         setMaximumSize(new java.awt.Dimension(400, 304));
         setMinimumSize(new java.awt.Dimension(400, 304));
 
-        jPanelFondo.setBackground(new java.awt.Color(0, 0, 0));
+        jPanelFondo.setBackground(new java.awt.Color(255, 238, 178));
         jPanelFondo.setMaximumSize(new java.awt.Dimension(400, 304));
         jPanelFondo.setMinimumSize(new java.awt.Dimension(400, 304));
         jPanelFondo.setPreferredSize(new java.awt.Dimension(400, 304));

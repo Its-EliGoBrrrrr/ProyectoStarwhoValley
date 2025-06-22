@@ -1280,7 +1280,7 @@ public class JPJuego extends JPanel {
     // Ganador
     protected void mostrarGanador(String pregunta){
         JOptionPane.showMessageDialog(null, "Adivinaste Correctamente");
-        this.resultados = new Juego(nombre,this.miPersonaje.getNombre(),this.tiempo);
+        this.resultados = new Juego(nombre,this.miPersonaje.getNombre(),this.tiempo, this.segundos, this.minutos, this.horas);
         this.victoria();
     }
     
