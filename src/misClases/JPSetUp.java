@@ -13,6 +13,7 @@ import java.awt.event.ComponentEvent;
 import java.io.File;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -32,6 +33,7 @@ public class JPSetUp extends javax.swing.JPanel {
                 jToggleButtonElegirLista.setSelected(false);
                 jToggleButtonElegirAzar.setSelected(false);
                 jToggleButtonElegirTabla.setSelected(false);
+                jLabelBuscando.setText(" ");
             }
         });
         this.setFont(StardewFonts.getSVThin());
@@ -77,6 +79,7 @@ public class JPSetUp extends javax.swing.JPanel {
         jToggleButtonElegirAzar = new javax.swing.JToggleButton();
         jTextFieldNombreJ = new javax.swing.JTextField();
         ButtonReturn = new javax.swing.JButton();
+        jLabelBuscando = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1920, 1080));
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -111,6 +114,7 @@ public class JPSetUp extends javax.swing.JPanel {
         jToggleButtonElegirAzar.setText("Aleatorio");
 
         jTextFieldNombreJ.setFont(getFont());
+
         ButtonReturn.setBackground(new Color(0,0,0,0));
         ButtonReturn.setFont(StardewFonts.getSVBold());
         ButtonReturn.setBorder(null);
@@ -132,6 +136,10 @@ public class JPSetUp extends javax.swing.JPanel {
             }
         });
 
+        jLabelBuscando.setFont(StardewFonts.getSVThin());
+        jLabelBuscando.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelBuscando.setText("Buscando jugador...");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,13 +153,14 @@ public class JPSetUp extends javax.swing.JPanel {
                             .addComponent(jTextFieldNombreJ, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(478, 478, 478)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jToggleButtonElegirLista)
                                 .addGap(20, 20, 20)
                                 .addComponent(jToggleButtonElegirTabla))
                             .addComponent(jLabelModo)
-                            .addComponent(jButtonStartGame, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButtonStartGame, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                            .addComponent(jLabelBuscando, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(601, 601, 601)
                         .addComponent(jToggleButtonElegirAzar)))
@@ -165,9 +174,9 @@ public class JPSetUp extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(183, 183, 183)
                 .addComponent(jLabelNombre)
-                .addGap(18, 18, 18)
+                .addGap(19, 19, 19)
                 .addComponent(jTextFieldNombreJ, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                 .addComponent(jLabelModo)
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -175,9 +184,11 @@ public class JPSetUp extends javax.swing.JPanel {
                     .addComponent(jToggleButtonElegirTabla))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jToggleButtonElegirAzar)
-                .addGap(44, 44, 44)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonStartGame, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(123, 123, 123)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelBuscando, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(85, 85, 85)
                 .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
@@ -192,6 +203,7 @@ public class JPSetUp extends javax.swing.JPanel {
         if(this.jToggleButtonElegirLista.isSelected() || this.jToggleButtonElegirAzar.isSelected() || 
                 this.jToggleButtonElegirTabla.isSelected()){
             setMetodo();
+            buscarJugador();
             this.jugador.enviarPreparado("True");
         }
         else{
@@ -239,11 +251,19 @@ public class JPSetUp extends javax.swing.JPanel {
     public static int getMetodo() {
         return metodo;
     }
+    
+    private void buscarJugador(){
+        ImageIcon cargaStardrop = new ImageIcon("src/Resources/Assets/Stardrop.gif");
+        String texto = "Buscando jugador...";
+        this.jLabelBuscando.setIcon(cargaStardrop);
+        this.jLabelBuscando.setText(texto);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonReturn;
     private javax.swing.ButtonGroup buttonGroupModoSeleccion;
     private javax.swing.JButton jButtonStartGame;
+    private javax.swing.JLabel jLabelBuscando;
     private javax.swing.JLabel jLabelModo;
     private javax.swing.JLabel jLabelNombre;
     private javax.swing.JTextField jTextFieldNombreJ;

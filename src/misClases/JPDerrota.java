@@ -5,6 +5,10 @@
 package misClases;
 
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.io.File;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -13,15 +17,37 @@ import java.awt.*;
 public class JPDerrota extends javax.swing.JPanel {
     // Variables
     Client jugador;
+    private Image imgFondo; //Fondo
     
     // Creates new form JPDerrota
     public JPDerrota(Client jugador) {
+        addComponentListener(new ComponentAdapter(){
+            @Override
+            public void componentShown(ComponentEvent evt){
+                //Aqui se realizan las cosas al mostrarse el panel
+            }
+        });
         this.setFont(StardewFonts.getSVThin());
         this.jugador = jugador;
+        
+        try{
+            imgFondo = ImageIO.read(new File("src/Resources/Fondos/CieloNoche.png"));
+        }catch(Exception e){
+            System.out.println("*** Error cargando fondo de panel ***");
+            e.printStackTrace();
+        }
         
         initComponents();
     }
 
+    @Override
+    protected void paintComponent(Graphics g){
+        super.paintComponent(g);
+        if(imgFondo != null){
+            g.drawImage(imgFondo, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,23 +57,39 @@ public class JPDerrota extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabelDerrota = new javax.swing.JLabel();
+
         setFont(getFont());
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
+
+        jLabelDerrota.setBackground(new java.awt.Color(255, 238, 175));
+        jLabelDerrota.setFont(StardewFonts.getSVTitleCaps());
+        jLabelDerrota.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelDerrota.setText("DERROTA");
+        jLabelDerrota.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(158, 79, 19)));
+        jLabelDerrota.setOpaque(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1280, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(jLabelDerrota, javax.swing.GroupLayout.PREFERRED_SIZE, 1132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabelDerrota, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(422, 422, 422))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabelDerrota;
     // End of variables declaration//GEN-END:variables
 }

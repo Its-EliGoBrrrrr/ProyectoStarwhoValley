@@ -5,6 +5,10 @@
 package misClases;
 
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.io.File;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -13,19 +17,41 @@ import java.awt.*;
 public class JPVictoria extends javax.swing.JPanel {
     // Variables
     Client jugador;
+    private Image imgFondo; //Fondo
     
     /**
      * Creates new form JPVictoria
      */
     public JPVictoria(Client jugador) {
+        addComponentListener(new ComponentAdapter(){
+            @Override
+            public void componentShown(ComponentEvent evt){
+                //Aqui se realizan las cosas al mostrarse el panel
+            }
+        });
         this.setFont(StardewFonts.getSVThin());
         this.jugador = jugador;
+        
+        try{
+            imgFondo = ImageIO.read(new File("src/Resources/Fondos/CieloDia.png"));
+        }catch(Exception e){
+            System.out.println("*** Error cargando fondo de panel ***");
+            e.printStackTrace();
+        }
         
         initComponents();
     }
 
     private void enviarDatos(){
         System.out.println("");
+    }
+    
+    @Override
+    protected void paintComponent(Graphics g){
+        super.paintComponent(g);
+        if(imgFondo != null){
+            g.drawImage(imgFondo, 0, 0, getWidth(), getHeight(), this);
+        }
     }
     
     /**
@@ -37,23 +63,39 @@ public class JPVictoria extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabelVictoria = new javax.swing.JLabel();
+
         setFont(getFont());
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
+
+        jLabelVictoria.setBackground(new java.awt.Color(255, 238, 175));
+        jLabelVictoria.setFont(StardewFonts.getSVTitleCaps());
+        jLabelVictoria.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelVictoria.setText("VICTORIA");
+        jLabelVictoria.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(158, 79, 19)));
+        jLabelVictoria.setOpaque(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1280, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(jLabelVictoria, javax.swing.GroupLayout.PREFERRED_SIZE, 1132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabelVictoria, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(422, 422, 422))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabelVictoria;
     // End of variables declaration//GEN-END:variables
 }
