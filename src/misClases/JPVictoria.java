@@ -4,7 +4,12 @@
  */
 package misClases;
 
-import java.awt.Font;
+import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.io.File;
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
 
 /**
  *
@@ -12,20 +17,32 @@ import java.awt.Font;
  */
 public class JPVictoria extends javax.swing.JPanel {
     // Variables
-    private Font SVBold;
-    private Font SVThin;
+    private Image imgFondo; //Fondo
     
     /**
      * Creates new form JPVictoria
      */
-    public JPVictoria(Font SVBold, Font SVThin) {
-        this.SVBold = SVBold;
-        this.SVThin = SVThin;
-        this.setFont(SVThin);
+    public JPVictoria() {
+        this.setFont(StardewFonts.getSVThin());
+        
+        try{
+            imgFondo = ImageIO.read(new File("src/Resources/Fondos/CieloDia.png"));
+        }catch(Exception e){
+            System.out.println("*** Error cargando fondo de panel ***");
+            e.printStackTrace();
+        }
         
         initComponents();
     }
-
+    
+    @Override
+    protected void paintComponent(Graphics g){
+        super.paintComponent(g);
+        if(imgFondo != null){
+            g.drawImage(imgFondo, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,23 +52,84 @@ public class JPVictoria extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabelVictoria = new javax.swing.JLabel();
+        jButtonAgain = new javax.swing.JButton();
+        jButtonSalir = new javax.swing.JButton();
+
         setFont(getFont());
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
+
+        jLabelVictoria.setBackground(new java.awt.Color(255, 238, 175));
+        jLabelVictoria.setFont(StardewFonts.getSVTitleCaps());
+        jLabelVictoria.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelVictoria.setText("VICTORIA");
+        jLabelVictoria.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(158, 79, 19)));
+        jLabelVictoria.setOpaque(true);
+
+        jButtonAgain.setBackground(new java.awt.Color(255, 241, 189));
+        jButtonAgain.setFont(StardewFonts.getSVBold());
+        jButtonAgain.setText("Jugar de Nuevo");
+        jButtonAgain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgainActionPerformed(evt);
+            }
+        });
+
+        jButtonSalir.setBackground(new java.awt.Color(255, 241, 189));
+        jButtonSalir.setFont(StardewFonts.getSVBold());
+        jButtonSalir.setText("Salir");
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1280, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(jLabelVictoria, javax.swing.GroupLayout.PREFERRED_SIZE, 1132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(74, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(250, 250, 250)
+                .addComponent(jButtonAgain, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(250, 250, 250))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabelVictoria, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(150, 150, 150)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAgain, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonAgainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgainActionPerformed
+        JPanel parent = (JPanel)getParent();
+        CardLayout cardLayout = (CardLayout)parent.getLayout();
+        cardLayout.show(parent, "SetUpScreen");
+    }//GEN-LAST:event_jButtonAgainActionPerformed
+
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        JPanel parent = (JPanel)getParent();
+        CardLayout cardLayout = (CardLayout)parent.getLayout();
+        cardLayout.show(parent, "MainScreen");
+    }//GEN-LAST:event_jButtonSalirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAgain;
+    private javax.swing.JButton jButtonSalir;
+    private javax.swing.JLabel jLabelVictoria;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,8 +4,10 @@
  */
 package misClases;
 
-import java.awt.Font;
+import java.awt.*;
 import java.io.File;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 
 /**
  *
@@ -13,18 +15,50 @@ import java.io.File;
  */
 public class JPCreditos extends javax.swing.JPanel {
     // Variables
-    private Font SVBold;
-    private Font SVThin;
+    private Image imgFondo;
     
     // Creates new form JPCreditos
-    public JPCreditos(Font SVBold, Font SVThin) {
-        this.SVBold = SVBold;
-        this.SVThin = SVThin;
-        this.setFont(SVThin);
+    public JPCreditos() {
+        this.setFont(StardewFonts.getSVThin());
+        
+        // Se encarga de cargar la imagen de fondo
+        try{
+            imgFondo = ImageIO.read(new File("src/Resources/Fondos/CartaMago.png"));
+        }catch(Exception e){
+            System.out.println("*** Error cargando fondo de panel ***");
+            e.printStackTrace();
+        }
         
         initComponents();
+        
+        this.ButtonReturn.setIcon(ButtonIcons.getBackButtonNormal());
+        setCreditImages();
+    }
+    
+    private void setCreditImages(){
+        ImageIcon iconOziel = new ImageIcon("src/Resources/Assets/CreditsOzi.png");
+        ImageIcon iconFer = new ImageIcon("src/Resources/Assets/CreditsFer.png");
+        ImageIcon iconEli = new ImageIcon("src/Resources/Assets/CreditsEli.png");
+        ImageIcon iconDiego = new ImageIcon("src/Resources/Assets/CreditsDiego.png");
+        ImageIcon iconLogo = new ImageIcon("src/Resources/Assets/UaaLogo.png");
+        ImageIcon iconTitulo = new ImageIcon("src/Resources/Assets/UaaTitulo.png");
+        
+        this.jLOzielImage.setIcon(new ImageIcon(iconOziel.getImage().getScaledInstance(iconOziel.getIconWidth()*3, iconOziel.getIconHeight()*3, Image.SCALE_SMOOTH)));
+        this.jLFerImage.setIcon(new ImageIcon(iconFer.getImage().getScaledInstance(iconFer.getIconWidth()*3, iconFer.getIconHeight()*3, Image.SCALE_SMOOTH)));
+        this.jLEliImage.setIcon(new ImageIcon(iconEli.getImage().getScaledInstance(iconEli.getIconWidth()*3, iconEli.getIconHeight()*3, Image.SCALE_SMOOTH)));
+        this.jLDiegoImage.setIcon(new ImageIcon(iconDiego.getImage().getScaledInstance(iconDiego.getIconWidth()*3, iconDiego.getIconHeight()*3, Image.SCALE_SMOOTH)));
+        this.LabelLogo.setIcon(new ImageIcon(iconLogo.getImage().getScaledInstance(iconLogo.getIconWidth()*4, iconLogo.getIconHeight()*4, Image.SCALE_SMOOTH)));
+        this.LabelTitulo.setIcon(iconTitulo);
     }
 
+    @Override
+    protected void paintComponent(Graphics g){
+        super.paintComponent(g);
+        if(imgFondo != null){
+            g.drawImage(imgFondo, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,23 +68,276 @@ public class JPCreditos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ButtonReturn = new javax.swing.JButton();
+        jLOzielImage = new javax.swing.JLabel();
+        jLFerImage = new javax.swing.JLabel();
+        jLEliImage = new javax.swing.JLabel();
+        jLDiegoImage = new javax.swing.JLabel();
+        jLOzielNombre = new javax.swing.JLabel();
+        jLFerNombre = new javax.swing.JLabel();
+        jLEliNombre = new javax.swing.JLabel();
+        jLDiegoNombre = new javax.swing.JLabel();
+        LabelLogo = new javax.swing.JLabel();
+        LabelTitulo = new javax.swing.JLabel();
+        jPanelDatos = new javax.swing.JPanel();
+        jLMateria = new javax.swing.JLabel();
+        jLMaestra = new javax.swing.JLabel();
+        jLMaestra1 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(0, 0, 0));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFont(getFont());
-        setMaximumSize(new java.awt.Dimension(1280, 720));
+        setMaximumSize(new java.awt.Dimension(1920, 1080));
         setMinimumSize(new java.awt.Dimension(1280, 720));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
+
+        ButtonReturn.setBackground(new Color(0,0,0,0));
+        ButtonReturn.setFont(StardewFonts.getSVBold());
+        ButtonReturn.setBorder(null);
+        ButtonReturn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ButtonReturn.setMaximumSize(new java.awt.Dimension(132, 54));
+        ButtonReturn.setMinimumSize(new java.awt.Dimension(132, 54));
+        ButtonReturn.setPreferredSize(new java.awt.Dimension(132, 54));
+        ButtonReturn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ButtonReturnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ButtonReturnMouseExited(evt);
+            }
+        });
+        ButtonReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonReturnActionPerformed(evt);
+            }
+        });
+
+        jLOzielImage.setBackground(new Color(0,0,0,0));
+        jLOzielImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLOzielImage.setMaximumSize(new java.awt.Dimension(228, 225));
+        jLOzielImage.setMinimumSize(new java.awt.Dimension(228, 225));
+        jLOzielImage.setOpaque(true);
+        jLOzielImage.setPreferredSize(new java.awt.Dimension(228, 225));
+
+        jLFerImage.setBackground(new Color(0,0,0,0));
+        jLFerImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLFerImage.setMaximumSize(new java.awt.Dimension(228, 225));
+        jLFerImage.setMinimumSize(new java.awt.Dimension(228, 225));
+        jLFerImage.setOpaque(true);
+        jLFerImage.setPreferredSize(new java.awt.Dimension(228, 225));
+
+        jLEliImage.setBackground(new Color(0,0,0,0));
+        jLEliImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLEliImage.setMaximumSize(new java.awt.Dimension(228, 225));
+        jLEliImage.setMinimumSize(new java.awt.Dimension(228, 225));
+        jLEliImage.setOpaque(true);
+        jLEliImage.setPreferredSize(new java.awt.Dimension(228, 225));
+
+        jLDiegoImage.setBackground(new Color(0,0,0,0));
+        jLDiegoImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLDiegoImage.setMaximumSize(new java.awt.Dimension(228, 225));
+        jLDiegoImage.setMinimumSize(new java.awt.Dimension(228, 225));
+        jLDiegoImage.setOpaque(true);
+        jLDiegoImage.setPreferredSize(new java.awt.Dimension(228, 225));
+
+        jLOzielNombre.setBackground(new java.awt.Color(218, 173, 114));
+        jLOzielNombre.setFont(StardewFonts.getSVBold());
+        jLOzielNombre.setForeground(new java.awt.Color(91, 25, 30));
+        jLOzielNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLOzielNombre.setText("A. Oziel Carrillo Diaz de Leon");
+        jLOzielNombre.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLOzielNombre.setOpaque(true);
+        jLOzielNombre.setPreferredSize(new java.awt.Dimension(225, 40));
+
+        jLFerNombre.setBackground(new java.awt.Color(218, 173, 114));
+        jLFerNombre.setFont(StardewFonts.getSVBold());
+        jLFerNombre.setForeground(new java.awt.Color(91, 25, 30));
+        jLFerNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLFerNombre.setText("Fernando Davalos Gutierrez");
+        jLFerNombre.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLFerNombre.setOpaque(true);
+        jLFerNombre.setPreferredSize(new java.awt.Dimension(225, 40));
+
+        jLEliNombre.setBackground(new java.awt.Color(218, 173, 114));
+        jLEliNombre.setFont(StardewFonts.getSVBold());
+        jLEliNombre.setForeground(new java.awt.Color(91, 25, 30));
+        jLEliNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLEliNombre.setText("A. Elijah Dominguez Estrada");
+        jLEliNombre.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLEliNombre.setOpaque(true);
+        jLEliNombre.setPreferredSize(new java.awt.Dimension(225, 40));
+
+        jLDiegoNombre.setBackground(new java.awt.Color(218, 173, 114));
+        jLDiegoNombre.setFont(StardewFonts.getSVBold());
+        jLDiegoNombre.setForeground(new java.awt.Color(91, 25, 30));
+        jLDiegoNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLDiegoNombre.setText("Diego Emilio Venegas Flores");
+        jLDiegoNombre.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+        jLDiegoNombre.setOpaque(true);
+        jLDiegoNombre.setPreferredSize(new java.awt.Dimension(225, 40));
+
+        LabelLogo.setBackground(new Color(0,0,0,0));
+        LabelLogo.setOpaque(true);
+        LabelLogo.setPreferredSize(new java.awt.Dimension(200, 168));
+
+        LabelTitulo.setBackground(new Color(0,0,0,0));
+        LabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LabelTitulo.setMaximumSize(new java.awt.Dimension(386, 40));
+        LabelTitulo.setMinimumSize(new java.awt.Dimension(386, 40));
+        LabelTitulo.setOpaque(true);
+        LabelTitulo.setPreferredSize(new java.awt.Dimension(386, 40));
+
+        jPanelDatos.setBackground(new java.awt.Color(218, 173, 114));
+        jPanelDatos.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(177, 78, 5)));
+
+        jLMateria.setBackground(new java.awt.Color(218, 173, 114));
+        jLMateria.setFont(StardewFonts.getSVBold());
+        jLMateria.setForeground(new java.awt.Color(91, 25, 30));
+        jLMateria.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLMateria.setText("Para la materia de Programacion III");
+        jLMateria.setPreferredSize(new java.awt.Dimension(225, 40));
+
+        jLMaestra.setBackground(new java.awt.Color(218, 173, 114));
+        jLMaestra.setFont(StardewFonts.getSVBold());
+        jLMaestra.setForeground(new java.awt.Color(91, 25, 30));
+        jLMaestra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLMaestra.setText("Impartida por Georina Salazar Partida");
+        jLMaestra.setPreferredSize(new java.awt.Dimension(225, 40));
+
+        jLMaestra1.setBackground(new java.awt.Color(218, 173, 114));
+        jLMaestra1.setFont(StardewFonts.getSVBold());
+        jLMaestra1.setForeground(new java.awt.Color(91, 25, 30));
+        jLMaestra1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLMaestra1.setText("22 de Junio del 2025");
+        jLMaestra1.setPreferredSize(new java.awt.Dimension(225, 40));
+
+        javax.swing.GroupLayout jPanelDatosLayout = new javax.swing.GroupLayout(jPanelDatos);
+        jPanelDatos.setLayout(jPanelDatosLayout);
+        jPanelDatosLayout.setHorizontalGroup(
+            jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDatosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLMateria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLMaestra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLMaestra1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanelDatosLayout.setVerticalGroup(
+            jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDatosLayout.createSequentialGroup()
+                .addComponent(jLMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLMaestra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLMaestra1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1280, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLFerImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLOzielImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLOzielNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLFerNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(LabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(162, 162, 162))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(196, 196, 196)
+                                .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(69, 69, 69)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jPanelDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(LabelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLEliImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLDiegoImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLDiegoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLEliNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(150, 150, 150))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLDiegoImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLDiegoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLEliImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLEliNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLOzielImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(LabelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLOzielNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLFerImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanelDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLFerNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                                .addComponent(ButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40))))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ButtonReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonReturnActionPerformed
+        JPanel parent = (JPanel)getParent();
+        CardLayout cardLayout = (CardLayout)parent.getLayout();
+        cardLayout.show(parent, "MainScreen");
+    }//GEN-LAST:event_ButtonReturnActionPerformed
+
+    private void ButtonReturnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonReturnMouseEntered
+        this.ButtonReturn.setIcon(ButtonIcons.getBackButtonHover());
+    }//GEN-LAST:event_ButtonReturnMouseEntered
+
+    private void ButtonReturnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonReturnMouseExited
+        this.ButtonReturn.setIcon(ButtonIcons.getBackButtonNormal());
+    }//GEN-LAST:event_ButtonReturnMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonReturn;
+    private javax.swing.JLabel LabelLogo;
+    private javax.swing.JLabel LabelTitulo;
+    private javax.swing.JLabel jLDiegoImage;
+    private javax.swing.JLabel jLDiegoNombre;
+    private javax.swing.JLabel jLEliImage;
+    private javax.swing.JLabel jLEliNombre;
+    private javax.swing.JLabel jLFerImage;
+    private javax.swing.JLabel jLFerNombre;
+    private javax.swing.JLabel jLMaestra;
+    private javax.swing.JLabel jLMaestra1;
+    private javax.swing.JLabel jLMateria;
+    private javax.swing.JLabel jLOzielImage;
+    private javax.swing.JLabel jLOzielNombre;
+    private javax.swing.JPanel jPanelDatos;
     // End of variables declaration//GEN-END:variables
 }
