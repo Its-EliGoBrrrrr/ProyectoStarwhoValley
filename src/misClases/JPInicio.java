@@ -66,7 +66,7 @@ public class JPInicio extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1280, 720));
 
         ButtonStart.setBackground(new java.awt.Color(218, 173, 114));
-        ButtonStart.setFont(StardewFonts.getSVSmallTitle());
+        ButtonStart.setFont(StardewFonts.getSVBold());
         ButtonStart.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(226, 122, 62)));
         ButtonStart.setBorderPainted(true);
         ButtonStart.setLabel("Jugar");
@@ -77,7 +77,7 @@ public class JPInicio extends javax.swing.JPanel {
         });
 
         ButtonInstrucc.setBackground(new java.awt.Color(218, 173, 114));
-        ButtonInstrucc.setFont(StardewFonts.getSVSmallTitle());
+        ButtonInstrucc.setFont(StardewFonts.getSVBold());
         ButtonInstrucc.setText("Instrucciones");
         ButtonInstrucc.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(226, 122, 62)));
         ButtonInstrucc.setBorderPainted(true);
@@ -93,7 +93,7 @@ public class JPInicio extends javax.swing.JPanel {
         });
 
         ButtonCredits.setBackground(new java.awt.Color(218, 173, 114));
-        ButtonCredits.setFont(StardewFonts.getSVSmallTitle());
+        ButtonCredits.setFont(StardewFonts.getSVBold());
         ButtonCredits.setText("Creditos");
         ButtonCredits.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(226, 122, 62)));
         ButtonCredits.setBorderPainted(true);
@@ -136,7 +136,7 @@ public class JPInicio extends javax.swing.JPanel {
         jLTitle.setPreferredSize(new java.awt.Dimension(600, 280));
 
         jButtonInfoPartidas.setBackground(new java.awt.Color(218, 173, 114));
-        jButtonInfoPartidas.setFont(StardewFonts.getSVSmallTitle());
+        jButtonInfoPartidas.setFont(StardewFonts.getSVBold());
         jButtonInfoPartidas.setText("InfoPartidas");
         jButtonInfoPartidas.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(226, 122, 62)));
         jButtonInfoPartidas.setMaximumSize(new java.awt.Dimension(200, 60));

@@ -78,7 +78,7 @@
           <Color blue="72" green="ad" red="da" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="StardewFonts.getSVSmallTitle()" type="code"/>
+          <Connection code="StardewFonts.getSVBold()" type="code"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
@@ -102,7 +102,7 @@
           <Color blue="72" green="ad" red="da" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="StardewFonts.getSVSmallTitle()" type="code"/>
+          <Connection code="StardewFonts.getSVBold()" type="code"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Instrucciones"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -140,7 +140,7 @@
           <Color blue="72" green="ad" red="da" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="StardewFonts.getSVSmallTitle()" type="code"/>
+          <Connection code="StardewFonts.getSVBold()" type="code"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Creditos"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -225,7 +225,7 @@
           <Color blue="72" green="ad" red="da" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="StardewFonts.getSVSmallTitle()" type="code"/>
+          <Connection code="StardewFonts.getSVBold()" type="code"/>
         </Property>
         <Property name="text" type="java.lang.String" value="InfoPartidas"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

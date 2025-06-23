@@ -378,7 +378,7 @@ public class JPInstrucciones extends JPanel {
         jLabel30.setFont(StardewFonts.getSVThin());
         jLabel30.setText("adivina el personaje del jugador rival");
 
-        jLabel31.setFont(StardewFonts.getSVSmallTitle());
+        jLabel31.setFont(StardewFonts.getSVBold());
         jLabel31.setText("MUCHA SUERTE!");
 
         javax.swing.GroupLayout jPanelPreguntasLayout = new javax.swing.GroupLayout(jPanelPreguntas);
