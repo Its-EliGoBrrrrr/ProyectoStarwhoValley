@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-06-2025 a las 23:11:16
+-- Tiempo de generación: 23-06-2025 a las 03:02:01
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -36,6 +36,24 @@ CREATE TABLE `partidas` (
   `Fecha` date NOT NULL,
   `Duracion_partida` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `partidas`
+--
+
+INSERT INTO `partidas` (`ID`, `Jugador_1`, `Jugador_2`, `Ganador`, `Personaje`, `Fecha`, `Duracion_partida`) VALUES
+(1, 'Jugador1', 'Jugador2', 'Jugador1', 'Lewis', '2025-06-22', '00:01:53'),
+(2, 'Jugador1', 'Jugador2', 'Jugador2', 'Alex', '2025-06-22', '00:00:30'),
+(3, 'Jugador1', 'Jugador2', 'Jugador1', 'Jodi', '2025-06-22', '00:00:10'),
+(4, 'jugador1', 'jugador2', 'jugador2', 'Sam', '2025-06-22', '00:00:19'),
+(5, 'Oziel', 'Adriano', 'Adriano', 'Jodi', '2025-06-22', '00:00:23'),
+(6, 'Fer', 'Adriano', 'Fer', 'Leah', '2025-06-22', '00:00:11'),
+(7, 'Jugador1', 'Jugador2', 'Jugador1', 'Caroline', '2025-06-22', '00:00:24'),
+(8, 'Jugador1', 'Jugador2', 'Jugador2', 'Penny', '2025-06-22', '00:00:15'),
+(9, 'Jugador1', 'Jugador2', 'Jugador1', 'Penny', '2025-06-22', '00:00:27'),
+(10, 'Jugador1', 'Jugador2', 'Jugador1', 'Mr Qi', '2025-06-22', '00:01:02'),
+(11, 'Jugador1', 'Jugador2', 'Jugador2', 'Marnie', '2025-06-22', '00:03:29'),
+(12, 'Jugador1', 'Jugador2', 'Jugador1', 'Linus', '2025-06-22', '00:00:11');
 
 -- --------------------------------------------------------
 
@@ -86,7 +104,7 @@ INSERT INTO `personajes` (`Id`, `Nombre`, `Imagen`) VALUES
 (30, 'Pam', 'src/Resources/Assets/Pam.png'),
 (31, 'Penny', 'src/Resources/Assets/Penny.png'),
 (32, 'Pierre', 'src/Resources/Assets/Pierre.png'),
-(33, 'Profesor Snail', 'src/Resources/Assets/Prof Snail.png'),
+(33, 'Prof. Snail', 'src/Resources/Assets/Prof Snail.png'),
 (34, 'Robin', 'src/Resources/Assets/Robin.png'),
 (35, 'Sam', 'src/Resources/Assets/Sam.png'),
 (36, 'Sandy', 'src/Resources/Assets/Sandy.png'),
@@ -238,7 +256,7 @@ ALTER TABLE `pregunta_sujeto`
 -- AUTO_INCREMENT de la tabla `partidas`
 --
 ALTER TABLE `partidas`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `personajes`
