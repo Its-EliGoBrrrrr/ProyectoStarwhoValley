@@ -29,20 +29,14 @@ public class Mensaje implements Serializable {
     
     @Override
     public String toString() {
-        switch (this.tipo) {
-        // Es pregunta
-            case 0:
-                return "Pregunta del jugador: " + this.texto;
+        return switch (this.tipo) {
+            case 0 -> "Pregunta del jugador: " + this.texto;
+            case 1 -> "Respuesta del jugador: " + this.texto;
+            case 2 -> "Adivinanza del jugador: " + this.texto;
+            case 3 -> "Cambiando a juego";
+            default -> this.texto;
+        }; // Es pregunta
         // Es respuesta
-            case 1:
-                return "Respuesta del jugador: " + this.texto;
         // Es adivinar
-            case 2:
-                return "Adivinanza del jugador: " + this.texto;
-            case 3:
-                return "Cambiando a juego";
-            default:
-                return this.texto;
-        }
     }
 }

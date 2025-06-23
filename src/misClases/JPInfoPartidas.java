@@ -237,6 +237,18 @@ public class JPInfoPartidas extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Partidas no encontradas");
             }
             else{
+                partidas.sort((e1, e2)->{
+                    String[] hora1 = e1.getTiempo().split(":");
+                    String[] hora2 = e2.getTiempo().split(":");
+                    
+                    int horaCompare = Integer.compare(Integer.parseInt(hora1[0]), Integer.parseInt(hora2[0]));
+                    if(horaCompare!=0) return horaCompare;
+                    
+                    int minutoCompare = Integer.compare(Integer.parseInt(hora1[1]), Integer.parseInt(hora2[1]));
+                    if(minutoCompare!=0) return minutoCompare;
+                    
+                    return Integer.compare(Integer.parseInt(hora1[2]), Integer.parseInt(hora2[2]));
+                });
                 if (modelo.getRowCount() !=0) //si hay datos en pantalla de la consulta anterior
                 { 
                     modelo.setRowCount(0);
