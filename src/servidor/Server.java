@@ -215,7 +215,7 @@ public class Server {
         if(this.juegos[0].getGanador()){
             ganador1 = this.juegos[0].getJugador();
             personaje = this.juegos[0].getPersonaje();
-        }else if(this.juegos[0].getGanador()){
+        }else if(this.juegos[1].getGanador()){
             ganador1 = this.juegos[1].getJugador();
             personaje = this.juegos[1].getPersonaje();
         }
