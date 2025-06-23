@@ -69,6 +69,7 @@ public class JPJuego extends JPanel {
                 //format es para obtener solo ciertas cosas de la fecha de cierta manera
                 jLabelFecha1.setText(Normalizer.normalize(formato1.format(fecha),Normalizer.Form.NFD).replaceAll("\\p{M}",""));
                 jLabelFecha2.setText(formato2.format(fecha));
+                ZonaPreguntaRespuesta.setText("");
                 
                 elegirPersonaje();
                 cargarOpcionesPregunta();
@@ -1017,7 +1018,7 @@ public class JPJuego extends JPanel {
         
         System.out.println("Pregunta creada: ¿Tu personaje es " + pregunta + '?');
         String texto = this.ZonaPreguntaRespuesta.getText().trim();
-        texto += ("¿Tu personaje es " + pregunta + "?");
+        texto += ("\nTu personaje es " + pregunta + "?");
         
         this.ZonaPreguntaRespuesta.setText("");
         this.ZonaPreguntaRespuesta.setText(texto);
@@ -1040,7 +1041,7 @@ public class JPJuego extends JPanel {
     }//GEN-LAST:event_jButtonMusicaMouseClicked
 
     private void jButtonDefQueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDefQueActionPerformed
-        String pregunta = "Tu personaje "+this.jComboBoxPregunta1.getSelectedItem().toString()+' '+this.jComboBoxPregunta2.getSelectedItem().toString()+' '+this.jComboBoxPregunta3.getSelectedItem().toString() + "?";
+        String pregunta = "\nTu personaje "+this.jComboBoxPregunta1.getSelectedItem().toString()+' '+this.jComboBoxPregunta2.getSelectedItem().toString()+' '+this.jComboBoxPregunta3.getSelectedItem().toString() + "?";
         
         System.out.println("Pregunta creada: " + pregunta);
         
