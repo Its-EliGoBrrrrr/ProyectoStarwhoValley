@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 public class Client{
     private final JFAplicacion padre;
     private final int puerto = 1234;
-    private boolean continuar = true;
+    public static boolean continuar = true;
     private Socket conexion;
     private ObjectOutputStream salidaServer;
     private ObjectInputStream entradaServer;

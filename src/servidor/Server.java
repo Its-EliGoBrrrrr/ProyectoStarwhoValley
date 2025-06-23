@@ -137,8 +137,6 @@ public class Server {
                         if(!this.enJuego)
                             break;
                     }
-                
-                    System.out.println("Poniendo en Espera");
                     System.out.println("*** Fin del juego ***");
                 //}
                 
@@ -146,14 +144,6 @@ public class Server {
                     this.juegos[0] = clientes.get(0).getResultados();
                     this.juegos[1] = clientes.get(1).getResultados();
                 }
-                
-                /*try {
-                    clientes.get(0).wait();
-                    clientes.get(1).wait();
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
-                    continue;
-                }*/
                 
                 System.out.println("*** Datos de juego obtenidos ***");
                 
@@ -178,13 +168,6 @@ public class Server {
         }
         
         System.out.println("Tablero generado");
-        
-        try {
-                    clientes.get(0).notify();
-                    clientes.get(1).notify();
-                } catch (Exception ex) {
-                    Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
-                }
         
         this.tablero=tablero;
     }
